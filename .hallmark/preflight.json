@@ -1,0 +1,32 @@
+{
+  "date": "2026-07-11",
+  "phase": "v1 release audit",
+  "framework": "vanilla Python-generated static HTML",
+  "font_stack": "Avenir Next display, system text, SFMono code and sequence markers",
+  "palette": "Coral semantic OKLCH tokens in one packaged tokens.css",
+  "motion": "one restrained active transform with reduced-motion fallback",
+  "spacing": "named 4-point token scale",
+  "preserve": [
+    "offline static rendering",
+    "observe-and-review-only safety boundary",
+    "plain-language accounting tone",
+    "English and Swedish parity",
+    "one underlying state for Guided and Expert views"
+  ],
+  "decisions": {
+    "genre": "modern-minimal",
+    "macrostructure": "Narrative Workflow",
+    "theme": "Coral",
+    "enrichment": "none",
+    "navigation": "N9 edge-aligned section rail",
+    "footer": "Ft5 statement",
+    "sequence": "F4 numbering 1.0 with vertical rule",
+    "tables": "F3 every-row rules"
+  },
+  "result": {
+    "contrast": "pass; 172 visible direct-text pairs, 0 failures; control border 3.73:1; selected rule 9.38:1; focus 20.41:1",
+    "responsive": "pass at 320, 375, 414, 768, 1280, 1425, and 1920 CSS pixels",
+    "interaction": "Guided/Expert, English/Swedish, role guidance, review filters, command empty state, Escape focus return, and aria-current passed",
+    "public_preview": "synthetic-only bundle; no local links, external runtime links, or horizontal overflow"
+  }
+}

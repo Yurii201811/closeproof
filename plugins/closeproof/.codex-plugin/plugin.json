@@ -1,0 +1,39 @@
+{
+  "name": "closeproof",
+  "version": "0.1.0",
+  "description": "Review a synthetic month-end close through source evidence, deterministic controls, bounded GPT-5.6 advice, and human disposition.",
+  "author": {
+    "name": "Yurii201811"
+  },
+  "keywords": [
+    "accounting",
+    "month-end-close",
+    "evidence",
+    "controller",
+    "gpt-5.6"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CloseProof",
+    "shortDescription": "Source-linked month-end close review.",
+    "longDescription": "CloseProof guides controllers through a bundled synthetic close pack, deterministic controls, optional citation-bound GPT-5.6 advice, and an evidence-bound human decision. It writes only ignored local demo artifacts and never writes to an ERP.",
+    "developerName": "Yurii201811",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Local-only artifacts"
+    ],
+    "defaultPrompt": [
+      "Review the bundled June close with CloseProof",
+      "Explain the prepaid service-period exception with sources",
+      "Prepare a source-linked close workpaper"
+    ],
+    "brandColor": "#2F6848",
+    "composerIcon": "./assets/composerIcon.svg",
+    "screenshots": [
+      "./assets/closeproof-desktop.png",
+      "./assets/closeproof-mobile.png",
+      "./assets/closeproof-completed.png"
+    ]
+  }
+}

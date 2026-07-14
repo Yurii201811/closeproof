@@ -1,0 +1,57 @@
+[
+  {
+    "date": "2026-07-11",
+    "macrostructure": "Narrative Workflow",
+    "theme": "Coral",
+    "enrichment": "none",
+    "nav": "N9 edge-aligned section rail",
+    "footer": "Ft5 statement",
+    "scope": "app",
+    "brief": "Sweden-first accounting operations workspace for guided and expert evidence review",
+    "variation_knobs": {
+      "sequence": "F4 numbering 1.0, vertical stack, line connector",
+      "table": "F3 four columns, every-row rules, tabular numbers"
+    },
+    "pre_emit_critique": {
+      "P": 5,
+      "H": 5,
+      "E": 4,
+      "S": 5,
+      "R": 5,
+      "V": 4
+    },
+    "slop_test": {
+      "gates": 58,
+      "result": "pass",
+      "open_gates": [],
+      "viewports_checked": [320, 375, 414, 768, 1280, 1425, 1920],
+      "notes": [
+        "Number markers encode real accounting, close, and autonomy sequence rather than decorative section scaffolding.",
+        "No horizontal overflow, wrapped clickable labels, guided raw evidence, unguarded motion, contrast failure, or invented outcome metric remained.",
+        "At 1280x800 the first status row begins at 673px; at 320x844 it begins at 673px."
+      ]
+    },
+    "accessibility": {
+      "text_pairs_checked": 172,
+      "text_contrast_failures": 0,
+      "control_border_ratio": 3.73,
+      "selected_rule_ratio": 9.38,
+      "focus_ratio": 20.41,
+      "minimum_primary_target_px": 44
+    },
+    "impeccable": {
+      "result": "pass_with_advisory",
+      "advisory": "numbered-section-markers_false_positive_for_ordered_accounting_workflow"
+    }
+  },
+  {
+    "date": "2026-07-10",
+    "macrostructure": "Workbench",
+    "theme": "Cobalt",
+    "enrichment": "none",
+    "nav": "N13 inline command palette",
+    "footer": "Ft2 inline rule",
+    "scope": "app",
+    "brief": "Earlier accounting cockpit iteration; superseded by the v1 Narrative Workflow audit"
+  }
+]

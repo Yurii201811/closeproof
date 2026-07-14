@@ -1,0 +1,4 @@
+# Byte-pinned golden fixtures retain their final blank line for proof-hash stability.
+fixtures/closeproof/nordix_services_june_2026/general_ledger.csv whitespace=-blank-at-eof
+fixtures/closeproof/nordix_services_june_2026/invoice_INV-4821.txt whitespace=-blank-at-eof
+fixtures/closeproof/nordix_services_june_2026/policy.txt whitespace=-blank-at-eof

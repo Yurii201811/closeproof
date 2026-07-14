@@ -1,0 +1,97 @@
+{
+  "open_items": [
+    {
+      "target_id": "CI-2026-2001",
+      "target_type": "customer_invoice",
+      "date": "2026-05-10",
+      "due_date": "2026-05-20",
+      "amount_minor": 125000,
+      "remaining_amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Acme Design AB",
+      "reference": "INV-2026-2001",
+      "counterparty_id": "CUST-001",
+      "counterparty_known": true,
+      "source": "fixture:fortnox_customer_invoice",
+      "description": "Customer invoice for May design retainer"
+    },
+    {
+      "target_id": "SI-2026-0501",
+      "target_type": "supplier_invoice",
+      "date": "2026-05-12",
+      "due_date": "2026-05-21",
+      "amount_minor": -375000,
+      "remaining_amount_minor": -375000,
+      "currency": "SEK",
+      "counterparty": "Svea IT Konsult AB",
+      "reference": "IT-2026-0501",
+      "counterparty_id": "SUP-002",
+      "counterparty_known": true,
+      "bank_account": "987-6543",
+      "source": "fixture:fortnox_supplier_invoice",
+      "description": "Supplier invoice for May IT support"
+    },
+    {
+      "target_id": "CI-2026-2003",
+      "target_type": "customer_invoice",
+      "date": "2026-05-12",
+      "due_date": "2026-05-22",
+      "amount_minor": 125000,
+      "remaining_amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Acme Design AB",
+      "reference": "INV-2026-2003",
+      "counterparty_id": "CUST-001",
+      "counterparty_known": true,
+      "source": "fixture:fortnox_customer_invoice",
+      "description": "Customer invoice with partial payment"
+    },
+    {
+      "target_id": "CI-2026-2002",
+      "target_type": "customer_invoice",
+      "date": "2026-05-13",
+      "due_date": "2026-05-23",
+      "amount_minor": 125000,
+      "remaining_amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Northwind Retail AB",
+      "reference": "INV-2026-2002",
+      "counterparty_id": "CUST-002",
+      "counterparty_known": true,
+      "source": "fixture:fortnox_customer_invoice",
+      "description": "Customer invoice with duplicate-looking bank transactions"
+    },
+    {
+      "target_id": "VOUCHER-BANK-FEE-2026-05",
+      "target_type": "voucher",
+      "date": "2026-05-31",
+      "amount_minor": -3500,
+      "remaining_amount_minor": -3500,
+      "currency": "SEK",
+      "counterparty": "SEB",
+      "reference": "BANKFEE-2026-05",
+      "counterparty_id": "BANK-SEB",
+      "counterparty_known": true,
+      "source": "fixture:bank_fee_voucher_template",
+      "description": "Monthly bank fee voucher candidate",
+      "metadata": {
+        "bas_account": "6570",
+        "voucher_series": "A"
+      }
+    },
+    {
+      "target_id": "RCPT-2026-010",
+      "target_type": "receipt",
+      "date": "2026-05-18",
+      "amount_minor": -8900,
+      "remaining_amount_minor": -8900,
+      "currency": "SEK",
+      "counterparty": "Office Corner",
+      "reference": "RCPT-2026-010",
+      "counterparty_id": "RCPT-OFFICE-001",
+      "counterparty_known": true,
+      "source": "fixture:receipt",
+      "description": "Small office receipt available for receipt matching coverage"
+    }
+  ]
+}

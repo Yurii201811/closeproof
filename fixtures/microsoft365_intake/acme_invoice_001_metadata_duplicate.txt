@@ -1,0 +1,6 @@
+Supplier: ACME Office Supplies AB
+Invoice Number: INV-001
+Invoice Date: 2026-05-01
+Amount: 1250.00 SEK
+Description: Same invoice metadata with different source bytes.
+Scan note: second export from a mocked OneDrive folder.

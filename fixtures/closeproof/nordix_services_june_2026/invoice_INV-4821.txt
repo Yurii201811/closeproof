@@ -1,0 +1,10 @@
+SYNTHETIC DEMO DOCUMENT — NOT A REAL INVOICE
+Supplier: CloudWorks AB
+Customer: Nordix Services AB
+Invoice number: INV-4821
+Invoice date: 2026-06-15
+Due date: 2026-07-15
+Amount SEK: 120000.00
+Service period: 2026-06-15 to 2027-06-14
+Description: Annual cloud platform subscription and support services
+

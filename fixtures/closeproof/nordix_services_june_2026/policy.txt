@@ -1,0 +1,11 @@
+POLICY-ACCRUAL-01 — Synthetic close policy
+Version: 2026.1
+Entity: Nordix Services AB
+
+Supplier invoices must be checked for duplicate identity and posting cutoff.
+Services extending beyond the reporting period require a documented allocation.
+The current period recognizes service received through the period end.
+The unconsumed portion is proposed as a prepaid asset for human review.
+Automation and model output are advisory and cannot approve, post, or lock.
+An authorized human reviewer must record a rationale against the evidence snapshot.
+

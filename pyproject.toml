@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "accounting-agent"
+version = "1.0.0"
+description = "Sweden-first, provider-neutral accounting automation foundation."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Yurii Bakurov" }]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Yurii201811/closeproof"
+Repository = "https://github.com/Yurii201811/closeproof"
+
+[project.scripts]
+accounting-agent = "accounting_agent.cli:main"
+
+[tool.setuptools.package-data]
+accounting_agent = ["static/*.css", "static/*.svg", "static/*.txt"]
+
+[tool.setuptools.packages.find]
+include = ["accounting_agent*"]
+
+[tool.unittest]
+start-dir = "tests"

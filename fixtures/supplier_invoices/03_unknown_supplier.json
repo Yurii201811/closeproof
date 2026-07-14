@@ -1,0 +1,29 @@
+{
+  "scenario": "unknown_supplier",
+  "source_filename": "unknown_supplier_invoice.txt",
+  "ocr_text": "Leverantor: Malmo Eventservice AB\nOrg.nr: 559111-2222\nFaktura: ME-7788\nFakturadatum: 2026-05-11\nForfallodatum: 2026-06-10\nBankgiro: 555-0101\nEventmaterial till kundmote\nNetto 2000.00 SEK\nMoms 25% 500.00 SEK\nAtt betala 2500.00 SEK",
+  "mock_extraction": {
+    "supplier_name": "Malmo Eventservice AB",
+    "supplier_org_number": "559111-2222",
+    "invoice_number": "ME-7788",
+    "invoice_date": "2026-05-11",
+    "due_date": "2026-06-10",
+    "currency": "SEK",
+    "amounts": {
+      "net": "2000.00",
+      "vat": "500.00",
+      "gross": "2500.00"
+    },
+    "vat_rate": "25",
+    "description": "Eventmaterial till kundmote",
+    "bankgiro": "555-0101",
+    "extraction_confidence": 0.93,
+    "field_confidence": {
+      "supplier_name": 0.91,
+      "invoice_number": 0.96,
+      "amounts": 0.98,
+      "vat_rate": 0.95
+    }
+  }
+}
+

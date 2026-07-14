@@ -1,0 +1,74 @@
+{
+  "transactions": [
+    {
+      "transaction_id": "BR-001",
+      "date": "2026-05-20",
+      "amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Acme Design AB",
+      "reference": "INV-2026-2001",
+      "bank_account": "SEB-1930",
+      "source": "fixture:exact_customer_invoice_payment"
+    },
+    {
+      "transaction_id": "BR-002",
+      "date": "2026-05-21",
+      "amount_minor": -375000,
+      "currency": "SEK",
+      "counterparty": "Svea IT Konsult AB",
+      "reference": "IT-2026-0501",
+      "bank_account": "SEB-1930",
+      "source": "fixture:exact_supplier_invoice_payment"
+    },
+    {
+      "transaction_id": "BR-003",
+      "date": "2026-05-22",
+      "amount_minor": 60000,
+      "currency": "SEK",
+      "counterparty": "Acme Design AB",
+      "reference": "INV-2026-2003",
+      "bank_account": "SEB-1930",
+      "source": "fixture:partial_payment"
+    },
+    {
+      "transaction_id": "BR-004A",
+      "date": "2026-05-23",
+      "amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Northwind Retail AB",
+      "reference": "INV-2026-2002",
+      "bank_account": "SEB-1930",
+      "source": "fixture:duplicate_looking_transaction"
+    },
+    {
+      "transaction_id": "BR-004B",
+      "date": "2026-05-24",
+      "amount_minor": 125000,
+      "currency": "SEK",
+      "counterparty": "Northwind Retail AB",
+      "reference": "INV-2026-2002",
+      "bank_account": "SEB-1930",
+      "source": "fixture:duplicate_looking_transaction"
+    },
+    {
+      "transaction_id": "BR-005",
+      "date": "2026-05-31",
+      "amount_minor": -3500,
+      "currency": "SEK",
+      "counterparty": "SEB",
+      "reference": "BANKFEE-2026-05",
+      "bank_account": "SEB-1930",
+      "source": "fixture:bank_fee"
+    },
+    {
+      "transaction_id": "BR-006",
+      "date": "2026-05-26",
+      "amount_minor": -15000000,
+      "currency": "SEK",
+      "counterparty": "Mystery Web Services",
+      "reference": "WIRE-UNKNOWN-001",
+      "bank_account": "SEB-1930",
+      "source": "fixture:unknown_transaction"
+    }
+  ]
+}

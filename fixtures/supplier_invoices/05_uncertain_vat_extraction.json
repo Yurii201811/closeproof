@@ -1,0 +1,29 @@
+{
+  "scenario": "uncertain_vat_extraction",
+  "source_filename": "uncertain_vat_invoice.txt",
+  "ocr_text": "Leverantor: Nordic Office Supplies AB\nOrg.nr: 556677-8899\nFaktura: INV-2026-1002\nFakturadatum: 2026-05-13\nBankgiro: 123-4567\nBlandade varor, skadad OCR\nNetto 1200.00 SEK\nMoms 25% 125.00 SEK\nAtt betala 1325.00 SEK",
+  "mock_extraction": {
+    "supplier_name": "Nordic Office Supplies AB",
+    "supplier_org_number": "556677-8899",
+    "invoice_number": "INV-2026-1002",
+    "invoice_date": "2026-05-13",
+    "due_date": null,
+    "currency": "SEK",
+    "amounts": {
+      "net": "1200.00",
+      "vat": "125.00",
+      "gross": "1325.00"
+    },
+    "vat_rate": "25",
+    "description": "Blandade varor, skadad OCR",
+    "bankgiro": "123-4567",
+    "extraction_confidence": 0.58,
+    "field_confidence": {
+      "supplier_name": 0.86,
+      "invoice_number": 0.72,
+      "amounts": 0.62,
+      "vat_rate": 0.44
+    }
+  }
+}
+

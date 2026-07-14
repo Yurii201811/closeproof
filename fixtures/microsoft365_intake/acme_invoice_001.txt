@@ -1,0 +1,5 @@
+Supplier: ACME Office Supplies AB
+Invoice Number: INV-001
+Invoice Date: 2026-05-01
+Amount: 1250.00 SEK
+Description: Local fixture for Microsoft 365 intake.

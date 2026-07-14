@@ -1,0 +1,5 @@
+Supplier: Beta Travel AB
+Invoice Number: BT-002
+Invoice Date: 2026-05-03
+Amount: 640.50 SEK
+Description: Distinct travel receipt fixture.

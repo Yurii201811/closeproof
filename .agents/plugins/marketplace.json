@@ -1,0 +1,20 @@
+{
+  "name": "personal",
+  "interface": {
+    "displayName": "CloseProof Build Week"
+  },
+  "plugins": [
+    {
+      "name": "closeproof",
+      "source": {
+        "source": "local",
+        "path": "./plugins/closeproof"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

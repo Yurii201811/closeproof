@@ -1,0 +1,41 @@
+# Local runtime state
+.local/
+.artifacts/
+tmp/
+*.sqlite
+*.sqlite3
+*.db
+*.jsonl
+
+# Secrets and credentials
+.env
+.env.*
+tokens/
+secrets/
+credentials/
+*.pem
+*.key
+
+# Client/private accounting material
+client_data/
+clients/
+raw_client_documents/
+intake_documents/
+approval_packets/
+
+# Python caches and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Frontend dependencies and generated TypeScript state
+node_modules/
+*.tsbuildinfo
+coverage/

@@ -1,0 +1,29 @@
+{
+  "scenario": "changed_bank_details",
+  "source_filename": "changed_bank_details_invoice.txt",
+  "ocr_text": "Leverantor: Svea IT Konsult AB\nOrg.nr: 559900-1122\nFaktura: IT-2026-0501\nFakturadatum: 2026-05-12\nForfallodatum: 2026-06-11\nBankgiro: 444-5555\nIT-support maj\nNetto 3000.00 SEK\nMoms 25% 750.00 SEK\nAtt betala 3750.00 SEK",
+  "mock_extraction": {
+    "supplier_name": "Svea IT Konsult AB",
+    "supplier_org_number": "559900-1122",
+    "invoice_number": "IT-2026-0501",
+    "invoice_date": "2026-05-12",
+    "due_date": "2026-06-11",
+    "currency": "SEK",
+    "amounts": {
+      "net": "3000.00",
+      "vat": "750.00",
+      "gross": "3750.00"
+    },
+    "vat_rate": "25",
+    "description": "IT-support maj",
+    "bankgiro": "444-5555",
+    "extraction_confidence": 0.94,
+    "field_confidence": {
+      "supplier_name": 0.98,
+      "invoice_number": 0.98,
+      "amounts": 0.98,
+      "vat_rate": 0.96
+    }
+  }
+}
+

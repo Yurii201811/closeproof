@@ -1,0 +1,6 @@
+posting_date,account,account_name,description,reference,debit_sek,credit_sek
+2026-06-15,6540,IT services,CloudWorks annual platform subscription,INV-4821,120000.00,0.00
+2026-06-15,2440,Accounts payable,CloudWorks annual platform subscription,INV-4821,0.00,120000.00
+2026-06-28,1930,Business account,Customer receipt C-1048,C-1048,0.00,87500.00
+2026-06-28,1510,Accounts receivable,Customer receipt C-1048,C-1048,87500.00,0.00
+

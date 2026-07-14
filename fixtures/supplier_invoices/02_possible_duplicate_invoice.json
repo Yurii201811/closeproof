@@ -1,0 +1,29 @@
+{
+  "scenario": "possible_duplicate_invoice",
+  "source_filename": "normal_office_invoice_copy.txt",
+  "ocr_text": "KOPIA\nLeverantor: Nordic Office Supplies AB\nOrg.nr: 556677-8899\nFaktura: INV-2026-1001\nFakturadatum: 2026-05-10\nForfallodatum: 2026-06-09\nBankgiro: 123-4567\nKontorsmaterial for kontoret\nNetto 1000.00 SEK\nMoms 25% 250.00 SEK\nAtt betala 1250.00 SEK",
+  "mock_extraction": {
+    "supplier_name": "Nordic Office Supplies AB",
+    "supplier_org_number": "556677-8899",
+    "invoice_number": "INV-2026-1001",
+    "invoice_date": "2026-05-10",
+    "due_date": "2026-06-09",
+    "currency": "SEK",
+    "amounts": {
+      "net": "1000.00",
+      "vat": "250.00",
+      "gross": "1250.00"
+    },
+    "vat_rate": "25",
+    "description": "Kontorsmaterial for kontoret",
+    "bankgiro": "123-4567",
+    "extraction_confidence": 0.96,
+    "field_confidence": {
+      "supplier_name": 0.99,
+      "invoice_number": 0.98,
+      "amounts": 0.99,
+      "vat_rate": 0.97
+    }
+  }
+}
+

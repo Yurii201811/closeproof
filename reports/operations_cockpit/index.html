@@ -1,0 +1,1870 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accounting Agent v1 · Operations</title>
+<meta name="description" data-content-en="A Sweden-first, provider-neutral workspace for accounting review, close control, evidence, and guarded automation." data-content-sv="En leverantörsneutral, Sverigefokuserad arbetsyta för redovisningsgranskning, bokslutskontroll, underlag och bevakad automatisering." content="A Sweden-first, provider-neutral workspace for accounting review, close control, evidence, and guarded automation.">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="stylesheet" href="../../tokens.css">
+<style>
+/* Hallmark · genre: modern-minimal · macrostructure: Narrative Workflow · theme: Coral · enrichment: none · nav: N9 · footer: Ft5
+ * F4 knobs: numbering=1.0/2.0/3.0, layout=vertical-stack, connector=line · F3 knobs: columns=4, rules=every-row, numbers=tabular
+ * context: inferred · audience: accountants/controllers/auditors/operators · use: clear exceptions and advance close · tone: technical-austere
+ * pre-emit: P5 H5 E4 S5 R5 V4 · contrast: pass (40–41) · responsive: pass (34, 49–57)
+ * slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · icons: pass (30)
+ */
+* { box-sizing: border-box; }
+html, body { min-width: 0; overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.58;
+  font-variant-numeric: tabular-nums;
+}
+body[data-view="guided"] .expert-only { display: none; }
+body[data-view="expert"] .guided-only { display: none; }
+button, input, select { font: inherit; }
+button, select, input, summary, a {
+  outline: var(--rule-heavy) solid transparent;
+  outline-offset: var(--rule-thin);
+  -webkit-tap-highlight-color: var(--color-transparent);
+}
+button, select, input { min-height: 2.75rem; }
+button { cursor: pointer; }
+button:disabled, input:disabled, select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+:focus-visible {
+  outline: var(--rule-heavy) solid var(--color-focus);
+  outline-offset: var(--rule-thin);
+}
+[hidden] { display: none !important; }
+h1, h2, h3 { min-width: 0; overflow-wrap: anywhere; }
+a {
+  color: var(--color-accent-strong);
+  text-decoration-thickness: var(--rule-thin);
+  text-underline-offset: var(--space-2xs);
+}
+code, kbd {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  overflow-wrap: anywhere;
+}
+code {
+  padding: var(--space-2xs) var(--space-xs);
+  border: var(--rule-thin) solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+}
+kbd {
+  padding: var(--space-2xs) var(--space-xs);
+  border: var(--rule-thin) solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+}
+.shell {
+  width: min(calc(100% - (var(--space-md) * 2)), 78rem);
+  margin-inline: auto;
+}
+.skip-link {
+  position: fixed;
+  inset-block-start: var(--space-sm);
+  inset-inline-start: var(--space-sm);
+  z-index: var(--z-toast);
+  padding: var(--space-sm) var(--space-md);
+  transform: translateY(-200%);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-strong);
+  color: var(--color-accent-ink);
+  white-space: nowrap;
+}
+.skip-link:focus { transform: none; }
+.environment-strip {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-sticky);
+  border-block-end: var(--rule-thin) solid var(--color-line-strong);
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+.environment-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-sm);
+  min-height: 2.75rem;
+  padding-block: var(--space-xs);
+  font-size: var(--text-xs);
+}
+.environment-inner span { color: var(--color-surface-strong); }
+.environment-inner span::before {
+  content: "·";
+  margin-inline-end: var(--space-sm);
+  color: var(--color-line-strong);
+}
+.environment-inner .boundary-state { color: var(--color-warning-soft); font-weight: 700; }
+.app-header { padding-block: var(--space-md) var(--space-lg); }
+.nav-edge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block-end: var(--space-lg);
+}
+.wordmark {
+  display: inline-flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.wordmark span { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0; }
+.command-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-width: 2.75rem;
+  padding-inline: var(--space-sm);
+  border: var(--rule-thin) solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  white-space: nowrap;
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+.command-trigger > span {
+  position: absolute;
+  width: var(--rule-thin);
+  height: var(--rule-thin);
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.header-copy h1 {
+  max-width: 16ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.header-copy p {
+  max-width: 68ch;
+  margin: var(--space-md) 0 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-base);
+}
+.workspace-preferences {
+  margin-block-start: var(--space-sm);
+  border-block: var(--rule-thin) solid var(--color-line);
+}
+.workspace-preferences > summary {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-xs) 0;
+  color: var(--color-accent-strong);
+}
+.header-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md);
+}
+.field-control, .search-field {
+  display: grid;
+  gap: var(--space-2xs);
+  min-width: 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+select, input[type="search"] {
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-xs) calc(var(--space-xl) - var(--space-xs)) var(--space-xs) var(--space-sm);
+  border: var(--rule-thin) solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+select:active, input[type="search"]:active { border-color: var(--color-accent-strong); }
+input[type="search"]::placeholder { color: var(--color-ink-muted); }
+.view-toggle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: var(--space-2xs);
+  border: var(--rule-thin) solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+}
+.view-toggle legend, .sr-only {
+  position: absolute;
+  width: var(--rule-thin);
+  height: var(--rule-thin);
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.view-toggle label { position: relative; cursor: pointer; }
+.view-toggle input { inline-size: 0; block-size: 0; margin: 0; padding: 0; opacity: 0; }
+.view-toggle span {
+  display: grid;
+  min-height: 2.75rem;
+  place-items: center;
+  border-block-end: var(--rule-selected) solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.view-toggle input:checked + span { border-block-end-color: var(--color-accent-strong); background: var(--color-surface); color: var(--color-accent-strong); }
+.view-toggle input:focus-visible + span { outline: var(--rule-heavy) solid var(--color-focus); outline-offset: var(--rule-thin); }
+.view-toggle label:active span { background: var(--color-accent-soft); }
+.view-toggle input:disabled + span { cursor: not-allowed; opacity: 0.55; }
+.role-guidance, .role-boundary, .generation-stamp {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+.role-boundary, .generation-stamp { font-size: var(--text-xs); }
+.generation-stamp { display: none; }
+.section-nav {
+  border-block: var(--rule-thin) solid var(--color-line);
+  background: var(--color-surface);
+}
+.section-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  padding-block: var(--space-xs);
+  scrollbar-width: thin;
+}
+.section-nav a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-2xs);
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+main.shell { padding-block: var(--space-sm) var(--space-3xl); }
+#today { padding-block-start: var(--space-lg); }
+.workbench-section {
+  scroll-margin-block-start: var(--space-3xl);
+  padding-block: var(--space-2xl);
+  border-block-end: var(--rule-thin) solid var(--color-line);
+}
+.section-heading {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block-end: var(--space-lg);
+}
+.section-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+.section-heading p, .subsection-heading p {
+  max-width: 72ch;
+  margin: var(--space-xs) 0 0;
+  color: var(--color-ink-muted);
+}
+.section-heading .last-run, .section-heading .result-count {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+.stat-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  border-block-start: var(--rule-thin) solid var(--color-line);
+}
+.stat {
+  min-width: 0;
+  padding: var(--space-md) 0;
+  border-block-end: var(--rule-thin) solid var(--color-line);
+}
+.stat dt { color: var(--color-ink-muted); font-size: var(--text-xs); font-weight: 700; }
+.stat dd { margin: var(--space-xs) 0 var(--space-2xs); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; overflow-wrap: anywhere; }
+.stat span { display: block; color: var(--color-ink-muted); font-size: var(--text-xs); }
+.stat[data-tone="safe"] dd { color: var(--color-safe); }
+.stat[data-tone="warning"] dd { color: var(--color-warning); }
+.stat[data-tone="danger"] dd { color: var(--color-danger); }
+.boundary-notice {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-lg);
+  padding: var(--space-md);
+  border: var(--rule-thin) solid var(--color-line-strong);
+  background: var(--color-surface-muted);
+}
+.boundary-notice[data-tone="danger"] { border-color: var(--color-danger); background: var(--color-danger-soft); }
+.boundary-notice[data-tone="warning"] { border-color: var(--color-warning); background: var(--color-warning-soft); }
+.boundary-notice[data-tone="neutral"] { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.boundary-notice ul { margin: 0; padding-inline-start: var(--space-lg); }
+.guided-summary { margin-block: var(--space-lg); padding: var(--space-md); border: var(--rule-thin) solid var(--color-line-strong); background: var(--color-surface); }
+.guided-summary p { max-width: 72ch; margin: var(--space-xs) 0 0; color: var(--color-ink-muted); }
+.local-counts, .artifact-group, .operator-actions {
+  margin-block-start: var(--space-lg);
+  border: var(--rule-thin) solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+summary { min-height: 2.75rem; padding: var(--space-sm) var(--space-md); cursor: pointer; font-weight: 700; }
+summary:active { background: var(--color-surface-strong); }
+details[aria-disabled="true"] summary { cursor: not-allowed; opacity: 0.55; }
+.ledger-counts { display: grid; gap: var(--space-xs); margin: 0; padding: 0 var(--space-md) var(--space-md); }
+.ledger-counts div { display: flex; justify-content: space-between; gap: var(--space-xs); padding: var(--space-xs); border-block-start: var(--rule-thin) solid var(--color-line); }
+.ledger-counts dt { color: var(--color-ink-muted); }
+.ledger-counts dd { margin: 0; font-weight: 700; }
+.review-filters { display: grid; gap: var(--space-md); margin-block-end: var(--space-md); }
+.attention-list, .workflow-sequence, .agent-pipeline,
+.narrative-sequence, .control-sequence, .automation-sequence {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.attention-list { border-block-start: var(--rule-thin) solid var(--color-line); }
+.attention-row {
+  display: grid;
+  gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-block-end: var(--rule-thin) solid var(--color-line);
+}
+.attention-priority { display: flex; align-items: center; gap: var(--space-xs); color: var(--color-ink-muted); font-size: var(--text-sm); }
+.severity { display: inline-flex; min-height: 1.5rem; align-items: center; padding-inline: var(--space-xs); border-block-end: var(--rule-heavy) solid var(--color-line-strong); font-size: var(--text-xs); font-weight: 800; text-transform: uppercase; }
+.severity[data-severity="critical"] { border-color: var(--color-danger); color: var(--color-danger); }
+.severity[data-severity="high"] { border-color: var(--color-warning); color: var(--color-warning); }
+.severity[data-severity="medium"] { border-color: var(--color-accent); color: var(--color-accent-strong); }
+.severity[data-severity="low"] { border-color: var(--color-line-strong); color: var(--color-ink-muted); }
+.attention-copy h3, .workflow-step h3, .agent-pipeline h3,
+.narrative-step h3, .control-stage h3, .automation-stage h3 {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.attention-copy p, .workflow-step p, .agent-pipeline p,
+.narrative-step p, .control-stage p, .automation-stage p {
+  margin: var(--space-2xs) 0 0;
+  color: var(--color-ink-muted);
+}
+.attention-copy details { margin-block-start: var(--space-xs); }
+.attention-copy details summary { display: flex; min-height: 2.75rem; align-items: center; padding: var(--space-2xs) 0; color: var(--color-accent-strong); font-size: var(--text-sm); }
+.technical-context { display: grid; gap: var(--space-xs); margin: var(--space-xs) 0 0; }
+.technical-context div { display: grid; gap: var(--space-2xs); }
+.technical-context dt { color: var(--color-ink-muted); }
+.technical-context dd { margin: 0; overflow-wrap: anywhere; }
+.attention-action { align-self: center; font-size: var(--text-sm); }
+.attention-action a, .step-meta a, .artifact-open, .section-action a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  white-space: nowrap;
+}
+.attention-action span { color: var(--color-ink-muted); }
+.empty-state { margin: 0; padding: var(--space-xl); border: var(--rule-thin) dashed var(--color-line-strong); color: var(--color-ink-muted); text-align: center; }
+.review-empty { align-items: center; justify-content: space-between; gap: var(--space-md); text-align: start; }
+.review-empty:not([hidden]) { display: flex; }
+.workflow-step, .narrative-step, .control-stage, .automation-stage {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: var(--space-md);
+  align-items: start;
+  padding-block: var(--space-lg);
+  border-block-start: var(--rule-thin) solid var(--color-line);
+}
+.workflow-step:last-child, .narrative-step:last-child,
+.control-stage:last-child, .automation-stage:last-child { border-block-end: var(--rule-thin) solid var(--color-line); }
+.step-number { color: var(--color-accent-strong); font-family: var(--font-mono); font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.step-meta, .narrative-step > strong, .control-stage > strong {
+  grid-column: 2;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+.step-meta { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.workflow-step[data-state="review_required"] .step-meta,
+.workflow-step[data-state="dry_run_only"] .step-meta { color: var(--color-warning); }
+.workflow-step[data-state="missing"] .step-meta { color: var(--color-danger); }
+.workflow-step[data-state="available"] .step-meta { color: var(--color-safe); }
+.section-action { margin: var(--space-lg) 0 0; }
+.subsection-heading { margin-block: var(--space-2xl) var(--space-md); }
+.subsection-heading h3 { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); }
+.agent-pipeline > li {
+  display: grid;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  border-block-start: var(--rule-thin) solid var(--color-line);
+}
+.agent-pipeline > li:last-child { border-block-end: var(--rule-thin) solid var(--color-line); }
+.agent-stage { display: flex; gap: var(--space-sm); align-items: baseline; }
+.agent-stage span { color: var(--color-accent-strong); font-size: var(--text-xs); }
+.table-frame { width: 100%; }
+.integration-table, .integration-table thead, .integration-table tbody,
+.integration-table tr, .integration-table th, .integration-table td { display: block; width: 100%; }
+.integration-table { border-collapse: collapse; table-layout: fixed; }
+.integration-table caption { padding-block-end: var(--space-sm); color: var(--color-ink-muted); font-size: var(--text-sm); text-align: start; }
+.integration-table thead { position: absolute; width: var(--rule-thin); height: var(--rule-thin); overflow: hidden; clip-path: inset(50%); }
+.integration-table tbody tr { padding-block: var(--space-md); border-block-start: var(--rule-thin) solid var(--color-line-strong); }
+.integration-table tbody th { padding: 0 0 var(--space-xs); border: 0; font-family: var(--font-display); text-align: start; }
+.integration-table tbody td { display: grid; grid-template-columns: minmax(6.5rem, 0.4fr) minmax(0, 1fr); gap: var(--space-sm); padding: var(--space-xs) 0; border: 0; overflow-wrap: anywhere; }
+.integration-table tbody td::before { content: attr(data-label); color: var(--color-ink-muted); font-size: var(--text-xs); font-weight: 700; }
+.safety-boundaries { margin-block-start: var(--space-md); }
+.boundary-columns, .action-columns { display: grid; gap: var(--space-xl); margin-block-start: var(--space-lg); }
+.boundary-columns h3, .action-columns h3 { margin: 0; font-family: var(--font-display); font-size: var(--text-base); }
+.boundary-list, .command-list { margin: var(--space-sm) 0 0; padding-inline-start: var(--space-lg); }
+.boundary-list li, .command-list li { margin-block: var(--space-xs); }
+.allowed li::marker { color: var(--color-safe); }
+.blocked li::marker { color: var(--color-danger); }
+.artifact-groups { display: grid; gap: var(--space-sm); }
+.artifact-group { margin: 0; }
+.artifact-group summary { display: grid; gap: var(--space-2xs); }
+.artifact-group summary span:last-child { color: var(--color-ink-muted); font-size: var(--text-sm); font-weight: 500; }
+.artifact-list { margin: 0; padding: 0 var(--space-md) var(--space-md); list-style: none; }
+.artifact-list li { display: grid; gap: var(--space-xs); padding-block: var(--space-sm); border-block-start: var(--rule-thin) solid var(--color-line); }
+.artifact-list li div { display: grid; gap: var(--space-2xs); min-width: 0; overflow-wrap: anywhere; }
+.artifact-list li .artifact-note { display: block; color: var(--color-ink-muted); font-size: var(--text-xs); }
+.artifact-list li strong { color: var(--color-safe); font-size: var(--text-xs); }
+.artifact-list li[data-state="missing"] strong { color: var(--color-warning); }
+.operator-actions { margin: 0; }
+.command-list code { display: inline-block; max-width: 100%; }
+.site-footer { padding-block: var(--space-lg) var(--space-2xl); }
+.footer-statement { display: grid; gap: var(--space-lg); }
+.footer-claim { min-width: 0; max-width: 28ch; margin: 0; font-family: var(--font-display); font-size: clamp(1.75rem, 5vw, 3.25rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.025em; overflow-wrap: anywhere; }
+.footer-line { display: grid; gap: var(--space-xs); padding-block-start: var(--space-md); border-block-start: var(--rule-thin) solid var(--color-line-strong); color: var(--color-ink-muted); font-size: var(--text-xs); }
+.footer-line p { margin: 0; }
+.command-dialog {
+  position: fixed;
+  inset: 0;
+  width: min(calc(100% - var(--space-xl)), 40rem);
+  height: fit-content;
+  max-height: min(80dvh, 42rem);
+  margin: auto;
+  padding: 0;
+  border: var(--rule-thin) solid var(--color-line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-dialog);
+}
+.command-dialog::backdrop { background: var(--color-scrim); }
+.command-shell { padding: var(--space-md); }
+.command-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+.command-head h2 { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); }
+.dialog-close, .secondary-button { min-height: 2.75rem; padding: var(--space-xs) var(--space-sm); border: var(--rule-thin) solid var(--color-line); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-ink); font-size: var(--text-sm); line-height: 1.2; white-space: nowrap; }
+.command-search { margin-block: var(--space-md); }
+.command-listbox { max-height: 24rem; margin: 0; padding: 0; overflow-y: auto; list-style: none; border-block-start: var(--rule-thin) solid var(--color-line); }
+.command-listbox li { border-block-end: var(--rule-thin) solid var(--color-line); }
+.command-listbox a { display: grid; gap: var(--space-2xs); min-height: 3.25rem; padding: var(--space-sm); color: var(--color-ink); text-decoration: none; }
+.command-listbox a[data-active="true"] { background: var(--color-accent-soft); }
+.command-listbox a span { color: var(--color-ink-muted); font-size: var(--text-sm); }
+.command-hint { margin: var(--space-sm) 0 0; color: var(--color-ink-muted); font-size: var(--text-xs); }
+.command-empty { margin: var(--space-md) 0; padding: var(--space-md); border: var(--rule-thin) dashed var(--color-line-strong); color: var(--color-ink-muted); text-align: center; }
+.section-nav a[aria-current="page"] { border-block-end: var(--rule-selected) solid var(--color-accent-strong); color: var(--color-accent-strong); }
+@media (hover: hover) and (pointer: fine) {
+  a:hover { text-decoration-thickness: var(--rule-heavy); }
+  .command-trigger:hover { background: var(--color-surface-muted); }
+  select:hover, input[type="search"]:hover, summary:hover { background: var(--color-surface-muted); }
+  .view-toggle label:hover span { background: var(--color-surface-strong); }
+  .section-nav a:hover { color: var(--color-accent-strong); text-decoration: underline; }
+  .dialog-close:hover, .secondary-button:hover, .command-listbox a:hover { background: var(--color-accent-soft); }
+}
+a:active, button:active { transform: translateY(var(--rule-thin)); }
+.environment-inner span:not(.boundary-state) { display: none; }
+.environment-inner { flex-wrap: nowrap; justify-content: space-between; }
+.environment-inner .boundary-state::before { display: none; }
+.header-copy h1 { font-size: clamp(2rem, 11vw, 3rem); }
+@media (min-width: 40rem) {
+  .environment-inner span:not(.boundary-state) { display: inline; }
+  .environment-inner { flex-wrap: wrap; justify-content: flex-start; }
+  .environment-inner .boundary-state::before { display: inline; }
+  .header-copy h1 { font-size: var(--text-2xl); }
+  .generation-stamp { display: block; }
+  .shell { width: min(calc(100% - (var(--space-xl) * 2)), 78rem); }
+  .header-tools { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .command-trigger { min-width: 8.5rem; }
+  .command-trigger > span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .view-toggle { grid-column: 1 / -1; }
+  .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat { padding: var(--space-md); border-inline-end: var(--rule-thin) solid var(--color-line); }
+  .stat:nth-child(2n) { border-inline-end: 0; }
+  .review-filters { grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.34fr); }
+  .technical-context div { grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-sm); }
+  .artifact-group summary, .artifact-list li { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .artifact-list li div { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2xs) var(--space-md); }
+  .artifact-list li .artifact-note { grid-column: 1 / -1; }
+  .footer-line { grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; }
+}
+@media (min-width: 60rem) {
+  .app-header { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr); gap: var(--space-xl) var(--space-3xl); }
+  .nav-edge { grid-column: 1 / -1; }
+  .workspace-preferences { margin: 0; align-self: start; }
+  .header-tools { align-content: start; }
+  .role-guidance, .role-boundary { margin-inline: 0; }
+  .header-copy p { font-size: var(--text-lg); }
+  .generation-stamp { grid-column: 1; grid-row: 3; align-self: end; }
+  .section-heading { grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-xl); }
+  .stat-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stat:nth-child(2n) { border-inline-end: var(--rule-thin) solid var(--color-line); }
+  .stat:nth-child(3n) { border-inline-end: 0; }
+  .attention-row { grid-template-columns: minmax(9rem, 0.26fr) minmax(0, 1fr) minmax(8rem, auto); gap: var(--space-lg); }
+  .attention-priority { flex-direction: column; align-items: flex-start; }
+  .attention-action { text-align: end; }
+  .workflow-step, .narrative-step, .control-stage { grid-template-columns: 3rem minmax(0, 1fr) minmax(10rem, auto); }
+  .step-meta, .narrative-step > strong, .control-stage > strong { grid-column: 3; text-align: end; }
+  .automation-stage { grid-template-columns: 3rem minmax(0, 1fr); }
+  .agent-pipeline > li { grid-template-columns: minmax(11rem, 0.32fr) minmax(0, 1fr); gap: var(--space-lg); }
+  .boundary-notice { grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr); gap: var(--space-lg); }
+  .boundary-notice ul { grid-column: 1 / -1; }
+  .ledger-counts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .boundary-columns, .action-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .integration-table { display: table; }
+  .integration-table thead { position: static; display: table-header-group; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .integration-table tbody { display: table-row-group; }
+  .integration-table tr { display: table-row; }
+  .integration-table th, .integration-table td { display: table-cell; width: auto; padding: var(--space-sm); border-block-start: var(--rule-thin) solid var(--color-line); vertical-align: top; text-align: start; overflow-wrap: anywhere; }
+  .integration-table tbody tr { padding: 0; border: 0; }
+  .integration-table tbody th { padding: var(--space-sm); border-block-start: var(--rule-thin) solid var(--color-line); }
+  .integration-table tbody td::before { display: none; }
+  .integration-table th:nth-child(1) { width: 16%; }
+  .integration-table th:nth-child(2) { width: 15%; }
+  .integration-table th:nth-child(3) { width: 16%; }
+  .integration-table th:nth-child(4) { width: 26%; }
+  .integration-table th:nth-child(5) { width: 27%; }
+  .model-table th:nth-child(1) { width: 22%; }
+  .model-table th:nth-child(2) { width: 18%; }
+  .model-table th:nth-child(3) { width: 24%; }
+  .model-table th:nth-child(4) { width: 36%; }
+}
+@media (min-width: 90rem) {
+  .workbench-section { padding-block: var(--space-3xl); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 150ms !important; animation-iteration-count: 1 !important; transition-duration: 150ms !important; }
+  .command-trigger:hover, a:active, button:active { transform: none; }
+}
+@media (pointer: coarse) {
+  a, button, select, input, summary, .view-toggle span { min-height: 2.75rem; }
+}
+@media (forced-colors: active) {
+  :focus-visible { outline-color: var(--color-forced-focus); }
+  .environment-strip, .boundary-notice, .severity, .stat,
+  .workflow-step, .narrative-step, .control-stage, .automation-stage,
+  .agent-pipeline > li { forced-color-adjust: auto; border-color: var(--color-forced-text); }
+  .command-dialog { background: var(--color-forced-canvas); color: var(--color-forced-text); }
+}
+@media print {
+  .environment-strip, .section-nav, .header-tools, .review-filters,
+  .command-dialog, .skip-link, .command-trigger { display: none !important; }
+  body { background: var(--color-surface); }
+  .shell { width: 100%; }
+  .app-header, .workbench-section { break-inside: avoid; padding-block: var(--space-md); }
+  .expert-only { display: block !important; }
+  .guided-only { display: none !important; }
+  a { color: var(--color-ink); text-decoration: none; }
+}
+</style>
+</head>
+<body data-view="guided" data-role="small-firm">
+<a class="skip-link" href="#main-content" data-i18n data-en="Skip to main content" data-sv="Hoppa till huvudinnehållet">Skip to main content</a>
+<aside class="environment-strip" aria-label="Environment and safety context" data-aria-label-en="Environment and safety context" data-aria-label-sv="Miljö- och säkerhetskontext">
+  <div class="shell environment-inner">
+    <strong data-i18n data-en="v1 synthetic preview" data-sv="v1 syntetisk förhandsvisning">v1 synthetic preview</strong>
+    <span data-i18n data-en="Sweden-first" data-sv="Sverige först">Sweden-first</span>
+    <span data-i18n data-en="International foundation" data-sv="Internationell grund">International foundation</span>
+    <span data-i18n data-en="Provider-neutral" data-sv="Leverantörsneutral">Provider-neutral</span>
+    <span class="boundary-state" data-i18n data-en="Live writes blocked" data-sv="Skrivning i live-system blockerad">Live writes blocked</span>
+  </div>
+</aside>
+<header class="app-header shell">
+  <div class="nav-edge">
+    <a class="wordmark" href="#today" aria-label="Accounting Agent v1 home" data-aria-label-en="Accounting Agent v1 home" data-aria-label-sv="Accounting Agent v1 startsida">Accounting Agent <span>v1</span></a>
+    <button class="command-trigger" id="command-trigger" type="button" aria-haspopup="dialog" aria-controls="command-dialog">
+      <span data-i18n data-en="Find work" data-sv="Hitta arbete">Find work</span>
+      <kbd id="command-shortcut">⌘ K</kbd>
+    </button>
+  </div>
+  <div class="header-copy">
+    <h1 data-i18n data-en="Move the close forward." data-sv="För bokslutet framåt.">Move the close forward.</h1>
+    <p data-i18n data-en="Clear exceptions, finish reconciliations, and supervise automation from one evidence-first workspace. The agent prepares; accountable people decide." data-sv="Hantera undantag, slutför avstämningar och övervaka automatisering i en underlagsstyrd arbetsyta. Agenten förbereder; ansvariga personer beslutar.">Clear exceptions, finish reconciliations, and supervise automation from one evidence-first workspace. The agent prepares; accountable people decide.</p>
+  </div>
+  <details class="workspace-preferences">
+    <summary data-i18n data-en="View settings" data-sv="Visningsinställningar">View settings</summary>
+    <div class="header-tools" aria-label="Workspace preferences" data-aria-label-en="Workspace preferences" data-aria-label-sv="Inställningar för arbetsytan">
+    <label class="field-control">
+      <span data-i18n data-en="Guidance perspective" data-sv="Vägledningsperspektiv">Guidance perspective</span>
+      <select id="role-select" name="role" aria-describedby="role-guidance role-boundary">
+        <option value="small-firm" data-i18n data-en="Small-firm accountant" data-sv="Redovisningskonsult, mindre byrå">Small-firm accountant</option>
+        <option value="accountant" data-i18n data-en="Accountant" data-sv="Redovisningsekonom">Accountant</option>
+        <option value="senior" data-i18n data-en="Senior accountant" data-sv="Senior redovisningsekonom">Senior accountant</option>
+        <option value="controller" data-i18n data-en="Financial controller" data-sv="Financial controller">Financial controller</option>
+        <option value="auditor" data-i18n data-en="Auditor" data-sv="Revisor">Auditor</option>
+        <option value="operator" data-i18n data-en="Agent operator" data-sv="Agentoperatör">Agent operator</option>
+      </select>
+    </label>
+    <label class="field-control locale-control">
+      <span data-i18n data-en="Language" data-sv="Språk">Language</span>
+      <select id="locale-select" name="locale">
+        <option value="en-GB">English</option>
+        <option value="sv-SE">Svenska</option>
+      </select>
+    </label>
+    <fieldset class="view-toggle">
+      <legend data-i18n data-en="Detail level" data-sv="Detaljnivå">Detail level</legend>
+      <label><input type="radio" name="view" value="guided" checked><span data-i18n data-en="Guided" data-sv="Guidad">Guided</span></label>
+      <label><input type="radio" name="view" value="expert"><span data-i18n data-en="Expert" data-sv="Expert">Expert</span></label>
+    </fieldset>
+    </div>
+    <p class="role-guidance" id="role-guidance" aria-live="polite" aria-atomic="true">Queue-first guidance with plain-language evidence and explicit human decisions.</p>
+    <p class="role-boundary" id="role-boundary" data-i18n data-en="Perspective changes guidance only; safety policy and risk priority stay fixed." data-sv="Perspektivet ändrar bara vägledningen; säkerhetspolicy och riskprioritet ligger fast.">Perspective changes guidance only; safety policy and risk priority stay fixed.</p>
+  </details>
+  <p class="generation-stamp"><span data-i18n data-en="Snapshot generated" data-sv="Ögonblicksbild skapad">Snapshot generated</span> <time datetime="2026-07-10T23:09:31+00:00">2026-07-10 23:09 UTC</time></p>
+</header>
+<nav class="section-nav" aria-label="Cockpit sections" data-aria-label-en="Cockpit sections" data-aria-label-sv="Cockpitens sektioner">
+  <div class="shell section-nav-inner">
+    <a href="#today" data-i18n data-en="Today" data-sv="Idag">Today</a>
+    <a href="#setup" class="expert-only" data-i18n data-en="Start" data-sv="Start">Start</a>
+    <a href="#review" data-i18n data-en="Review" data-sv="Granskning">Review</a>
+    <a href="#close" data-i18n data-en="Close" data-sv="Bokslut">Close</a>
+    <a href="#automation" data-i18n data-en="Automation" data-sv="Automatisering">Automation</a>
+    <a href="#integrations" data-i18n data-en="Connections" data-sv="Anslutningar">Connections</a>
+    <a href="#workflow" data-i18n data-en="How it works" data-sv="Så fungerar det">How it works</a>
+    <a href="#controls" data-i18n data-en="Controls &amp; evidence" data-sv="Kontroller och underlag">Controls &amp; evidence</a>
+  </div>
+</nav>
+<main id="main-content" class="shell">
+<section class="workbench-section" id="today" aria-labelledby="today-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="today-title" data-i18n data-en="Today" data-sv="Idag">Today</h2>
+      <p data-i18n data-en="Current local run state. Building this page never calls an ERP, email, payment, tax, or filing system." data-sv="Aktuellt lokalt körläge. När sidan byggs anropas inga ERP-, e-post-, betalnings-, skatte- eller inlämningssystem.">Current local run state. Building this page never calls an ERP, email, payment, tax, or filing system.</p>
+    </div>
+    <p class="last-run"><span data-i18n data-en="Latest evidence" data-sv="Senaste underlag">Latest evidence</span> <time datetime="2026-07-10T20:09:34+00:00">2026-07-10 20:09 UTC</time></p>
+  </div>
+  <dl class="stat-strip">
+    <div class="stat" data-tone="danger">
+      <dt data-i18n data-en="Priority cases" data-sv="Prioriterade ärenden">Priority cases</dt>
+      <dd data-i18n data-en="14" data-sv="14">14</dd>
+      <span data-i18n data-en="Unique cases, highest risk first" data-sv="Unika ärenden, högst risk först">Unique cases, highest risk first</span>
+    </div>
+    <div class="stat" data-tone="warning">
+      <dt data-i18n data-en="Local run" data-sv="Lokal körning">Local run</dt>
+      <dd data-i18n data-en="Complete · review remains" data-sv="Klar · granskning återstår">Complete · review remains</dd>
+      <span data-i18n data-en="2026-07-10 20:09 UTC" data-sv="2026-07-10 20:09 UTC">2026-07-10 20:09 UTC</span>
+    </div>
+    <div class="stat" data-tone="safe">
+      <dt data-i18n data-en="Fixture demo" data-sv="Testdatademo">Fixture demo</dt>
+      <dd data-i18n data-en="Complete" data-sv="Klar">Complete</dd>
+      <span data-i18n data-en="Synthetic evidence only" data-sv="Endast syntetiskt underlag">Synthetic evidence only</span>
+    </div>
+    <div class="stat" data-tone="safe">
+      <dt data-i18n data-en="Live ERP calls" data-sv="ERP-anrop i live-system">Live ERP calls</dt>
+      <dd data-i18n data-en="0" data-sv="0">0</dd>
+      <span data-i18n data-en="Zero required" data-sv="Noll krävs">Zero required</span>
+    </div>
+    <div class="stat" data-tone="safe">
+      <dt data-i18n data-en="Live Microsoft 365 calls" data-sv="Microsoft 365-anrop i live-system">Live Microsoft 365 calls</dt>
+      <dd data-i18n data-en="0" data-sv="0">0</dd>
+      <span data-i18n data-en="Zero required" data-sv="Noll krävs">Zero required</span>
+    </div>
+    <div class="stat" data-tone="safe">
+      <dt data-i18n data-en="Emails, payments, or filings" data-sv="E-post, betalningar eller inlämningar">Emails, payments, or filings</dt>
+      <dd data-i18n data-en="0" data-sv="0">0</dd>
+      <span data-i18n data-en="Zero required" data-sv="Noll krävs">Zero required</span>
+    </div></dl>
+  <div class="boundary-notice" data-tone="danger">
+    <strong data-i18n data-en="Observe and review only." data-sv="Endast observation och granskning.">Observe and review only.</strong>
+    <span data-i18n data-en="This cockpit cannot approve itself or execute accounting actions. Any non-zero live counter above is a safety violation, never a success state." data-sv="Cockpiten kan inte godkänna sitt eget arbete eller utföra redovisningsåtgärder. Ett värde över noll i live-räknarna är ett säkerhetsfel, aldrig ett framgångsläge.">This cockpit cannot approve itself or execute accounting actions. Any non-zero live counter above is a safety violation, never a success state.</span>
+  </div>
+  <details class="local-counts expert-only">
+    <summary data-i18n data-en="Local evidence table counts" data-sv="Lokala tabellräknare för underlag">Local evidence table counts</summary>
+    <p class="empty-state" data-i18n data-en="No local SQLite queue counts found yet." data-sv="Inga lokala SQLite-köantal har hittats ännu.">No local SQLite queue counts found yet.</p>
+  </details>
+</section>
+<section class="workbench-section" id="review" aria-labelledby="review-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="review-title" data-i18n data-en="Review" data-sv="Granskning">Review</h2>
+      <p data-i18n data-en="One row per case. Repeated risk signals are combined, and the most serious stop condition determines priority." data-sv="En rad per ärende. Upprepade risksignaler slås samman och det allvarligaste stoppvillkoret avgör prioriteten.">One row per case. Repeated risk signals are combined, and the most serious stop condition determines priority.</p>
+    </div>
+    <p class="result-count" id="review-result-count" aria-live="polite">14 items shown</p>
+  </div>
+  <div class="review-filters" aria-label="Review filters" data-aria-label-en="Review filters" data-aria-label-sv="Granskningsfilter">
+    <label class="search-field">
+      <span data-i18n data-en="Search review work" data-sv="Sök granskningsarbete">Search review work</span>
+      <input id="review-search" type="search" autocomplete="off" placeholder="Supplier, VAT, duplicate, bank…" data-placeholder-en="Supplier, VAT, duplicate, bank…" data-placeholder-sv="Leverantör, moms, dubblett, bank…">
+    </label>
+    <label class="field-control">
+      <span data-i18n data-en="Priority" data-sv="Prioritet">Priority</span>
+      <select id="review-severity">
+        <option value="all" data-i18n data-en="All priorities" data-sv="Alla prioriteter">All priorities</option>
+        <option value="critical" data-i18n data-en="Critical" data-sv="Kritisk">Critical</option>
+        <option value="high" data-i18n data-en="High" data-sv="Hög">High</option>
+        <option value="medium" data-i18n data-en="Medium" data-sv="Medel">Medium</option>
+        <option value="low" data-i18n data-en="Low" data-sv="Låg">Low</option>
+      </select>
+    </label>
+  </div>
+  <div class="empty-state review-empty" id="review-empty" hidden>
+    <span data-i18n data-en="No review items match these filters." data-sv="Inga granskningsärenden matchar filtren.">No review items match these filters.</span>
+    <button class="secondary-button" id="clear-review-filters" type="button" data-i18n data-en="Clear filters" data-sv="Rensa filter">Clear filters</button>
+  </div>
+  <ol class="attention-list" id="attention-list">
+    <li class="attention-row" data-severity="critical" data-search="si_4696eb76b1a5 supplier invoice forbidden critical action is blocked åtgärden är blockerad forbidden risk:locked_old_period a safety rule stops this action; it cannot continue in this build. den här åtgärden är stoppad av en säkerhetsregel och kan inte fortsätta i denna version.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="critical" data-i18n data-en="critical" data-sv="kritisk">critical</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Action is blocked" data-sv="Åtgärden är blockerad">Action is blocked</h3>
+        <p data-i18n data-en="A safety rule stops this action; it cannot continue in this build." data-sv="Den här åtgärden är stoppad av en säkerhetsregel och kan inte fortsätta i denna version.">A safety rule stops this action; it cannot continue in this build.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_4696eb76b1a5</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>forbidden</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Forbidden</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:locked_old_period</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_4696eb76b1a5_fc_14_old_locked_period.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="br_fc-bank-020 bank reconciliation escalation_required high senior review is required senior granskning krävs escalation required · missing info senior/accounting review must classify the transaction, confirm the match, and decide whether a future guarded draft workflow is appropriate.; classify transaction or supply better match evidence. supply or verify the missing evidence before continuing. komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Senior review is required" data-sv="Senior granskning krävs">Senior review is required</h3>
+        <p data-i18n data-en="Supply or verify the missing evidence before continuing." data-sv="Komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">Supply or verify the missing evidence before continuing.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-020</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>escalation_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Escalation required · Missing info</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Senior/accounting review must classify the transaction, confirm the match, and decide whether a future guarded draft workflow is appropriate.; Classify transaction or supply better match evidence.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-020.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="si_29f8bb17c79d supplier invoice approval_required high possible duplicate needs comparison möjlig dubblett behöver jämföras approval required · duplicate risk risk:duplicate_risk; fc_11_duplicate_it_support: duplicate risk compare the records and confirm whether this is a duplicate before any draft continues. jämför posterna och bekräfta om detta är en dubblett innan något utkast fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Possible duplicate needs comparison" data-sv="Möjlig dubblett behöver jämföras">Possible duplicate needs comparison</h3>
+        <p data-i18n data-en="Compare the records and confirm whether this is a duplicate before any draft continues." data-sv="Jämför posterna och bekräfta om detta är en dubblett innan något utkast fortsätter.">Compare the records and confirm whether this is a duplicate before any draft continues.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_29f8bb17c79d</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Duplicate risk</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:duplicate_risk; fc_11_duplicate_it_support: duplicate risk</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_29f8bb17c79d_fc_11_duplicate_it_support.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="si_34dc8e877b42 supplier invoice approval_required high possible duplicate needs comparison möjlig dubblett behöver jämföras approval required · duplicate risk risk:duplicate_risk; fc_10_duplicate_office_supplies: duplicate risk compare the records and confirm whether this is a duplicate before any draft continues. jämför posterna och bekräfta om detta är en dubblett innan något utkast fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Possible duplicate needs comparison" data-sv="Möjlig dubblett behöver jämföras">Possible duplicate needs comparison</h3>
+        <p data-i18n data-en="Compare the records and confirm whether this is a duplicate before any draft continues." data-sv="Jämför posterna och bekräfta om detta är en dubblett innan något utkast fortsätter.">Compare the records and confirm whether this is a duplicate before any draft continues.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_34dc8e877b42</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Duplicate risk</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:duplicate_risk; fc_10_duplicate_office_supplies: duplicate risk</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_34dc8e877b42_fc_10_duplicate_office_supplies.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="si_4bc854de220e supplier invoice escalation_required high supplier bank details changed leverantörens bankuppgifter har ändrats escalation required · risky suppliers · changed bank details risk:changed_bank_details; fc_12_changed_bank_details: payment details changed; fc_12_changed_bank_details: changed bank details verify the supplier&#x27;s payment details through an independent channel before continuing. verifiera leverantörens betalningsuppgifter via en oberoende kanal innan arbetet fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Supplier bank details changed" data-sv="Leverantörens bankuppgifter har ändrats">Supplier bank details changed</h3>
+        <p data-i18n data-en="Verify the supplier&#x27;s payment details through an independent channel before continuing." data-sv="Verifiera leverantörens betalningsuppgifter via en oberoende kanal innan arbetet fortsätter.">Verify the supplier&#x27;s payment details through an independent channel before continuing.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_4bc854de220e</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>escalation_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Escalation required · Risky suppliers · Changed bank details</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:changed_bank_details; fc_12_changed_bank_details: payment details changed; fc_12_changed_bank_details: changed bank details</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_4bc854de220e_fc_12_changed_bank_details.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="si_9bc85d7057f2 supplier invoice approval_required high vat treatment is uncertain momshanteringen är osäker approval required · risky suppliers · uncertain vat risk:unknown_supplier, risk:unclear_vat, risk:low_ocr_confidence; fc_15_ambiguous_private_receipt: supplier status unknown; fc_15_ambiguous_private_receipt: vat status manual_review an accountant must confirm the vat treatment and supporting evidence. en redovisningskunnig person måste bekräfta momshanteringen och underlaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="VAT treatment is uncertain" data-sv="Momshanteringen är osäker">VAT treatment is uncertain</h3>
+        <p data-i18n data-en="An accountant must confirm the VAT treatment and supporting evidence." data-sv="En redovisningskunnig person måste bekräfta momshanteringen och underlaget.">An accountant must confirm the VAT treatment and supporting evidence.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_9bc85d7057f2</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Risky suppliers · Uncertain VAT</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:unknown_supplier, risk:unclear_vat, risk:low_ocr_confidence; fc_15_ambiguous_private_receipt: supplier status unknown; fc_15_ambiguous_private_receipt: VAT status manual_review</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_9bc85d7057f2_fc_15_ambiguous_private_receipt.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="high" data-search="si_cc6830590cd7 supplier invoice approval_required high vat treatment is uncertain momshanteringen är osäker approval required · uncertain vat risk:unclear_vat; fc_13_uncertain_vat: vat status manual_review an accountant must confirm the vat treatment and supporting evidence. en redovisningskunnig person måste bekräfta momshanteringen och underlaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="high" data-i18n data-en="high" data-sv="hög">high</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="VAT treatment is uncertain" data-sv="Momshanteringen är osäker">VAT treatment is uncertain</h3>
+        <p data-i18n data-en="An accountant must confirm the VAT treatment and supporting evidence." data-sv="En redovisningskunnig person måste bekräfta momshanteringen och underlaget.">An accountant must confirm the VAT treatment and supporting evidence.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_cc6830590cd7</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Uncertain VAT</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>risk:unclear_vat; fc_13_uncertain_vat: VAT status manual_review</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_cc6830590cd7_fc_13_uncertain_vat.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-004 bank reconciliation approval_required medium evidence is missing underlag saknas approval required · missing info confirm whether the partial payment should be allocated to the selected open item and whether a residual remains open.; classify transaction or supply better match evidence. supply or verify the missing evidence before continuing. komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Evidence is missing" data-sv="Underlag saknas">Evidence is missing</h3>
+        <p data-i18n data-en="Supply or verify the missing evidence before continuing." data-sv="Komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">Supply or verify the missing evidence before continuing.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-004</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Missing info</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Confirm whether the partial payment should be allocated to the selected open item and whether a residual remains open.; Classify transaction or supply better match evidence.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-004.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-019 bank reconciliation approval_required medium evidence is missing underlag saknas approval required · missing info review the bank transaction, classify the counterparty, and choose whether to create a new voucher or request more evidence.; classify transaction or supply better match evidence. supply or verify the missing evidence before continuing. komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Evidence is missing" data-sv="Underlag saknas">Evidence is missing</h3>
+        <p data-i18n data-en="Supply or verify the missing evidence before continuing." data-sv="Komplettera eller verifiera det saknade underlaget innan arbetet fortsätter.">Supply or verify the missing evidence before continuing.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-019</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required · Missing info</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Review the bank transaction, classify the counterparty, and choose whether to create a new voucher or request more evidence.; Classify transaction or supply better match evidence.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-019.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-001 bank reconciliation approval_required medium human approval is required mänskligt godkännande krävs approval required review the match evidence and approve, reject, or reassign the proposed reconciliation. a human reviewer must approve, reject, or reassign the proposal. en mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Human approval is required" data-sv="Mänskligt godkännande krävs">Human approval is required</h3>
+        <p data-i18n data-en="A human reviewer must approve, reject, or reassign the proposal." data-sv="En mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">A human reviewer must approve, reject, or reassign the proposal.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-001</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Review the match evidence and approve, reject, or reassign the proposed reconciliation.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-001.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-002 bank reconciliation approval_required medium human approval is required mänskligt godkännande krävs approval required review the match evidence and approve, reject, or reassign the proposed reconciliation. a human reviewer must approve, reject, or reassign the proposal. en mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Human approval is required" data-sv="Mänskligt godkännande krävs">Human approval is required</h3>
+        <p data-i18n data-en="A human reviewer must approve, reject, or reassign the proposal." data-sv="En mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">A human reviewer must approve, reject, or reassign the proposal.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-002</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Review the match evidence and approve, reject, or reassign the proposed reconciliation.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-002.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-005 bank reconciliation approval_required medium human approval is required mänskligt godkännande krävs approval required review the match evidence and approve, reject, or reassign the proposed reconciliation. a human reviewer must approve, reject, or reassign the proposal. en mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Human approval is required" data-sv="Mänskligt godkännande krävs">Human approval is required</h3>
+        <p data-i18n data-en="A human reviewer must approve, reject, or reassign the proposal." data-sv="En mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">A human reviewer must approve, reject, or reassign the proposal.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-005</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Review the match evidence and approve, reject, or reassign the proposed reconciliation.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-005.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="br_fc-bank-008 bank reconciliation approval_required medium human approval is required mänskligt godkännande krävs approval required review the match evidence and approve, reject, or reassign the proposed reconciliation. a human reviewer must approve, reject, or reassign the proposal. en mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Bank Reconciliation" data-sv="Bankavstämning">Bank Reconciliation</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Human approval is required" data-sv="Mänskligt godkännande krävs">Human approval is required</h3>
+        <p data-i18n data-en="A human reviewer must approve, reject, or reassign the proposal." data-sv="En mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">A human reviewer must approve, reject, or reassign the proposal.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>br_FC-BANK-008</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>Review the match evidence and approve, reject, or reassign the proposed reconciliation.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-008.bank_reconciliation_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li>
+    <li class="attention-row" data-severity="medium" data-search="si_d73b9a36e040 supplier invoice approval_required medium human approval is required mänskligt godkännande krävs approval required an accountant must resolve the policy reasons before any future erp draft. a human reviewer must approve, reject, or reassign the proposal. en mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">
+      <div class="attention-priority">
+        <span class="severity" data-severity="medium" data-i18n data-en="medium" data-sv="medel">medium</span>
+        <span data-i18n data-en="Supplier Invoice" data-sv="Leverantörsfaktura">Supplier Invoice</span>
+      </div>
+      <div class="attention-copy">
+        <h3 data-i18n data-en="Human approval is required" data-sv="Mänskligt godkännande krävs">Human approval is required</h3>
+        <p data-i18n data-en="A human reviewer must approve, reject, or reassign the proposal." data-sv="En mänsklig granskare måste godkänna, avvisa eller omfördela förslaget.">A human reviewer must approve, reject, or reassign the proposal.</p>
+        <details class="expert-only">
+          <summary data-i18n data-en="Technical context" data-sv="Teknisk kontext">Technical context</summary>
+          <dl class="technical-context">
+            <div><dt data-i18n data-en="Case ID" data-sv="Ärende-ID">Case ID</dt><dd><code>si_d73b9a36e040</code></dd></div>
+            <div><dt data-i18n data-en="Policy mode" data-sv="Policyläge">Policy mode</dt><dd><code>approval_required</code></dd></div>
+            <div><dt data-i18n data-en="Signals" data-sv="Signaler">Signals</dt><dd>Approval required</dd></div>
+            <div><dt data-i18n data-en="Raw reasons" data-sv="Råa orsaker">Raw reasons</dt><dd>An accountant must resolve the policy reasons before any future ERP draft.</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="attention-action"><span class="guided-only" data-i18n data-en="Evidence ready · open in Expert view" data-sv="Underlag klart · öppna i Expertläget">Evidence ready · open in Expert view</span><span class="expert-only"><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_d73b9a36e040_fc_03_monthly_office_rent.approval_packet.json" data-i18n data-en="Open technical evidence" data-sv="Öppna tekniskt underlag">Open technical evidence</a></span></div>
+    </li></ol>
+</section>
+<section class="workbench-section setup-complete expert-only" id="setup" aria-labelledby="setup-title">
+  <div class="section-heading">
+    <div><h2 id="setup-title" data-i18n data-en="Start with a controlled scope" data-sv="Börja med en kontrollerad omfattning">Start with a controlled scope</h2>
+    <p data-i18n data-en="A guided path for new users; experts can open technical identifiers and raw control evidence without changing the underlying truth." data-sv="En guidad väg för nya användare; experter kan öppna tekniska identifierare och rå kontrollbevisning utan att ändra den underliggande sanningen.">A guided path for new users; experts can open technical identifiers and raw control evidence without changing the underlying truth.</p></div>
+  </div>
+  <ol class="narrative-sequence">
+    <li class="narrative-step">
+      <span class="step-number" aria-hidden="true">1.0</span>
+      <div><h3 data-i18n data-en="Company and period" data-sv="Företag och period">Company and period</h3><p data-i18n data-en="Confirm legal entity, fiscal calendar, accounting method, functional currency, and chart mapping." data-sv="Bekräfta juridisk person, räkenskapsår, redovisningsmetod, funktionell valuta och kontomappning.">Confirm legal entity, fiscal calendar, accounting method, functional currency, and chart mapping.</p></div>
+      <strong data-i18n data-en="Required per entity" data-sv="Krävs per enhet">Required per entity</strong>
+    </li>
+    <li class="narrative-step">
+      <span class="step-number" aria-hidden="true">2.0</span>
+      <div><h3 data-i18n data-en="Evidence sources" data-sv="Underlagskällor">Evidence sources</h3><p data-i18n data-en="Choose local upload, approved read-only connector, or supervised evidence capture. Hash before extraction." data-sv="Välj lokal uppladdning, godkänd skrivskyddad anslutning eller övervakad underlagsinsamling. Hasha före extraktion.">Choose local upload, approved read-only connector, or supervised evidence capture. Hash before extraction.</p></div>
+      <strong data-i18n data-en="Client-scoped" data-sv="Klientavgränsad">Client-scoped</strong>
+    </li>
+    <li class="narrative-step">
+      <span class="step-number" aria-hidden="true">3.0</span>
+      <div><h3 data-i18n data-en="Controls and reviewers" data-sv="Kontroller och granskare">Controls and reviewers</h3><p data-i18n data-en="Set policy pack, materiality, close calendar, preparer, reviewer, controller, and auditor roles." data-sv="Ange policypaket, väsentlighet, bokslutskalender samt roller för beredare, granskare, controller och revisor.">Set policy pack, materiality, close calendar, preparer, reviewer, controller, and auditor roles.</p></div>
+      <strong data-i18n data-en="Segregation required" data-sv="Åtskillnad krävs">Segregation required</strong>
+    </li>
+    <li class="narrative-step">
+      <span class="step-number" aria-hidden="true">4.0</span>
+      <div><h3 data-i18n data-en="Synthetic proof run" data-sv="Syntetisk provkörning">Synthetic proof run</h3><p data-i18n data-en="Exercise money, journal, evidence, approval, autonomy, close, connector, and model-routing guards before any rollout." data-sv="Testa belopp, verifikation, underlag, godkännande, autonomi, bokslut, anslutningar och modellstyrning före utrullning.">Exercise money, journal, evidence, approval, autonomy, close, connector, and model-routing guards before any rollout.</p></div>
+      <strong data-i18n data-en="Zero external calls" data-sv="Noll externa anrop">Zero external calls</strong>
+    </li></ol>
+  <p class="section-action"><a href="#integrations" data-i18n data-en="Review connection boundaries →" data-sv="Granska anslutningsgränser →">Review connection boundaries →</a></p>
+</section>
+<section class="workbench-section" id="close" aria-labelledby="close-title">
+  <div class="section-heading"><div>
+    <h2 id="close-title" data-i18n data-en="Close control centre" data-sv="Kontrollcenter för bokslut">Close control centre</h2>
+    <p data-i18n data-en="Dependencies run in order. Missing, duplicate, failed, or unknown facts stop downstream work; readiness never performs the lock." data-sv="Beroenden körs i ordning. Saknade, dubbla, felaktiga eller okända fakta stoppar efterföljande arbete; statusen redo utför aldrig periodlåset.">Dependencies run in order. Missing, duplicate, failed, or unknown facts stop downstream work; readiness never performs the lock.</p>
+  </div><p class="result-count" data-i18n data-en="Control design · no client period loaded" data-sv="Kontrolldesign · ingen klientperiod inläst">Control design · no client period loaded</p></div>
+  <div class="guided-only guided-summary"><strong data-i18n data-en="Three things decide readiness" data-sv="Tre saker avgör om bokslutet är redo">Three things decide readiness</strong><p data-i18n data-en="Complete evidence and reconciliations first, resolve every exception, then obtain independent human signoff. Open Expert view for all nine controls." data-sv="Slutför först underlag och avstämningar, lös alla undantag och inhämta därefter en oberoende mänsklig signering. Öppna Expertläget för samtliga nio kontroller.">Complete evidence and reconciliations first, resolve every exception, then obtain independent human signoff. Open Expert view for all nine controls.</p></div>
+  <ol class="control-sequence expert-only">
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">01</span>
+      <div><h3 data-i18n data-en="Evidence completeness" data-sv="Underlagens fullständighet">Evidence completeness</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">02</span>
+      <div><h3 data-i18n data-en="Bank reconciliation" data-sv="Bankavstämning">Bank reconciliation</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">03</span>
+      <div><h3 data-i18n data-en="Subledgers" data-sv="Reskontror">Subledgers</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">04</span>
+      <div><h3 data-i18n data-en="Adjustments" data-sv="Bokslutsjusteringar">Adjustments</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">05</span>
+      <div><h3 data-i18n data-en="Balanced trial balance" data-sv="Balanserad saldobalans">Balanced trial balance</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">06</span>
+      <div><h3 data-i18n data-en="VAT control" data-sv="Momskontroll">VAT control</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Deterministic control" data-sv="Deterministisk kontroll">Deterministic control</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">07</span>
+      <div><h3 data-i18n data-en="Preparer review" data-sv="Beredargranskning">Preparer review</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Named human required" data-sv="Namngiven person krävs">Named human required</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">08</span>
+      <div><h3 data-i18n data-en="Independent signoff" data-sv="Oberoende signering">Independent signoff</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Named human required" data-sv="Namngiven person krävs">Named human required</strong>
+    </li>
+    <li class="control-stage">
+      <span class="step-number" aria-hidden="true">09</span>
+      <div><h3 data-i18n data-en="Lock readiness" data-sv="Redo för periodlås">Lock readiness</h3><p data-i18n data-en="Requires exact entity, period, policy, and evidence hashes." data-sv="Kräver exakta hashvärden för enhet, period, policy och underlag.">Requires exact entity, period, policy, and evidence hashes.</p></div>
+      <strong data-i18n data-en="Named human required" data-sv="Namngiven person krävs">Named human required</strong>
+    </li></ol>
+  <div class="boundary-notice" data-tone="neutral"><strong data-i18n data-en="Ready means ready for a decision." data-sv="Redo betyder redo för beslut.">Ready means ready for a decision.</strong><span data-i18n data-en="Period lock, reopen, posting, and filing remain outside this preview and require accountable authority." data-sv="Periodlås, återöppning, bokföring och inlämning ligger utanför denna förhandsvisning och kräver ansvarig behörighet.">Period lock, reopen, posting, and filing remain outside this preview and require accountable authority.</span></div>
+</section>
+<section class="workbench-section" id="automation" aria-labelledby="automation-title">
+  <div class="section-heading"><div><h2 id="automation-title" data-i18n data-en="Automation and model routing" data-sv="Automatisering och modellstyrning">Automation and model routing</h2><p data-i18n data-en="Automate preparation to the maximum safe boundary. Models may extract, classify, match, draft, and explain; deterministic controls decide whether work may reach human review." data-sv="Automatisera förberedelser till den högsta säkra gränsen. Modeller får extrahera, klassificera, matcha, förbereda och förklara; deterministiska kontroller avgör om arbetet får nå mänsklig granskning.">Automate preparation to the maximum safe boundary. Models may extract, classify, match, draft, and explain; deterministic controls decide whether work may reach human review.</p></div></div>
+  <div class="guided-only guided-summary"><strong data-i18n data-en="The agent prepares; you decide" data-sv="Agenten förbereder; du beslutar">The agent prepares; you decide</strong><p data-i18n data-en="It gathers and checks evidence, drafts an explanation, and stops at review. Missing evidence, uncertainty, cancellation, or a control failure halts the run." data-sv="Den samlar in och kontrollerar underlag, förbereder en förklaring och stannar vid granskning. Saknade underlag, osäkerhet, avbrytning eller kontrollfel stoppar körningen.">It gathers and checks evidence, drafts an explanation, and stops at review. Missing evidence, uncertainty, cancellation, or a control failure halts the run.</p></div>
+  <div class="expert-only">
+    <ol class="automation-sequence">
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">1.0</span><div><h3 data-i18n data-en="Collect" data-sv="Samla in">Collect</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">2.0</span><div><h3 data-i18n data-en="Extract" data-sv="Extrahera">Extract</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">3.0</span><div><h3 data-i18n data-en="Validate" data-sv="Validera">Validate</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">4.0</span><div><h3 data-i18n data-en="Match" data-sv="Matcha">Match</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">5.0</span><div><h3 data-i18n data-en="Request missing evidence" data-sv="Begär saknat underlag">Request missing evidence</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">6.0</span><div><h3 data-i18n data-en="Draft" data-sv="Förbered utkast">Draft</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">7.0</span><div><h3 data-i18n data-en="Explain" data-sv="Förklara">Explain</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li>
+    <li class="automation-stage"><span class="step-number" aria-hidden="true">8.0</span><div><h3 data-i18n data-en="Assemble review packet" data-sv="Sammanställ granskningspaket">Assemble review packet</h3><p data-i18n data-en="Checkpointed, resumable, client-scoped, and independently reviewable." data-sv="Kontrollpunktssparad, återupptagbar, klientavgränsad och oberoende granskningsbar.">Checkpointed, resumable, client-scoped, and independently reviewable.</p></div></li></ol>
+    <div class="subsection-heading"><h3 data-i18n data-en="Model provider contract" data-sv="Kontrakt för modellleverantörer">Model provider contract</h3><p data-i18n data-en="Local models are preferred for private accounting and course material. Hosted providers and Codex require explicit configuration; credentials are never model input." data-sv="Lokala modeller föredras för privat redovisnings- och kursmaterial. Molnleverantörer och Codex kräver uttrycklig konfiguration; inloggningsuppgifter används aldrig som modellindata.">Local models are preferred for private accounting and course material. Hosted providers and Codex require explicit configuration; credentials are never model input.</p></div>
+    <div class="table-frame"><table class="integration-table model-table"><caption data-i18n data-en="Provider-neutral advisory model matrix" data-sv="Leverantörsneutral matris för rådgivande modeller">Provider-neutral advisory model matrix</caption><thead><tr><th scope="col" data-i18n data-en="Provider" data-sv="Leverantör">Provider</th><th scope="col" data-i18n data-en="Network" data-sv="Nätverk">Network</th><th scope="col" data-i18n data-en="Default" data-sv="Standard">Default</th><th scope="col" data-i18n data-en="Authority" data-sv="Behörighet">Authority</th></tr></thead><tbody>
+      <tr><th scope="row" data-i18n data-en="Deterministic accounting controls" data-sv="Deterministiska redovisningskontroller">Deterministic accounting controls</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="none" data-sv="inget">none</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Built in" data-sv="Inbyggd">Built in</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="Ollama on this device" data-sv="Ollama på den här enheten">Ollama on this device</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="localhost only" data-sv="endast lokal värd">localhost only</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Explicit local opt-in" data-sv="Uttryckligt lokalt medgivande">Explicit local opt-in</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="Local OpenAI-compatible endpoint" data-sv="Lokal OpenAI-kompatibel anslutning">Local OpenAI-compatible endpoint</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="localhost only" data-sv="endast lokal värd">localhost only</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Local adapter required" data-sv="Lokal adapter krävs">Local adapter required</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="OpenAI API" data-sv="OpenAI API">OpenAI API</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="hosted or managed" data-sv="molnbaserat eller hanterat">hosted or managed</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Off by default · manifest only" data-sv="Av som standard · endast manifest">Off by default · manifest only</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="Anthropic API" data-sv="Anthropic API">Anthropic API</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="hosted or managed" data-sv="molnbaserat eller hanterat">hosted or managed</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Off by default · manifest only" data-sv="Av som standard · endast manifest">Off by default · manifest only</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="Google Gemini API" data-sv="Google Gemini API">Google Gemini API</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="hosted or managed" data-sv="molnbaserat eller hanterat">hosted or managed</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Off by default · manifest only" data-sv="Av som standard · endast manifest">Off by default · manifest only</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr>
+      <tr><th scope="row" data-i18n data-en="Codex workspace agent" data-sv="Codex-arbetsyteagent">Codex workspace agent</th><td data-label="Network" data-label-en="Network" data-label-sv="Nätverk" data-i18n data-en="hosted or managed" data-sv="molnbaserat eller hanterat">hosted or managed</td><td data-label="Default" data-label-en="Default" data-label-sv="Standard" data-i18n data-en="Off by default · manifest only" data-sv="Av som standard · endast manifest">Off by default · manifest only</td><td data-label="Authority" data-label-en="Authority" data-label-sv="Behörighet" data-i18n data-en="Advice only · deterministic validation required" data-sv="Endast rådgivning · deterministisk validering krävs">Advice only · deterministic validation required</td></tr></tbody></table></div>
+  </div>
+  <div class="boundary-notice" data-tone="warning"><strong data-i18n data-en="The terminal state is human review." data-sv="Slutläget är mänsklig granskning.">The terminal state is human review.</strong><span data-i18n data-en="The runner can resume after interruption and propagate cancellation, but it cannot approve, post, pay, file, send, delete, or change settings." data-sv="Körningen kan återupptas efter avbrott och sprida avbrytning, men den kan inte godkänna, bokföra, betala, lämna in, skicka, radera eller ändra inställningar.">The runner can resume after interruption and propagate cancellation, but it cannot approve, post, pay, file, send, delete, or change settings.</span></div>
+</section>
+<section class="workbench-section" id="integrations" aria-labelledby="integrations-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="integrations-title" data-i18n data-en="Integrations" data-sv="Integrationer">Integrations</h2>
+      <p data-i18n data-en="One read-only conformance contract across ERP and exchange providers. Exact tenant/company binding, source hashes, schema versions, cursors, and retry evidence are required." data-sv="Ett skrivskyddat konformitetskontrakt gäller för ERP- och utbytesleverantörer. Exakt tenant-/företagsbindning, källhashar, schemaversioner, markörer och återförsöksunderlag krävs.">One read-only conformance contract across ERP and exchange providers. Exact tenant/company binding, source hashes, schema versions, cursors, and retry evidence are required.</p>
+    </div>
+  </div>
+  <div class="guided-only guided-summary"><strong data-i18n data-en="Connections stay read-only" data-sv="Anslutningar förblir skrivskyddade">Connections stay read-only</strong><p data-i18n data-en="Fortnox has a guarded read-only preview path. NetSuite, Oracle, SAP, Odoo, SIE, and CSV are declared contracts, not connected production integrations." data-sv="Fortnox har en bevakad skrivskyddad förhandsväg. NetSuite, Oracle, SAP, Odoo, SIE och CSV är deklarerade kontrakt, inte anslutna produktionsintegrationer.">Fortnox has a guarded read-only preview path. NetSuite, Oracle, SAP, Odoo, SIE, and CSV are declared contracts, not connected production integrations.</p></div>
+  <div class="table-frame expert-only">
+    <table class="integration-table">
+      <caption data-i18n data-en="Provider-neutral capability matrix" data-sv="Leverantörsneutral behörighetsmatris">Provider-neutral capability matrix</caption>
+      <thead><tr><th scope="col" data-i18n data-en="Provider" data-sv="Leverantör">Provider</th><th scope="col" data-i18n data-en="Channel" data-sv="Kanal">Channel</th><th scope="col" data-i18n data-en="Current state" data-sv="Aktuellt läge">Current state</th><th scope="col" data-i18n data-en="Permitted" data-sv="Tillåtet">Permitted</th><th scope="col" data-i18n data-en="Blocked" data-sv="Blockerat">Blocked</th></tr></thead>
+      <tbody>
+      <tr>
+        <th scope="row" data-i18n data-en="Fortnox" data-sv="Fortnox">Fortnox</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Guarded read-only" data-sv="Bevakat skrivskyddat läge">Guarded read-only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="discover schema · read master data · read transactions · read period locks · import local · export raw · validate local" data-sv="identifiera schema · läs masterdata · läs transaktioner · läs periodlås · importera lokalt · exportera rådata · validera lokalt">discover schema · read master data · read transactions · read period locks · import local · export raw · validate local</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="Oracle NetSuite" data-sv="Oracle NetSuite">Oracle NetSuite</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="Oracle Fusion Cloud Financials" data-sv="Oracle Fusion Cloud Financials">Oracle Fusion Cloud Financials</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="SAP S/4HANA" data-sv="SAP S/4HANA">SAP S/4HANA</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="Odoo" data-sv="Odoo">Odoo</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="SIE accounting exchange" data-sv="SIE-utbyte för redovisning">SIE accounting exchange</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="CSV accounting exchange" data-sv="CSV-utbyte för redovisning">CSV accounting exchange</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Connector contract v1" data-sv="Anslutningskontrakt v1">Connector contract v1</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Declaration only" data-sv="Endast deklaration">Declaration only</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="No connected capabilities" data-sv="Inga anslutna funktioner">No connected capabilities</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="External draft · post · approve · send · pay · file · delete · settings" data-sv="Externt utkast · bokför · godkänn · skicka · betala · lämna in · radera · inställningar">External draft · post · approve · send · pay · file · delete · settings</td>
+      </tr>
+      <tr>
+        <th scope="row" data-i18n data-en="Supervised computer use" data-sv="Övervakad datoranvändning">Supervised computer use</th>
+        <td data-label="Channel" data-label-en="Channel" data-label-sv="Kanal" data-i18n data-en="Visible operator session" data-sv="Synlig operatörssession">Visible operator session</td>
+        <td data-label="Current state" data-label-en="Current state" data-label-sv="Aktuellt läge" data-i18n data-en="Observation-only fallback" data-sv="Reservläge för skrivskyddad observation">Observation-only fallback</td>
+        <td data-label="Permitted" data-label-en="Permitted" data-label-sv="Tillåtet" data-i18n data-en="local_app_ui_testing · whitelisted_erp_observation · screenshot_and_evidence_capture · human_readable_action_plan_preparation" data-sv="lokal UI-testning · vitlistad ERP-observation · skärmbild och underlagsinsamling · förbered läsbar åtgärdsplan">local_app_ui_testing · whitelisted_erp_observation · screenshot_and_evidence_capture · human_readable_action_plan_preparation</td>
+        <td data-label="Blocked" data-label-en="Blocked" data-label-sv="Blockerat" data-i18n data-en="type_into_remote_erp_form · submit_post_approve_send_pay_file_delete_or_change_settings · tax_filing · client_communication · handle_credentials_or_secrets" data-sv="skriv i fjärranslutet ERP-formulär · skicka, bokför, godkänn, betala, lämna in, radera eller ändra inställningar · skatteinlämning · klientkommunikation · hantera inloggningsuppgifter eller hemligheter">type_into_remote_erp_form · submit_post_approve_send_pay_file_delete_or_change_settings · tax_filing · client_communication · handle_credentials_or_secrets</td>
+      </tr></tbody>
+    </table>
+  </div>
+  <div class="boundary-notice" data-tone="warning">
+    <strong data-i18n data-en="Computer use is a last-mile fallback." data-sv="Datoranvändning är en sista utväg.">Computer use is a last-mile fallback.</strong>
+    <span data-i18n data-en="It stays visible, read-only, narrowly scoped, and supervised. Any credential request, unexpected instruction, or prompt-injection signal stops the task." data-sv="Den är synlig, skrivskyddad, snävt avgränsad och övervakad. En begäran om inloggningsuppgifter, en oväntad instruktion eller en signal om promptinjektion stoppar uppgiften.">It stays visible, read-only, narrowly scoped, and supervised. Any credential request, unexpected instruction, or prompt-injection signal stops the task.</span>
+  </div>
+</section>
+<section class="workbench-section" id="workflow" aria-labelledby="workflow-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="workflow-title" data-i18n data-en="Workflow" data-sv="Arbetsflöde">Workflow</h2>
+      <p data-i18n data-en="A deterministic accounting path first; bounded specialist agents add analysis without changing the permission ceiling." data-sv="Först ett deterministiskt redovisningsflöde; avgränsade specialistagenter tillför analys utan att höja behörighetstaket.">A deterministic accounting path first; bounded specialist agents add analysis without changing the permission ceiling.</p>
+    </div>
+  </div>
+  <div class="guided-only guided-summary"><strong data-i18n data-en="Evidence → checks → human review" data-sv="Underlag → kontroller → mänsklig granskning">Evidence → checks → human review</strong><p data-i18n data-en="Deterministic controls run before specialist analysis. Any specialist can stop work, but none can approve its own result." data-sv="Deterministiska kontroller körs före specialistanalys. Varje specialist får stoppa arbetet, men ingen får godkänna sitt eget resultat.">Deterministic controls run before specialist analysis. Any specialist can stop work, but none can approve its own result.</p></div>
+  <ol class="workflow-sequence expert-only">
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">01</span>
+      <div>
+        <h3 data-i18n data-en="Intake" data-sv="Inläsning">Intake</h3>
+        <p data-i18n data-en="15 normalized intake cases from synthetic local exports." data-sv="15 normaliserade inläsningsärenden från syntetiska lokala exporter.">15 normalized intake cases from synthetic local exports.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/normalized_intake_cases.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">02</span>
+      <div>
+        <h3 data-i18n data-en="Document registry" data-sv="Dokumentregister">Document registry</h3>
+        <p data-i18n data-en="Synthetic document registry and hashes are present in local SQLite/output artifacts." data-sv="Syntetiskt dokumentregister och hashvärden finns i lokala SQLite- och utdatafiler.">Synthetic document registry and hashes are present in local SQLite/output artifacts.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/demo.sqlite" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">03</span>
+      <div>
+        <h3 data-i18n data-en="Extraction" data-sv="Extraktion">Extraction</h3>
+        <p data-i18n data-en="15 extracted invoice JSON artifacts." data-sv="15 extraherade JSON-filer för fakturor.">15 extracted invoice JSON artifacts.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">04</span>
+      <div>
+        <h3 data-i18n data-en="Accounting proposal" data-sv="Konteringsförslag">Accounting proposal</h3>
+        <p data-i18n data-en="15 BAS/VAT accounting proposal artifacts." data-sv="15 konteringsförslag med BAS och moms.">15 BAS/VAT accounting proposal artifacts.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/summary.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="review_required">
+      <span class="step-number" aria-hidden="true">05</span>
+      <div>
+        <h3 data-i18n data-en="Policy gate" data-sv="Policykontroll">Policy gate</h3>
+        <p data-i18n data-en="14 items need approval, escalation, or stop handling." data-sv="14 ärenden kräver godkännande, eskalering eller stopphantering.">14 items need approval, escalation, or stop handling.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Review required" data-sv="Granskning krävs">Review required</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">06</span>
+      <div>
+        <h3 data-i18n data-en="Approval packet" data-sv="Granskningspaket">Approval packet</h3>
+        <p data-i18n data-en="15 supplier approval packet JSON files." data-sv="15 JSON-filer med granskningspaket för leverantörer.">15 supplier approval packet JSON files.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="dry_run_only">
+      <span class="step-number" aria-hidden="true">07</span>
+      <div>
+        <h3 data-i18n data-en="Execution permit" data-sv="Exekveringstillstånd">Execution permit</h3>
+        <p data-i18n data-en="15 local permit records; live use remains blocked." data-sv="15 lokala tillståndsposter; live-användning är fortsatt blockerad.">15 local permit records; live use remains blocked.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Dry-run only" data-sv="Endast torrkörning">Dry-run only</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="dry_run_only">
+      <span class="step-number" aria-hidden="true">08</span>
+      <div>
+        <h3 data-i18n data-en="Fortnox dry-run" data-sv="Fortnox-torrkörning">Fortnox dry-run</h3>
+        <p data-i18n data-en="15 Fortnox-shaped dry-run payload files; live calls are 0." data-sv="15 Fortnox-formade torrkörningsfiler; live-anrop är 0.">15 Fortnox-shaped dry-run payload files; live calls are 0.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Dry-run only" data-sv="Endast torrkörning">Dry-run only</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">09</span>
+      <div>
+        <h3 data-i18n data-en="gnubok shadow validation" data-sv="gnubok-skuggvalidering">gnubok shadow validation</h3>
+        <p data-i18n data-en="15 local shadow-ledger comparison files." data-sv="15 lokala jämförelsefiler för skugghuvudbok.">15 local shadow-ledger comparison files.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">10</span>
+      <div>
+        <h3 data-i18n data-en="Bank reconciliation" data-sv="Bankavstämning">Bank reconciliation</h3>
+        <p data-i18n data-en="20 bank reconciliation proposals." data-sv="20 förslag till bankavstämning.">20 bank reconciliation proposals.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/bank_reconciliation_proposals.json" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li>
+    <li class="workflow-step" data-state="available">
+      <span class="step-number" aria-hidden="true">11</span>
+      <div>
+        <h3 data-i18n data-en="Audit/report" data-sv="Revision och rapport">Audit/report</h3>
+        <p data-i18n data-en="36 top-level audit events plus Markdown report." data-sv="36 övergripande revisionshändelser samt Markdown-rapport.">36 top-level audit events plus Markdown report.</p>
+      </div>
+      <div class="step-meta"><span data-i18n data-en="Evidence available" data-sv="Underlag tillgängligt">Evidence available</span><a href="../../.local/fake_client_dry_run/audit_log.jsonl" data-i18n data-en="Evidence" data-sv="Underlag">Evidence</a></div>
+    </li></ol>
+  <div class="subsection-heading expert-only">
+    <h3 data-i18n data-en="Bounded specialist-agent pipeline" data-sv="Avgränsad pipeline med specialistagenter">Bounded specialist-agent pipeline</h3>
+    <p data-i18n data-en="Parallel where evidence can be inspected independently, sequential where judgment depends on verified results." data-sv="Parallellt när underlag kan granskas oberoende, sekventiellt när bedömningen beror på verifierade resultat.">Parallel where evidence can be inspected independently, sequential where judgment depends on verified results.</p>
+  </div>
+  <ol class="agent-pipeline expert-only">
+    <li>
+      <div class="agent-stage"><span>01</span><strong data-i18n data-en="Scope" data-sv="Omfattning">Scope</strong></div>
+      <div><h3 data-i18n data-en="Coordinator" data-sv="Koordinator">Coordinator</h3><p data-i18n data-en="Locks client, jurisdiction, ERP, evidence set, capability ceiling, time budget, and stop conditions." data-sv="Låser klient, jurisdiktion, ERP, underlag, behörighetstak, tidsbudget och stoppvillkor.">Locks client, jurisdiction, ERP, evidence set, capability ceiling, time budget, and stop conditions.</p></div>
+    </li>
+    <li>
+      <div class="agent-stage"><span>02</span><strong data-i18n data-en="Inspect in parallel" data-sv="Granska parallellt">Inspect in parallel</strong></div>
+      <div><h3 data-i18n data-en="Intake · Extraction · Supplier risk · VAT and jurisdiction" data-sv="Inläsning · Extraktion · Leverantörsrisk · Moms och jurisdiktion">Intake · Extraction · Supplier risk · VAT and jurisdiction</h3><p data-i18n data-en="Specialists share the same read-only evidence envelope and cannot widen permissions." data-sv="Specialisterna delar samma skrivskyddade underlagsram och kan inte utöka behörigheterna.">Specialists share the same read-only evidence envelope and cannot widen permissions.</p></div>
+    </li>
+    <li>
+      <div class="agent-stage"><span>03</span><strong data-i18n data-en="Propose" data-sv="Föreslå">Propose</strong></div>
+      <div><h3 data-i18n data-en="Accounting proposal · Reconciliation" data-sv="Konteringsförslag · Avstämning">Accounting proposal · Reconciliation</h3><p data-i18n data-en="Produces draft classifications, matches, and explanations without posting anything." data-sv="Tar fram klassificeringar, matchningar och förklaringar utan att bokföra något.">Produces draft classifications, matches, and explanations without posting anything.</p></div>
+    </li>
+    <li>
+      <div class="agent-stage"><span>04</span><strong data-i18n data-en="Verify" data-sv="Verifiera">Verify</strong></div>
+      <div><h3 data-i18n data-en="Evidence verifier" data-sv="Underlagsverifierare">Evidence verifier</h3><p data-i18n data-en="Checks provenance, contradictions, policy alignment, completeness, and reproducibility." data-sv="Kontrollerar proveniens, motsägelser, policyöverensstämmelse, fullständighet och reproducerbarhet.">Checks provenance, contradictions, policy alignment, completeness, and reproducibility.</p></div>
+    </li>
+    <li>
+      <div class="agent-stage"><span>05</span><strong data-i18n data-en="Decide" data-sv="Besluta">Decide</strong></div>
+      <div><h3 data-i18n data-en="Human reviewer" data-sv="Mänsklig granskare">Human reviewer</h3><p data-i18n data-en="Approves, rejects, requests evidence, or stops the case. Agents never self-approve." data-sv="Godkänner, avvisar, begär underlag eller stoppar ärendet. Agenter får aldrig självgodkänna.">Approves, rejects, requests evidence, or stops the case. Agents never self-approve.</p></div>
+    </li></ol>
+  <div class="boundary-notice" data-tone="neutral">
+    <strong data-i18n data-en="Coordinator rule" data-sv="Koordinatorregel">Coordinator rule</strong>
+    <span data-i18n data-en="Every specialist inherits the same client, jurisdiction, evidence, capability, timeout, and stop boundaries. A monitor may stop work, but no agent may approve its own output." data-sv="Varje specialist ärver samma klient, jurisdiktion, underlag, behörighet, tidsgräns och stoppvillkor. En monitor får stoppa arbetet, men ingen agent får godkänna sitt eget resultat.">Every specialist inherits the same client, jurisdiction, evidence, capability, timeout, and stop boundaries. A monitor may stop work, but no agent may approve its own output.</span>
+  </div>
+</section>
+<section class="workbench-section" id="controls" aria-labelledby="controls-title">
+  <div class="section-heading">
+    <div>
+      <h2 id="controls-title" data-i18n data-en="Controls &amp; evidence" data-sv="Kontroller och underlag">Controls &amp; evidence</h2>
+      <p data-i18n data-en="Policy boundaries, local evidence, and reproducible commands live together so a reviewer can verify before deciding." data-sv="Policygränser, lokalt underlag och reproducerbara kommandon finns samlade så att en granskare kan verifiera före beslut.">Policy boundaries, local evidence, and reproducible commands live together so a reviewer can verify before deciding.</p>
+    </div>
+  </div>
+  <div class="safety-boundaries">
+
+  <div class="boundary-columns">
+    <section aria-labelledby="allowed-title">
+      <h3 id="allowed-title" data-i18n data-en="Allowed in this build" data-sv="Tillåtet i denna version">Allowed in this build</h3>
+      <ul class="boundary-list allowed"><li data-i18n data-en="Read repo-local synthetic fixtures and generated metadata." data-sv="Läs lokala syntetiska testdata och genererad metadata.">Read repo-local synthetic fixtures and generated metadata.</li><li data-i18n data-en="Build approval packets, summaries, reports, and this static cockpit." data-sv="Bygg granskningspaket, sammanfattningar, rapporter och denna statiska cockpit.">Build approval packets, summaries, reports, and this static cockpit.</li><li data-i18n data-en="Prepare Fortnox-shaped payloads in dry-run mode only." data-sv="Förbered Fortnox-formade nyttolaster endast i torrkörningsläge.">Prepare Fortnox-shaped payloads in dry-run mode only.</li><li data-i18n data-en="Mirror proposals into the local gnubok shadow validation stub." data-sv="Spegla förslag till den lokala gnubok-stubben för skuggvalidering.">Mirror proposals into the local gnubok shadow validation stub.</li><li data-i18n data-en="Generate bank reconciliation proposals and review packets locally." data-sv="Generera förslag till bankavstämning och granskningspaket lokalt.">Generate bank reconciliation proposals and review packets locally.</li></ul>
+    </section>
+    <section aria-labelledby="blocked-title">
+      <h3 id="blocked-title" data-i18n data-en="Always stopped for human decision" data-sv="Stoppas alltid för mänskligt beslut">Always stopped for human decision</h3>
+      <ul class="boundary-list blocked"><li data-i18n data-en="Live Fortnox calls, final posting, supplier invoice approval, payments, deletes, or settings changes." data-sv="Fortnox-anrop i live-system, slutlig bokföring, attest av leverantörsfakturor, betalningar, radering eller inställningsändringar.">Live Fortnox calls, final posting, supplier invoice approval, payments, deletes, or settings changes.</li><li data-i18n data-en="Live Microsoft Graph, email sending, client communication, payment initiation, or tax filing." data-sv="Microsoft Graph-anrop i live-system, e-postutskick, klientkommunikation, betalningsinitiering eller skatteinlämning.">Live Microsoft Graph, email sending, client communication, payment initiation, or tax filing.</li><li data-i18n data-en="Real client documents, secrets, credentials, tokens, bank secrets, or broad tenant data." data-sv="Verkliga klientdokument, hemligheter, inloggningsuppgifter, token, bankhemligheter eller bred tenantdata.">Real client documents, secrets, credentials, tokens, bank secrets, or broad tenant data.</li><li data-i18n data-en="Using gnubok, Obsidian, reports, or this cockpit as an execution authority." data-sv="Användning av gnubok, Obsidian, rapporter eller denna cockpit som exekveringsbehörighet.">Using gnubok, Obsidian, reports, or this cockpit as an execution authority.</li></ul>
+    </section>
+  </div>
+</div>
+  <div class="guided-only guided-summary"><strong data-i18n data-en="Evidence stays traceable" data-sv="Underlag förblir spårbart">Evidence stays traceable</strong><p data-i18n data-en="Every proposal keeps its source hashes and review reason. Raw JSON, identifiers, and operator commands are available only in Expert view." data-sv="Varje förslag behåller sina källhashar och sin granskningsorsak. Rå JSON, identifierare och operatörskommandon visas endast i Expertläget.">Every proposal keeps its source hashes and review reason. Raw JSON, identifiers, and operator commands are available only in Expert view.</p></div>
+  <div class="expert-only">
+    <div class="subsection-heading">
+      <h3 data-i18n data-en="Local evidence library" data-sv="Lokalt underlagsbibliotek">Local evidence library</h3>
+      <p data-i18n data-en="Grouped by purpose. Links are emitted only for existing files under the workspace." data-sv="Grupperat efter syfte. Länkar skapas endast för befintliga filer i arbetsytan.">Grouped by purpose. Links are emitted only for existing files under the workspace.</p>
+    </div>
+    <div class="artifact-groups">
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Approval Packet" data-sv="Godkännandepaket">Approval Packet</span><span data-i18n data-en="23 of 23 available" data-sv="23 av 23 tillgängliga">23 of 23 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_9bc85d7057f2_fc_15_ambiguous_private_receipt.approval_packet" data-sv="Granskningspaket för leverantör: si_9bc85d7057f2_fc_15_ambiguous_private_receipt.approval_packet">Supplier approval packet: si_9bc85d7057f2_fc_15_ambiguous_private_receipt.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_9bc85d7057f2_fc_15_ambiguous_private_receipt.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_4696eb76b1a5_fc_14_old_locked_period.approval_packet" data-sv="Granskningspaket för leverantör: si_4696eb76b1a5_fc_14_old_locked_period.approval_packet">Supplier approval packet: si_4696eb76b1a5_fc_14_old_locked_period.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_4696eb76b1a5_fc_14_old_locked_period.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_cc6830590cd7_fc_13_uncertain_vat.approval_packet" data-sv="Granskningspaket för leverantör: si_cc6830590cd7_fc_13_uncertain_vat.approval_packet">Supplier approval packet: si_cc6830590cd7_fc_13_uncertain_vat.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_cc6830590cd7_fc_13_uncertain_vat.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_4bc854de220e_fc_12_changed_bank_details.approval_packet" data-sv="Granskningspaket för leverantör: si_4bc854de220e_fc_12_changed_bank_details.approval_packet">Supplier approval packet: si_4bc854de220e_fc_12_changed_bank_details.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_4bc854de220e_fc_12_changed_bank_details.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_29f8bb17c79d_fc_11_duplicate_it_support.approval_packet" data-sv="Granskningspaket för leverantör: si_29f8bb17c79d_fc_11_duplicate_it_support.approval_packet">Supplier approval packet: si_29f8bb17c79d_fc_11_duplicate_it_support.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_29f8bb17c79d_fc_11_duplicate_it_support.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier approval packet: si_34dc8e877b42_fc_10_duplicate_office_supplies.approval_packet" data-sv="Granskningspaket för leverantör: si_34dc8e877b42_fc_10_duplicate_office_supplies.approval_packet">Supplier approval packet: si_34dc8e877b42_fc_10_duplicate_office_supplies.approval_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/json/si_34dc8e877b42_fc_10_duplicate_office_supplies.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_9bc85d7057f2" data-sv="Granskningsunderlag för leverantör: si_9bc85d7057f2">Supplier review packet: si_9bc85d7057f2</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_9bc85d7057f2.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_4696eb76b1a5" data-sv="Granskningsunderlag för leverantör: si_4696eb76b1a5">Supplier review packet: si_4696eb76b1a5</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_4696eb76b1a5.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_cc6830590cd7" data-sv="Granskningsunderlag för leverantör: si_cc6830590cd7">Supplier review packet: si_cc6830590cd7</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_cc6830590cd7.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_4bc854de220e" data-sv="Granskningsunderlag för leverantör: si_4bc854de220e">Supplier review packet: si_4bc854de220e</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_4bc854de220e.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_29f8bb17c79d" data-sv="Granskningsunderlag för leverantör: si_29f8bb17c79d">Supplier review packet: si_29f8bb17c79d</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_29f8bb17c79d.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier review packet: si_34dc8e877b42" data-sv="Granskningsunderlag för leverantör: si_34dc8e877b42">Supplier review packet: si_34dc8e877b42</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/approval_packets/markdown/si_34dc8e877b42.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-020.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-020.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-020.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-020.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-019.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-019.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-019.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-019.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-008.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-008.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-008.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-008.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-005.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-005.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-005.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-005.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-004.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-004.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-004.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-004.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation packet: br_FC-BANK-002.bank_reconciliation_packet" data-sv="Granskningspaket för bankavstämning: br_FC-BANK-002.bank_reconciliation_packet">Bank reconciliation packet: br_FC-BANK-002.bank_reconciliation_packet</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_packets/br_FC-BANK-002.bank_reconciliation_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Demo approval packet: si_49aeba347102_uncertain_vat_extraction.approval_packet" data-sv="Granskningspaket för demo: si_49aeba347102_uncertain_vat_extraction.approval_packet">Demo approval packet: si_49aeba347102_uncertain_vat_extraction.approval_packet</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/approval_packets/json/si_49aeba347102_uncertain_vat_extraction.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Demo approval packet: si_73f72b9baff5_changed_bank_details.approval_packet" data-sv="Granskningspaket för demo: si_73f72b9baff5_changed_bank_details.approval_packet">Demo approval packet: si_73f72b9baff5_changed_bank_details.approval_packet</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/approval_packets/json/si_73f72b9baff5_changed_bank_details.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Demo approval packet: si_8a0788e2eb3d_unknown_supplier.approval_packet" data-sv="Granskningspaket för demo: si_8a0788e2eb3d_unknown_supplier.approval_packet">Demo approval packet: si_8a0788e2eb3d_unknown_supplier.approval_packet</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/approval_packets/json/si_8a0788e2eb3d_unknown_supplier.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Demo approval packet: si_708aaba80cb6_possible_duplicate_invoice.approval_packet" data-sv="Granskningspaket för demo: si_708aaba80cb6_possible_duplicate_invoice.approval_packet">Demo approval packet: si_708aaba80cb6_possible_duplicate_invoice.approval_packet</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/approval_packets/json/si_708aaba80cb6_possible_duplicate_invoice.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Demo approval packet: si_1633fee91438_normal_swedish_25_vat.approval_packet" data-sv="Granskningspaket för demo: si_1633fee91438_normal_swedish_25_vat.approval_packet">Demo approval packet: si_1633fee91438_normal_swedish_25_vat.approval_packet</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/approval_packets/json/si_1633fee91438_normal_swedish_25_vat.approval_packet.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Audit Log" data-sv="Revisionslogg">Audit Log</span><span data-i18n data-en="1 of 1 available" data-sv="1 av 1 tillgängliga">1 of 1 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fake-client audit log" data-sv="Revisionslogg för testkund">Fake-client audit log</span><a class="artifact-open" href="../../.local/fake_client_dry_run/audit_log.jsonl" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="append-only local events" data-sv="lokala händelser som endast läggs till">append-only local events</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Bank Proposals" data-sv="Bankförslag">Bank Proposals</span><span data-i18n data-en="1 of 1 available" data-sv="1 av 1 tillgängliga">1 of 1 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation proposals" data-sv="Förslag till bankavstämning">Bank reconciliation proposals</span><a class="artifact-open" href="../../.local/fake_client_dry_run/bank_reconciliation_proposals.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="local proposal batch" data-sv="lokal förslagsbatch">local proposal batch</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Doc" data-sv="Dokument">Doc</span><span data-i18n data-en="5 of 5 available" data-sv="5 av 5 tillgängliga">5 of 5 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Architecture doc" data-sv="Arkitekturdokument">Architecture doc</span><a class="artifact-open" href="../../docs/accounting_agent_architecture.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="system boundaries" data-sv="systemgränser">system boundaries</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox adapter doc" data-sv="Dokumentation för Fortnox-adapter">Fortnox adapter doc</span><a class="artifact-open" href="../../docs/fortnox_adapter.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="dry-run adapter boundary" data-sv="adaptergräns för testkörning">dry-run adapter boundary</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow ledger doc" data-sv="Dokumentation för gnubok-skugghuvudbok">gnubok shadow ledger doc</span><a class="artifact-open" href="../../docs/gnubok_shadow_ledger.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="shadow validation boundary" data-sv="gräns för skuggvalidering">shadow validation boundary</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Bank reconciliation doc" data-sv="Dokumentation för bankavstämning">Bank reconciliation doc</span><a class="artifact-open" href="../../docs/bank_reconciliation_autopilot.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="bank proposal workflow" data-sv="flöde för bankförslag">bank proposal workflow</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier autopilot doc" data-sv="Dokumentation för leverantörsautopilot">Supplier autopilot doc</span><a class="artifact-open" href="../../docs/local_demo_supplier_invoice_autopilot.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="local demo workflow" data-sv="lokalt demoflöde">local demo workflow</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Dry-Run Payload" data-sv="Torrkörningsdata">Dry-Run Payload</span><span data-i18n data-en="6 of 6 available" data-sv="6 av 6 tillgängliga">6 of 6 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_15_ambiguous_private_receipt" data-sv="Fortnox-underlag för testkörning: fc_15_ambiguous_private_receipt">Fortnox dry-run payload: fc_15_ambiguous_private_receipt</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_15_ambiguous_private_receipt.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_14_old_locked_period" data-sv="Fortnox-underlag för testkörning: fc_14_old_locked_period">Fortnox dry-run payload: fc_14_old_locked_period</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_14_old_locked_period.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_13_uncertain_vat" data-sv="Fortnox-underlag för testkörning: fc_13_uncertain_vat">Fortnox dry-run payload: fc_13_uncertain_vat</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_13_uncertain_vat.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_12_changed_bank_details" data-sv="Fortnox-underlag för testkörning: fc_12_changed_bank_details">Fortnox dry-run payload: fc_12_changed_bank_details</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_12_changed_bank_details.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_11_duplicate_it_support" data-sv="Fortnox-underlag för testkörning: fc_11_duplicate_it_support">Fortnox dry-run payload: fc_11_duplicate_it_support</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_11_duplicate_it_support.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fortnox dry-run payload: fc_10_duplicate_office_supplies" data-sv="Fortnox-underlag för testkörning: fc_10_duplicate_office_supplies">Fortnox dry-run payload: fc_10_duplicate_office_supplies</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/fortnox_dry_run_payloads/fc_10_duplicate_office_supplies.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Manifest" data-sv="Manifest">Manifest</span><span data-i18n data-en="3 of 3 available" data-sv="3 av 3 tillgängliga">3 of 3 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fake-client manifest" data-sv="Manifest för testkund">Fake-client manifest</span><a class="artifact-open" href="../../.local/fake_client_dry_run/manifest.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="full synthetic month run" data-sv="full syntetisk månadskörning">full synthetic month run</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier autopilot manifest" data-sv="Manifest för leverantörsautopilot">Supplier autopilot manifest</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/manifest.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="supplier workflow output" data-sv="resultat från leverantörsflöde">supplier workflow output</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Local demo manifest" data-sv="Manifest för lokal demo">Local demo manifest</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/manifest.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="small fixture demo" data-sv="liten testdatademo">small fixture demo</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Report" data-sv="Rapport">Report</span><span data-i18n data-en="1 of 1 available" data-sv="1 av 1 tillgängliga">1 of 1 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fake-client report" data-sv="Rapport för testkund">Fake-client report</span><a class="artifact-open" href="../../docs/fake_client_dry_run_report.md" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="operator report" data-sv="operatörsrapport">operator report</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Shadow Output" data-sv="Skuggvalidering">Shadow Output</span><span data-i18n data-en="6 of 6 available" data-sv="6 av 6 tillgängliga">6 of 6 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_15_ambiguous_private_receipt" data-sv="gnubok-skuggresultat: fc_15_ambiguous_private_receipt">gnubok shadow output: fc_15_ambiguous_private_receipt</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_15_ambiguous_private_receipt.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_14_old_locked_period" data-sv="gnubok-skuggresultat: fc_14_old_locked_period">gnubok shadow output: fc_14_old_locked_period</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_14_old_locked_period.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_13_uncertain_vat" data-sv="gnubok-skuggresultat: fc_13_uncertain_vat">gnubok shadow output: fc_13_uncertain_vat</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_13_uncertain_vat.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_12_changed_bank_details" data-sv="gnubok-skuggresultat: fc_12_changed_bank_details">gnubok shadow output: fc_12_changed_bank_details</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_12_changed_bank_details.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_11_duplicate_it_support" data-sv="gnubok-skuggresultat: fc_11_duplicate_it_support">gnubok shadow output: fc_11_duplicate_it_support</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_11_duplicate_it_support.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="gnubok shadow output: fc_10_duplicate_office_supplies" data-sv="gnubok-skuggresultat: fc_10_duplicate_office_supplies">gnubok shadow output: fc_10_duplicate_office_supplies</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/gnubok_shadow_outputs/fc_10_duplicate_office_supplies.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="latest local file" data-sv="senaste lokala filen">latest local file</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details>
+    <details class="artifact-group">
+      <summary><span data-i18n data-en="Summary" data-sv="Sammanfattning">Summary</span><span data-i18n data-en="3 of 3 available" data-sv="3 av 3 tillgängliga">3 of 3 available</span></summary>
+      <ul class="artifact-list">
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Fake-client summary" data-sv="Sammanfattning för testkund">Fake-client summary</span><a class="artifact-open" href="../../.local/fake_client_dry_run/summary.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="counts and readiness" data-sv="antal och beredskap">counts and readiness</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Supplier autopilot summary" data-sv="Sammanfattning för leverantörsautopilot">Supplier autopilot summary</span><a class="artifact-open" href="../../.local/fake_client_dry_run/supplier_invoice_autopilot/summary.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="supplier workflow counts" data-sv="antal i leverantörsflödet">supplier workflow counts</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li>
+        <li data-state="available">
+          <div><span class="artifact-label" data-i18n data-en="Local demo summary" data-sv="Sammanfattning för lokal demo">Local demo summary</span><a class="artifact-open" href="../../.local/demo_supplier_invoice_autopilot/summary.json" data-i18n data-en="Open file" data-sv="Öppna fil">Open file</a><span class="artifact-note" data-i18n data-en="small fixture counts" data-sv="antal i liten testdatademo">small fixture counts</span></div>
+          <strong data-i18n data-en="Available" data-sv="Tillgänglig">Available</strong>
+        </li></ul>
+    </details></div>
+    <div class="action-columns">
+  <details class="operator-actions expert-only">
+    <summary data-i18n data-en="Safe local operator commands" data-sv="Säkra lokala operatörskommandon">Safe local operator commands</summary>
+    <ul class="command-list"><li><code>python3 -m accounting_agent.cli fake-client-dry-run</code></li><li><code>python3 -m accounting_agent.cli demo-supplier-invoice-autopilot</code></li><li><code>python3 -m accounting_agent.cli process-fixtures</code></li><li><code>python3 -m accounting_agent.cli reconcile-bank-fixtures</code></li><li><code>python3 -m accounting_agent.cli build-operations-cockpit</code></li><li><code>python3 -m unittest</code></li></ul>
+  </details>
+  <section aria-labelledby="not-allowed-title">
+    <h3 id="not-allowed-title" data-i18n data-en="Actions this cockpit cannot take" data-sv="Åtgärder som cockpiten inte kan utföra">Actions this cockpit cannot take</h3>
+    <ul class="boundary-list blocked"><li data-i18n data-en="Create live Fortnox supplier invoices, vouchers, payments, or final postings." data-sv="Skapa leverantörsfakturor, verifikationer, betalningar eller slutlig bokföring i Fortnox live.">Create live Fortnox supplier invoices, vouchers, payments, or final postings.</li><li data-i18n data-en="Approve supplier invoices or send customer invoices." data-sv="Attestera leverantörsfakturor eller skicka kundfakturor.">Approve supplier invoices or send customer invoices.</li><li data-i18n data-en="Send emails or contact clients from MVP code." data-sv="Skicka e-post eller kontakta klienter från MVP-kod.">Send emails or contact clients from MVP code.</li><li data-i18n data-en="Call Microsoft Graph, Fortnox, payment, tax, or filing APIs." data-sv="Anropa Microsoft Graph-, Fortnox-, betalnings-, skatte- eller inlämnings-API:er.">Call Microsoft Graph, Fortnox, payment, tax, or filing APIs.</li><li data-i18n data-en="Process real client documents or write secrets into the repo." data-sv="Behandla verkliga klientdokument eller skriva hemligheter i källkodsförrådet.">Process real client documents or write secrets into the repo.</li></ul>
+  </section>
+</div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="shell footer-statement">
+    <p class="footer-claim" data-i18n data-en="The agent prepares. People decide." data-sv="Agenten förbereder. Människor beslutar.">The agent prepares. People decide.</p>
+    <div class="footer-line">
+      <p>Accounting Agent v1 · <time datetime="2026-07-10T23:09:31+00:00">2026-07-10 23:09 UTC</time></p>
+      <p data-i18n data-en="Static synthetic preview · no external network assets · no live authority" data-sv="Statisk syntetisk förhandsvisning · inga externa nätverksresurser · ingen livebehörighet">Static synthetic preview · no external network assets · no live authority</p>
+    </div>
+  </div>
+</footer>
+<dialog class="command-dialog" id="command-dialog" aria-labelledby="command-title">
+  <form method="dialog" class="command-shell">
+    <div class="command-head">
+      <h2 id="command-title" data-i18n data-en="Find a section" data-sv="Hitta en sektion">Find a section</h2>
+      <button class="dialog-close" value="close" type="submit" data-i18n data-en="Close" data-sv="Stäng">Close</button>
+    </div>
+    <label class="search-field command-search">
+      <span data-i18n data-en="Search this cockpit" data-sv="Sök i cockpiten">Search this cockpit</span>
+      <input id="command-search" type="search" autocomplete="off" placeholder="Type a section name…" data-placeholder-en="Type a section name…" data-placeholder-sv="Skriv ett sektionsnamn…">
+    </label>
+    <ul class="command-listbox" id="command-list"><li><a href="#today"><strong data-i18n data-en="Open Today" data-sv="Öppna Idag">Open Today</strong><span data-i18n data-en="Run state and live counters" data-sv="Körläge och live-räknare">Run state and live counters</span></a></li><li><a href="#review"><strong data-i18n data-en="Open Review" data-sv="Öppna Granskning">Open Review</strong><span data-i18n data-en="Prioritised human decisions" data-sv="Prioriterade mänskliga beslut">Prioritised human decisions</span></a></li><li><a href="#close"><strong data-i18n data-en="Open Close" data-sv="Öppna Bokslut">Open Close</strong><span data-i18n data-en="Dependency-aware close controls" data-sv="Beroendestyrda bokslutskontroller">Dependency-aware close controls</span></a></li><li><a href="#automation"><strong data-i18n data-en="Open Automation" data-sv="Öppna Automatisering">Open Automation</strong><span data-i18n data-en="Safe stages and model routing" data-sv="Säkra steg och modellstyrning">Safe stages and model routing</span></a></li><li><a href="#workflow"><strong data-i18n data-en="Open Workflow" data-sv="Öppna Arbetsflöde">Open Workflow</strong><span data-i18n data-en="Deterministic and specialist-agent stages" data-sv="Deterministiska steg och specialistagenter">Deterministic and specialist-agent stages</span></a></li><li><a href="#integrations"><strong data-i18n data-en="Open Integrations" data-sv="Öppna Integrationer">Open Integrations</strong><span data-i18n data-en="ERP and supervised computer-use boundaries" data-sv="ERP-gränser och övervakad datoranvändning">ERP and supervised computer-use boundaries</span></a></li><li><a href="#controls"><strong data-i18n data-en="Open Controls &amp; evidence" data-sv="Öppna Kontroller och underlag">Open Controls &amp; evidence</strong><span data-i18n data-en="Policy, artifacts, and local commands" data-sv="Policy, underlag och lokala kommandon">Policy, artifacts, and local commands</span></a></li></ul>
+    <p class="command-empty" id="command-empty" aria-live="polite" hidden data-i18n data-en="No matching section." data-sv="Ingen matchande sektion.">No matching section.</p>
+    <p class="command-hint" data-i18n data-en="Use ↑ and ↓ to move, Enter to open, and Escape to close." data-sv="Använd ↑ och ↓ för att flytta, Enter för att öppna och Escape för att stänga.">Use ↑ and ↓ to move, Enter to open, and Escape to close.</p>
+  </form>
+</dialog>
+<script>
+(() => {
+  const body = document.body;
+  const localeSelect = document.querySelector("#locale-select");
+  const roleSelect = document.querySelector("#role-select");
+  const roleGuidance = document.querySelector("#role-guidance");
+  const commandShortcut = document.querySelector("#command-shortcut");
+  const viewInputs = [...document.querySelectorAll('input[name="view"]')];
+
+  const guidance = {
+    "en-GB": {
+      "small-firm": "Queue-first guidance with plain-language evidence and explicit human decisions.",
+      "accountant": "Transaction-focused guidance with evidence, accounting proposals, and review reasons.",
+      "senior": "Escalation-focused guidance with policy conflicts, complex VAT, and approval boundaries.",
+      "controller": "Control-focused guidance with reconciliation, completeness, period, and variance evidence.",
+      "auditor": "Evidence-first guidance with provenance, policy history, exceptions, and reproducible artifacts.",
+      "operator": "Technical guidance with raw identifiers, capability states, local commands, and agent boundaries."
+    },
+    "sv-SE": {
+      "small-firm": "Köfokuserad vägledning med tydliga underlag och uttryckliga mänskliga beslut.",
+      "accountant": "Transaktionsfokuserad vägledning med underlag, konteringsförslag och granskningsorsaker.",
+      "senior": "Eskaleringsfokuserad vägledning för policykonflikter, komplex moms och attestgränser.",
+      "controller": "Kontrollfokuserad vägledning för avstämning, fullständighet, period och avvikelser.",
+      "auditor": "Underlagsfokuserad vägledning med spårbarhet, policyhistorik, undantag och reproducerbara filer.",
+      "operator": "Teknisk vägledning med råa ID:n, behörighetslägen, lokala kommandon och agentgränser."
+    }
+  };
+
+  const readPreference = (key, fallback) => {
+    try { return window.localStorage.getItem(key) || fallback; }
+    catch (_) { return fallback; }
+  };
+  const writePreference = (key, value) => {
+    try { window.localStorage.setItem(key, value); }
+    catch (_) { /* Preferences remain session-only when storage is unavailable. */ }
+  };
+
+  const updateRoleGuidance = () => {
+    if (!roleGuidance || !roleSelect || !localeSelect) return;
+    const locale = guidance[localeSelect.value] ? localeSelect.value : "en-GB";
+    roleGuidance.textContent = guidance[locale][roleSelect.value] || guidance[locale]["small-firm"];
+  };
+
+  const applyLocale = (locale) => {
+    const resolved = locale === "sv-SE" ? "sv-SE" : "en-GB";
+    document.documentElement.lang = resolved;
+    document.title = resolved === "sv-SE"
+      ? "Accounting Agent v1 · Redovisningsarbete"
+      : "Accounting Agent v1 · Operations";
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute(
+      "content",
+      resolved === "sv-SE" ? description.dataset.contentSv : description.dataset.contentEn
+    );
+    body.dataset.locale = resolved;
+    if (localeSelect) localeSelect.value = resolved;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      const text = resolved === "sv-SE" ? node.dataset.sv : node.dataset.en;
+      if (text) node.textContent = text;
+    });
+    document.querySelectorAll("[data-placeholder-en]").forEach((node) => {
+      node.setAttribute("placeholder", resolved === "sv-SE" ? node.dataset.placeholderSv : node.dataset.placeholderEn);
+    });
+    document.querySelectorAll("[data-aria-label-en]").forEach((node) => {
+      node.setAttribute("aria-label", resolved === "sv-SE" ? node.dataset.ariaLabelSv : node.dataset.ariaLabelEn);
+    });
+    document.querySelectorAll("[data-label-en]").forEach((node) => {
+      node.dataset.label = resolved === "sv-SE" ? node.dataset.labelSv : node.dataset.labelEn;
+    });
+    const dateFormatter = new Intl.DateTimeFormat(resolved, {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Europe/Stockholm"
+    });
+    document.querySelectorAll("time[datetime]").forEach((node) => {
+      const parsed = new Date(node.getAttribute("datetime"));
+      if (!Number.isNaN(parsed.getTime())) node.textContent = dateFormatter.format(parsed);
+    });
+    updateRoleGuidance();
+    updateReviewResults();
+  };
+
+  const initialView = readPreference("accounting-cockpit-view", "guided");
+  body.dataset.view = initialView === "expert" ? "expert" : "guided";
+  viewInputs.forEach((input) => {
+    input.checked = input.value === body.dataset.view;
+    input.addEventListener("change", () => {
+      if (!input.checked) return;
+      body.dataset.view = input.value;
+      writePreference("accounting-cockpit-view", input.value);
+    });
+  });
+
+  if (roleSelect) {
+    const savedRole = readPreference("accounting-cockpit-role", "small-firm");
+    if ([...roleSelect.options].some((option) => option.value === savedRole)) roleSelect.value = savedRole;
+    body.dataset.role = roleSelect.value;
+    roleSelect.addEventListener("change", () => {
+      writePreference("accounting-cockpit-role", roleSelect.value);
+      body.dataset.role = roleSelect.value;
+      updateRoleGuidance();
+    });
+  }
+  if (localeSelect) {
+    localeSelect.addEventListener("change", () => {
+      writePreference("accounting-cockpit-locale", localeSelect.value);
+      applyLocale(localeSelect.value);
+    });
+  }
+
+  const reviewSearch = document.querySelector("#review-search");
+  const reviewSeverity = document.querySelector("#review-severity");
+  const reviewRows = [...document.querySelectorAll(".attention-row")];
+  const reviewResultCount = document.querySelector("#review-result-count");
+  const reviewEmpty = document.querySelector("#review-empty");
+  const clearReviewFilters = document.querySelector("#clear-review-filters");
+  function updateReviewResults() {
+    if (!reviewResultCount) return;
+    const query = reviewSearch ? reviewSearch.value.trim().toLocaleLowerCase() : "";
+    const severity = reviewSeverity ? reviewSeverity.value : "all";
+    let visible = 0;
+    reviewRows.forEach((row) => {
+      const matchesQuery = !query || row.dataset.search.includes(query);
+      const matchesSeverity = severity === "all" || row.dataset.severity === severity;
+      row.hidden = !(matchesQuery && matchesSeverity);
+      if (!row.hidden) visible += 1;
+    });
+    const isSwedish = localeSelect && localeSelect.value === "sv-SE";
+    reviewResultCount.textContent = isSwedish ? `${visible} poster visas` : `${visible} items shown`;
+    if (reviewEmpty) reviewEmpty.hidden = visible !== 0;
+  }
+  reviewSearch?.addEventListener("input", updateReviewResults);
+  reviewSeverity?.addEventListener("change", updateReviewResults);
+  clearReviewFilters?.addEventListener("click", () => {
+    if (reviewSearch) reviewSearch.value = "";
+    if (reviewSeverity) reviewSeverity.value = "all";
+    updateReviewResults();
+    reviewSearch?.focus();
+  });
+
+  const trigger = document.querySelector("#command-trigger");
+  const dialog = document.querySelector("#command-dialog");
+  const commandSearch = document.querySelector("#command-search");
+  const commandItems = [...document.querySelectorAll("#command-list li")];
+  const commandEmpty = document.querySelector("#command-empty");
+  let activeIndex = 0;
+  if (commandShortcut) commandShortcut.textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K";
+
+  const visibleCommandLinks = () => commandItems
+    .filter((item) => !item.hidden)
+    .map((item) => item.querySelector("a"));
+  const setActiveCommand = (index) => {
+    const links = visibleCommandLinks();
+    if (!links.length) return;
+    activeIndex = (index + links.length) % links.length;
+    links.forEach((link, itemIndex) => link.dataset.active = String(itemIndex === activeIndex));
+    links[activeIndex].focus();
+  };
+  const filterCommands = () => {
+    const query = commandSearch ? commandSearch.value.trim().toLocaleLowerCase() : "";
+    commandItems.forEach((item) => item.hidden = Boolean(query) && !item.textContent.toLocaleLowerCase().includes(query));
+    activeIndex = 0;
+    const links = visibleCommandLinks();
+    links.forEach((link, index) => link.dataset.active = String(index === 0));
+    if (commandEmpty) commandEmpty.hidden = links.length !== 0;
+  };
+  const openCommands = () => {
+    if (!dialog) return;
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    if (commandSearch) {
+      commandSearch.value = "";
+      filterCommands();
+      commandSearch.focus();
+    }
+  };
+  const closeCommands = () => {
+    if (!dialog) return;
+    if (typeof dialog.close === "function") dialog.close();
+    else dialog.removeAttribute("open");
+  };
+
+  trigger?.addEventListener("click", openCommands);
+  document.addEventListener("keydown", (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === "k") {
+      event.preventDefault();
+      openCommands();
+      return;
+    }
+    if (!dialog?.open || !["ArrowDown", "ArrowUp"].includes(event.key)) return;
+    event.preventDefault();
+    setActiveCommand(activeIndex + (event.key === "ArrowDown" ? 1 : -1));
+  });
+  commandSearch?.addEventListener("input", filterCommands);
+  commandSearch?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeCommands();
+      return;
+    }
+    if (["ArrowDown", "ArrowUp"].includes(event.key)) {
+      event.preventDefault();
+      event.stopPropagation();
+      setActiveCommand(event.key === "ArrowDown" ? 0 : visibleCommandLinks().length - 1);
+      return;
+    }
+    if (event.key === "Enter") {
+      const firstLink = visibleCommandLinks()[0];
+      if (!firstLink) return;
+      event.preventDefault();
+      firstLink.click();
+    }
+  });
+  commandItems.forEach((item) => item.querySelector("a")?.addEventListener("click", closeCommands));
+  dialog?.addEventListener("click", (event) => { if (event.target === dialog) closeCommands(); });
+  dialog?.addEventListener("close", () => trigger?.focus());
+
+  const sectionLinks = [...document.querySelectorAll(".section-nav a[href^='#']")];
+  const markCurrentSection = (id) => sectionLinks.forEach((link) => {
+    if (link.getAttribute("href") === `#${id}`) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  markCurrentSection((window.location.hash || "#today").slice(1));
+  window.addEventListener("hashchange", () => markCurrentSection((window.location.hash || "#today").slice(1)));
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+      if (visible[0]?.target?.id) markCurrentSection(visible[0].target.id);
+    }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
+    document.querySelectorAll("main > section[id]").forEach((section) => observer.observe(section));
+  }
+
+  applyLocale(readPreference("accounting-cockpit-locale", "en-GB"));
+  updateRoleGuidance();
+  updateReviewResults();
+})();
+</script>
+</body>
+</html>
