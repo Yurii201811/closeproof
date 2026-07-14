@@ -63,10 +63,11 @@ use the operator's existing Codex sign-in for the bounded advisory step.
 - Verified on July 14, 2026: macOS 27.0 arm64, Python 3.11.5, Node.js 25.4.0,
   npm 11.7.0, Codex CLI 0.144.0, Chromium through the in-app Browser flow,
   Playwright Firefox/WebKit desktop and 320×800 reduced-motion smoke runs, and
-  native Safari keyboard and maximum-zoom checks.
+  native Safari keyboard, VoiceOver, and maximum-zoom checks.
 - Native Windows is not supported because the local event log uses POSIX file
-  locking. Linux, WSL, and native Safari remain unverified release surfaces
-  rather than implied compatibility claims.
+  locking. Linux and WSL remain unverified release surfaces. Safari verification
+  is limited to the macOS version above rather than a broad version-support
+  claim.
 
 ## What the demo proves
 

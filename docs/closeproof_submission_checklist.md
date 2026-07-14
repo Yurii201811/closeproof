@@ -93,7 +93,10 @@
 - [x] Native Safari keyboard and maximum 300% browser-zoom pass, including
   focus traversal, mobile proof opening, modal focus wrap, Escape close, and
   focus restoration (2026-07-14).
-- [ ] VoiceOver speech-output pass.
+- [x] Native VoiceOver/Safari semantics and focus pass with speech enabled and
+  unmuted, covering the page title, headings, navigation, stage/state labels,
+  provider provenance, recorded rationale, decision status, and export control;
+  VoiceOver was returned to off after the pass (2026-07-14).
 - [x] 320 CSS px pass with no horizontal overflow, covering the WCAG
   400%-equivalent reflow width for a 1280 CSS px viewport.
 - [x] Firefox and WebKit desktop-drawer smoke passes, plus three consecutive

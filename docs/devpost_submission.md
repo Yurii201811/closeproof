@@ -148,7 +148,7 @@ file-level boundary and retained hashes are documented in
 | Criterion | Submission evidence | Demo moment |
 |---|---|---|
 | Technological Implementation | Non-trivial Python and React implementation; deterministic controls; exact integer-ore allocation; strict advisory schema and invariants; evidence snapshots; append-only decision chain; loopback service; dedicated tests and verifier | Generate the case, show a real bounded Codex result, record a human action, and export the workpaper |
-| Design | Responsive evidence-ledger UI; visible stage dependencies; proof layers that distinguish source, controls, advisory, and human authority; rationale gating; keyboard and automated accessibility coverage | Open Adjustments on desktop/mobile and move from source excerpt to one clear human action |
+| Design | Responsive evidence-ledger UI; visible stage dependencies; proof layers that distinguish source, controls, advisory, and human authority; rationale gating; keyboard, VoiceOver/Safari, and automated accessibility coverage | Open Adjustments on desktop/mobile and move from source excerpt to one clear human action |
 | Potential Impact | A concrete controller workflow that consolidates scattered review evidence and makes the final disposition reproducible; impact is presented as a credible workflow hypothesis, not fabricated production metrics | Show one exception from GL and invoice through a traceable workpaper |
 | Quality of the Idea | A deliberate alternative to an autonomous accountant: rules calculate, GPT-5.6 interprets within a citation boundary, and the accountable human decides | Point to `Calculated by controls`, `Advisory — cannot approve`, and the required human rationale |
 
