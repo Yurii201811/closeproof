@@ -152,14 +152,14 @@ workspace metadata. Removing that material from the current tree does not
 remove it from Git history. Therefore the existing history must not be pushed
 to a public remote.
 
-After explicit human approval to publish, create the public repository from a
-sanitized tip-only archive (for example, `git archive HEAD`) or an equivalent
-export, initialize it as a new repository with a new root commit, and run a
-privacy/secret scan against that exact export. Re-run the complete verifier in
-the exported tree and inspect every public link while signed out before using
-the repository in a submission. Commit hashes in this document describe the
-private build provenance; they are not expected to exist in the sanitized
-public history.
+After explicit human approval, the public repository was created from a
+sanitized tip-only archive, initialized with a new root commit, and checked for
+secrets and private metadata. The complete verifier passed in the exact export
+and in a clean clone after the lockfile install. An unauthenticated API request,
+raw README/LICENSE requests, a credential-disabled clone, and the no-rebuild
+judge path then passed after the visibility change. Commit hashes elsewhere in
+this document describe the private build provenance; they are not expected to
+exist in the sanitized public history.
 
 ## Submission evidence status
 
@@ -169,7 +169,9 @@ public history.
 - Public YouTube demo URL under three minutes with audio: **[PENDING]**
 - Free no-rebuild judge path: `./scripts/run_closeproof_prebuilt.sh` using the
   checked-in `plugins/closeproof/assets/web/` bundle.
-- Logged-out verification of every submitted link: **[PENDING]**
+- Public repository and judge-path verification without GitHub authentication:
+  **PASSED 2026-07-14**.
+- Public video playback and final submitted-link verification: **[PENDING]**
 
-This document deliberately leaves those items open until the external artifacts
+This document leaves only the account-bound external artifacts open until they
 exist and have been verified.

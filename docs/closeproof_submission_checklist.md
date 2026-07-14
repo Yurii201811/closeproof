@@ -31,8 +31,11 @@
 - [x] Scan that exact public export for secrets, local user paths, private
   workspace names, and authenticated task/provider identifiers.
 - [x] Verify a functional git archive and a no-local branch clone with fresh
-  `npm ci` installs and the full verifier (2026-07-14). Privacy verification of
-  the final sanitized export remains pending.
+  `npm ci` installs and the full verifier (2026-07-14).
+- [x] Scan the final sanitized export and public history for secrets, private
+  paths, private workspace names, authenticated identifiers, and tracked
+  symlinks; inspect the public repository, raw README/LICENSE, credential-free
+  clone, and no-rebuild judge path without GitHub authentication (2026-07-14).
 
 ## GPT-5.6 routes
 
@@ -103,7 +106,9 @@
   320×800 reduced-motion modal passes covering initial focus, focus wrapping,
   Escape close, focus restoration, scroll locking, console errors, failed
   requests, and horizontal overflow (2026-07-14).
-- [x] Full repository regression, secret scan, and dependency audit on release candidate.
+- [x] Full repository regression and dependency audit on the release candidate;
+  current-tree and sanitized public-history secret scans passed. The inherited
+  private source ancestry was deliberately excluded from the public repository.
 - [x] In-app Browser-plugin pass completed at 320×800, 768×900, and 1440×900,
   including manual ChatGPT import, human evidence request, validated workpaper
   download, reload persistence, focus containment, and overflow checks
@@ -121,6 +126,8 @@
 - [ ] Upload public YouTube video and verify playback while signed out.
 - [ ] Explain Codex acceleration and key technical/product decisions.
 - [ ] Add repository and product URLs to Devpost.
+- [x] Verify the public repository, raw README/LICENSE, credential-free clone,
+  and no-rebuild judge path without GitHub authentication (2026-07-14).
 - [ ] Verify every link in a logged-out context.
 - [ ] Submit by July 21 at 18:00 Europe/Stockholm target time.
 - [ ] Re-open the submitted entry and capture confirmation.

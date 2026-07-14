@@ -218,5 +218,7 @@ to prevent source/package drift.
   the Devpost field.
 - [ ] Record and publish a public YouTube demo under three minutes with audio
   covering the working project, Codex, and GPT-5.6.
-- [ ] Verify repository, video, and judge-access links while signed out.
+- [x] Verify the repository and no-rebuild judge-access path without GitHub
+  authentication (2026-07-14).
+- [ ] Verify public YouTube playback while signed out.
 - [ ] Submit before July 21, 2026 at 17:00 PT.
