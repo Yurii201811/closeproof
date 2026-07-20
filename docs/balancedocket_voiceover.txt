@@ -1,0 +1,71 @@
+BalanceDocket — OpenAI Build Week 2026
+Teleprompter voice-over
+Target duration: 2 minutes 52 seconds
+
+Record each numbered section as a separate take. Read the narration only; do
+not read the timestamps or section names. Leave a short pause before and after
+each take.
+
+Use these filenames in order: 01_problem.wav, 02_baseline.wav,
+03_controls.wav, 04_codex.wav, 05_advisory.wav, 06_decision.wav,
+07_workpaper.wav, and 08_close.wav.
+
+01 · 0:00–0:15 · Problem and product
+
+Month-end review often splits one decision across a ledger, invoice, policy,
+spreadsheet, and sign-off. BalanceDocket gives controllers one evidence-bound
+path through the exception, keeping calculation, model advice, and human
+authority separate.
+
+02 · 0:15–0:34 · Codex workflow and local baseline
+
+This is a bundled synthetic June close. Through the BalanceDocket skill, Codex
+generates the fixture, runs the local case, checks status, and prepares the
+bounded advisory. The baseline needs no model, network, OpenAI account, or API
+key.
+
+03 · 0:34–1:02 · Source and deterministic controls
+
+Inside Adjustments, the invoice period runs from June fifteenth, twenty
+twenty-six, through June fourteenth, twenty twenty-seven. Controls—not the
+model—verify its identity and cutoff, then allocate sixteen of three hundred
+sixty-five days to June: five thousand two hundred sixty kronor and
+twenty-seven öre expense; one hundred fourteen thousand seven hundred
+thirty-nine kronor and seventy-three öre prepaid.
+
+04 · 1:02–1:36 · Real Codex and GPT-5.6 route
+
+This retained Codex run requested GPT-5.6 Sol through my eligible ChatGPT plan,
+without an API key. BalanceDocket sent bounded synthetic excerpts, exact
+amounts, and a strict schema. The result passed schema, citation, amount,
+no-authority, and snapshot checks. Codex CLI did not report the returned model,
+so I disclose the request without claiming independent confirmation.
+
+05 · 1:36–2:00 · Validated advisory boundary
+
+The result is labeled “Codex requested, validated output.” It selected three
+source-linked citations, reported medium uncertainty, and flagged missing
+evidence. Provider prose was discarded. BalanceDocket builds the conclusion
+locally from validated selections and fixed amounts. The advisory cannot
+change calculations, approve, post, lock, pay, file, send, or alter source
+data.
+
+06 · 2:00–2:25 · Human decision
+
+Authority stays with the reviewer. I record that the cited service period and
+exact integer-öre allocation support prepaid treatment, while missing evidence
+needs follow-up. I choose Request evidence—the safe, repeatable disposition.
+The decision stays bound to this snapshot in an append-only local hash chain;
+no ERP write occurs.
+
+07 · 2:25–2:42 · Workpaper proof
+
+The workpaper binds source hashes, deterministic calculation, advisory hash,
+human rationale, action, snapshot, chain head, and validation scope. It reports
+zero accounting actions and zero ERP writes, so another reviewer can audit the
+decision.
+
+08 · 2:42–2:52 · Build proof and close
+
+Codex accelerated the Python and React build, tests, accessibility, and release
+checks. I made every product decision and final judgment.

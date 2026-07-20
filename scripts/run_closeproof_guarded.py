@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hold output and port locks for the complete CloseProof demo lifetime."""
+"""Hold output and port locks for the complete BalanceDocket demo lifetime."""
 
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ def _exclusive_launch_locks(paths: list[Path]) -> Iterator[tuple[int, ...]]:
             except BlockingIOError as exc:
                 os.close(descriptor)
                 raise LaunchError(
-                    "CloseProof cannot start: another launcher owns this output or port; "
+                    "BalanceDocket cannot start: another launcher owns this output or port; "
                     "existing demo state was not reset"
                 ) from exc
             descriptors.append((path, descriptor))
@@ -65,7 +65,7 @@ def _open_regular_lock_file(path: Path) -> int:
     try:
         descriptor = os.open(path, flags, 0o600)
     except OSError as exc:
-        raise LaunchError("CloseProof lock path must be a regular file") from exc
+        raise LaunchError("BalanceDocket lock path must be a regular file") from exc
     try:
         opened = os.fstat(descriptor)
         linked = path.lstat()
@@ -76,7 +76,7 @@ def _open_regular_lock_file(path: Path) -> int:
             or opened.st_nlink != 1
             or (opened.st_dev, opened.st_ino) != (linked.st_dev, linked.st_ino)
         ):
-            raise LaunchError("CloseProof lock path must be a regular file")
+            raise LaunchError("BalanceDocket lock path must be a regular file")
         os.fchmod(descriptor, 0o600)
         return descriptor
     except Exception:
@@ -94,7 +94,7 @@ def _reserve_loopback_port(port: int) -> Iterator[socket.socket]:
             reservation.bind(("127.0.0.1", port))
         except OSError as exc:
             raise LaunchError(
-                f"CloseProof cannot start: 127.0.0.1:{port} is already in use; "
+                f"BalanceDocket cannot start: 127.0.0.1:{port} is already in use; "
                 "existing demo state was not reset"
             ) from exc
         yield reservation
@@ -122,16 +122,16 @@ def _require_supported_python(version_info=None) -> None:
     if tuple(version[:2]) < (3, 11):
         found = ".".join(str(part) for part in version[:3])
         raise LaunchError(
-            f"CloseProof requires Python 3.11 or newer; found Python {found}"
+            f"BalanceDocket requires Python 3.11 or newer; found Python {found}"
         )
 
 
 def _print_launch_summary(
     *, output: Path, port: int, build_source: bool
 ) -> None:
-    print(f"CloseProof is starting at http://127.0.0.1:{port}", flush=True)
-    print(f"CloseProof state directory: {output}", flush=True)
-    print(f"CloseProof advisory case: {output / 'case.json'}", flush=True)
+    print(f"BalanceDocket is starting at http://127.0.0.1:{port}", flush=True)
+    print(f"BalanceDocket state directory: {output}", flush=True)
+    print(f"BalanceDocket advisory case: {output / 'case.json'}", flush=True)
     if build_source:
         print("Press Ctrl-C to stop the local-only reviewer.", flush=True)
     else:
@@ -146,7 +146,7 @@ def _run(args: argparse.Namespace) -> int:
     output = _canonical_output_path(args.output)
     web_root = Path(args.web_root).resolve(strict=False)
     if not web_root.joinpath("index.html").is_file() and not args.build_source:
-        raise LaunchError("The checked-in CloseProof web bundle is missing")
+        raise LaunchError("The checked-in BalanceDocket web bundle is missing")
 
     npm = shutil.which("npm") if args.build_source else None
     if args.build_source and npm is None:
@@ -171,7 +171,7 @@ def _run(args: argparse.Namespace) -> int:
                     check=True,
                 )
                 if not web_root.joinpath("index.html").is_file():
-                    raise LaunchError("The source build did not produce CloseProof web assets")
+                    raise LaunchError("The source build did not produce BalanceDocket web assets")
 
             subprocess.run(
                 [
@@ -225,7 +225,7 @@ def main() -> int:
     except subprocess.CalledProcessError as exc:
         return exc.returncode
     except OSError:
-        print("CloseProof cannot start: local process launch failed", file=sys.stderr)
+        print("BalanceDocket cannot start: local process launch failed", file=sys.stderr)
         return 1
 
 

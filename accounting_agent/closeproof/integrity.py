@@ -51,10 +51,10 @@ def compute_review_context_sha256(case: dict[str, Any]) -> str:
 
     advisory = case.get("advisory")
     if not isinstance(advisory, dict):
-        raise ValueError("CloseProof advisory envelope is missing")
+        raise ValueError("BalanceDocket advisory envelope is missing")
     provenance = advisory.get("provenance")
     if not isinstance(provenance, dict):
-        raise ValueError("CloseProof advisory provenance is missing")
+        raise ValueError("BalanceDocket advisory provenance is missing")
     material = {
         "snapshot_sha256": case.get("snapshot_sha256"),
         "advisory": {
@@ -89,7 +89,7 @@ def compute_case_snapshot_sha256(case: dict[str, Any]) -> str:
     """Recompute the immutable case snapshot without runtime review state."""
 
     if not isinstance(case, dict):
-        raise ValueError("CloseProof case must be an object")
+        raise ValueError("BalanceDocket case must be an object")
     material = {
         key: value
         for key, value in case.items()
@@ -103,9 +103,9 @@ def validate_golden_case_snapshot(case: dict[str, Any]) -> None:
 
     snapshot = case.get("snapshot_sha256") if isinstance(case, dict) else None
     if snapshot != GOLDEN_CLOSEPROOF_SNAPSHOT_SHA256:
-        raise ValueError("CloseProof provider input is not the approved synthetic golden case")
+        raise ValueError("BalanceDocket provider input is not the approved synthetic golden case")
     if compute_case_snapshot_sha256(case) != snapshot:
-        raise ValueError("CloseProof synthetic case snapshot failed integrity validation")
+        raise ValueError("BalanceDocket synthetic case snapshot failed integrity validation")
 
 
 def canonical_sha256(value: Any) -> str:

@@ -1,12 +1,22 @@
-# CloseProof
+# BalanceDocket
 
-CloseProof is a source-linked month-end close reviewer for controllers and senior
-accountants. It keeps source evidence, exact control calculations, optional
-model advice, and the accountable human decision in one inspectable trail.
+BalanceDocket is an evidence-bound month-end close reviewer for controllers and
+senior accountants. Rules calculate the exact treatment, GPT-5.6 performs the
+citation-bound interpretation in the judged flow, and the accountable human
+decides—all in one inspectable trail. If model access is unavailable, the same
+case fails safely to deterministic human review rather than blocking the free
+judge path.
 
 This is the repository's **OpenAI Build Week 2026 · Work & Productivity**
 project. It is built on selected pre-existing Accounting Agent primitives; the
 [Build Week provenance](docs/build_week_provenance.md) records that boundary.
+
+> **Compatibility note:** BalanceDocket is the proposed public display name in
+> this release candidate; publication awaits Yurii's approval. The candidate
+> deliberately retains the stable `closeproof` technical namespace for CLI
+> commands, environment variables, schemas, plugin IDs, source paths, and the
+> public repository URL. Those identifiers remain unchanged so the tested judge
+> path and evidence hashes do not break.
 
 ## Judge quick start
 
@@ -45,7 +55,7 @@ dedicated directory explicitly.
 ### Install the optional Codex plugin
 
 The local reviewer works without a plugin or an OpenAI account. To add the
-CloseProof workflow to a plugin-capable Codex installation from this clone:
+BalanceDocket workflow to a plugin-capable Codex installation from this clone:
 
 ```bash
 codex plugin marketplace add .
@@ -73,9 +83,12 @@ use the operator's existing Codex sign-in for the bounded advisory step.
 
 The golden path takes a bundled synthetic GL CSV and a deterministically
 generated text PDF through duplicate, cutoff, and prepaid controls; shows one
-ambiguous Adjustments exception; optionally adds a citation-bound GPT-5.6
-advisory; requires a human approve/request-evidence/reject decision; and exports
-a hash-bound workpaper. It performs no ERP write or accounting action.
+ambiguous Adjustments exception; adds a citation-bound GPT-5.6 interpretation
+through Codex in the competition flow; requires a human
+approve/request-evidence/reject decision; and exports a hash-bound workpaper.
+The no-model fallback preserves the deterministic review but does not replace
+GPT-5.6's material competition role. Neither path performs an ERP write or
+accounting action.
 
 ### Run the deterministic demo manually
 
@@ -155,7 +168,7 @@ python3 -m accounting_agent.cli closeproof-advisory api \
 - `codex` is the judged path: use the existing Codex sign-in, request the
   concrete Codex catalog model `gpt-5.6-sol`, validate the structured result,
   and retain its provenance. The optional Responses API route uses the
-  `gpt-5.6` API alias, which OpenAI maps to GPT-5.6 Sol; CloseProof does not
+  `gpt-5.6` API alias, which OpenAI maps to GPT-5.6 Sol; BalanceDocket does not
   silently substitute between provider identifiers.
 - `import` validates a structured result produced from the prepared prompt. For
   the manual fallback, paste the prompt into ChatGPT, choose GPT-5.6, save only
@@ -163,13 +176,13 @@ python3 -m accounting_agent.cli closeproof-advisory api \
   A ChatGPT subscription is an interactive product entitlement, not an API
   credential.
 - `api` is an optional Responses API route. It must require explicit opt-in and
-  `OPENAI_API_KEY` supplied through an approved secret mechanism. CloseProof
+  `OPENAI_API_KEY` supplied through an approved secret mechanism. BalanceDocket
   must never print or persist the key.
 
 All advisory routes may send or expose only the bundled synthetic source
 excerpts and deterministic amounts. Validation rejects unknown citations,
 changed amounts, malformed output, or a false `cannot_approve` invariant.
-Provider-authored prose is never persisted or rendered: CloseProof retains only
+Provider-authored prose is never persisted or rendered: BalanceDocket retains only
 the validated citations, uncertainty, exact amounts, and whether evidence was
 flagged, then generates controlled display language locally. Codex and API
 results must also pass the available model/provenance checks. A manual
@@ -179,14 +192,14 @@ local case remains reviewable and exportable with the advisory marked not
 requested or unavailable.
 
 The Build Week recording must show a real Codex run requesting `gpt-5.6-sol`
-whose structured output passes CloseProof validation. Codex CLI `0.144.0` did
+whose structured output passes BalanceDocket validation. Codex CLI `0.144.0` did
 not report the returned model identity in the retained run, so the repository
 does not claim that identity was independently verified. A fixture advisory,
 manual text pasted without validated provenance, or API-shaped mock response is
 not acceptable as competition proof. Run `/feedback` in the primary Codex task
 and retain the returned session ID for the submission.
 
-### Verify CloseProof
+### Verify BalanceDocket
 
 ```bash
 ./scripts/verify_closeproof.sh
@@ -224,9 +237,9 @@ the final product direction.
 GPT-5.6 has a deliberately material but bounded role: interpret the ambiguous
 synthetic service-period exception, cite only the supplied evidence, preserve
 the exact deterministic amounts, state uncertainty, and flag missing evidence.
-CloseProof discards its prose and renders those validated selections through
+BalanceDocket discards its prose and renders those validated selections through
 local controlled-language templates for human review. A retained Codex CLI run
-requested `gpt-5.6-sol` and its output passed CloseProof validation; Codex CLI
+requested `gpt-5.6-sol` and its output passed BalanceDocket validation; Codex CLI
 0.144.0 did not report the
 returned model identity, so this repository does not claim independent model
 attestation. The [Build Week provenance](docs/build_week_provenance.md) records
@@ -237,7 +250,7 @@ decision split.
 
 The broader repository is a Sweden-first, provider-neutral accounting
 automation foundation for safe local proposals, exception review,
-reconciliation, and evidence packaging. CloseProof deliberately uses only the
+reconciliation, and evidence packaging. BalanceDocket deliberately uses only the
 bounded primitives documented in the provenance record.
 
 The functional runtime still uses synthetic local fixtures. It extracts invoice
@@ -333,8 +346,25 @@ supplier fixture or demo command when testing a different review date.
 
 ## License
 
-CloseProof is available under the [MIT License](LICENSE). Copyright © 2026
-Yurii Bakurov.
+BalanceDocket is available under the [MIT License](LICENSE). Copyright © 2026
+Yurii Bakurov. Runtime open-source components and their license texts are
+listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Pre-existing and open-source components
+
+BalanceDocket meaningfully extends selected primitives from a pre-existing
+Accounting Agent foundation. Only the dedicated BalanceDocket case, controls,
+snapshot and citation contract, bounded GPT-5.6 evaluator, human decision
+chain, React reviewer, Codex plugin, workpaper export, tests, and release
+material added during the Build Week submission period are presented as the
+competition contribution. The dated boundary and file-level evidence are in
+[the Build Week provenance record](docs/build_week_provenance.md).
+
+The reviewer uses React, React DOM, Scheduler, and Lucide React under their
+respective open-source licenses. Exact runtime versions, upstream projects,
+copyright notices, and license texts are recorded in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); the npm lockfile retains the
+complete dependency graph.
 
 Start with `docs/accounting_agent_v1.md` for the product, jurisdiction, ERP,
 model, autonomy, computer-use, and release boundary. See

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalanceDocket Build Week intro card</title>
+    <style>
+      :root {
+        --color-ink: #201b17;
+        --color-paper: #fffdf8;
+        --color-app-paper: #f7f2e8;
+        --color-exception: #a94034;
+        --color-exception-soft: #faece8;
+        --color-verified-soft: #e8f0ea;
+        --font-interface: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+        --font-display: "New York", Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: clip; }
+      body {
+        background: var(--color-ink);
+        color: var(--color-paper);
+        font-family: var(--font-interface);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 690px 1230px;
+        width: 100%;
+        height: 100%;
+      }
+
+      .title-panel {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 76px 74px 214px;
+        border-right: 16px solid var(--color-exception);
+      }
+
+      .event,
+      .track {
+        margin: 0;
+        color: var(--color-exception-soft);
+        font-size: 27px;
+        font-weight: 760;
+        letter-spacing: 0.12em;
+      }
+
+      h1 {
+        margin: 66px 0 0;
+        font-family: var(--font-display);
+        font-size: 76px;
+        font-weight: 720;
+        letter-spacing: -0.035em;
+        line-height: 1;
+      }
+
+      .descriptor {
+        margin: 58px 0 0;
+        font-size: 46px;
+        font-weight: 690;
+        line-height: 1.22;
+      }
+
+      .promise {
+        margin: auto 0 38px;
+        padding: 0;
+        list-style: none;
+        color: var(--color-verified-soft);
+        font-size: 32px;
+        font-weight: 650;
+        line-height: 1.55;
+      }
+
+      .track { font-size: 24px; }
+
+      .product-frame {
+        position: relative;
+        overflow: hidden;
+        background: var(--color-app-paper);
+      }
+
+      .product-frame img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: right center;
+      }
+
+      .product-frame::after {
+        content: "REAL PRODUCT · SYNTHETIC DATA";
+        position: absolute;
+        right: 42px;
+        bottom: 214px;
+        padding: 15px 20px;
+        border: 2px solid var(--color-ink);
+        background: var(--color-paper);
+        color: var(--color-ink);
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="BalanceDocket OpenAI Build Week intro card">
+      <section class="title-panel">
+        <p class="event">OPENAI BUILD WEEK 2026</p>
+        <h1>BalanceDocket</h1>
+        <p class="descriptor">Evidence-bound<br />month-end review</p>
+        <ul class="promise" aria-label="Product promise">
+          <li>Rules calculate</li>
+          <li>GPT-5.6 interprets</li>
+          <li>Humans decide</li>
+        </ul>
+        <p class="track">WORK &amp; PRODUCTIVITY</p>
+      </section>
+      <section class="product-frame" aria-label="BalanceDocket reviewer screenshot">
+        <img
+          src="../../plugins/closeproof/assets/closeproof-desktop.png"
+          alt="The BalanceDocket evidence ledger and proof drawer"
+        />
+      </section>
+    </main>
+  </body>
+</html>

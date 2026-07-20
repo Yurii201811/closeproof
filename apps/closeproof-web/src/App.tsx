@@ -170,9 +170,9 @@ function SafetyStrip() {
 
 function Brand() {
   return (
-    <div className="brand" aria-label="CloseProof">
+    <div className="brand" aria-label="BalanceDocket">
       <FileCheck2 className="brand-mark" aria-hidden="true" strokeWidth={1.7} />
-      <span>CloseProof</span>
+      <span>BalanceDocket</span>
     </div>
   );
 }
@@ -186,7 +186,7 @@ function ContextRail({ caseData }: { caseData: CloseProofCase }) {
     ["Settings", "settings"],
   ];
   return (
-    <aside className="context-rail" aria-label="CloseProof navigation">
+    <aside className="context-rail" aria-label="BalanceDocket navigation">
       <Brand />
       <section className="context-block" aria-labelledby="current-context">
         <p className="eyebrow" id="current-context">Current context</p>
@@ -480,13 +480,13 @@ function ProofDrawer({ caseData, mobileOpen, sessionToken, onClose, onCase }: { 
         || !Array.isArray(externalActions)
         || externalActions.length !== 0
       ) {
-        throw new Error("The downloaded workpaper failed CloseProof integrity checks");
+        throw new Error("The downloaded workpaper failed BalanceDocket integrity checks");
       }
       const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: "application/json" });
       const objectUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = objectUrl;
-      anchor.download = `closeproof-${caseData.case_id}-workpaper.json`;
+      anchor.download = `balancedocket-${caseData.case_id}-workpaper.json`;
       document.body.append(anchor);
       anchor.click();
       anchor.remove();
@@ -523,6 +523,7 @@ function ProofDrawer({ caseData, mobileOpen, sessionToken, onClose, onCase }: { 
         </ProofSection>
 
         <ProofSection number="2" title="Deterministic allocation" aside={calculation.label}>
+          <ControlResults checks={caseData.checks} />
           <dl className="calculation-summary">
             <div><dt>Total invoice</dt><dd>{finding.amount_label}</dd></div>
             <div><dt>Service period</dt><dd>{formatDate(calculation.service_start)} → {formatDate(calculation.service_end)} <small>({calculation.service_days} days)</small></dd></div>
@@ -701,7 +702,7 @@ function AdvisoryPanel({ advisory, sessionToken, onCase }: { advisory: Advisory;
       try {
         await writeClipboardWithTimeout(payload.prompt);
         setPromptState("copied");
-        setManualMessage("Prompt copied. No provider was contacted by CloseProof.");
+        setManualMessage("Prompt copied. No provider was contacted by BalanceDocket.");
       } catch {
         setPromptState("manual");
         setManualMessage("Automatic clipboard access was unavailable. Select the prepared prompt below and copy it manually.");
@@ -818,7 +819,7 @@ function AdvisoryPanel({ advisory, sessionToken, onCase }: { advisory: Advisory;
               <button type="submit" disabled={!manualPayload.trim() || importState === "saving"}>{importState === "saving" ? "Validating…" : "Import advisory"}</button>
             </form>
           </details>
-          <p className={`manual-message ${promptState === "error" || importState === "error" ? "error" : ""}`} role="status" aria-live="polite">{manualMessage || "Optional: use a server-built prompt and import the structured result. CloseProof does not verify manual model identity."}</p>
+          <p className={`manual-message ${promptState === "error" || importState === "error" ? "error" : ""}`} role="status" aria-live="polite">{manualMessage || "Optional: use a server-built prompt and import the structured result. BalanceDocket does not verify manual model identity."}</p>
         </div>
       )}
     </ProofSection>
@@ -831,6 +832,26 @@ function ProofSection({ number, title, aside, tone, children }: { number: string
       <header><h3><span>{number}.</span> {title}</h3><small>{aside}</small></header>
       {children}
     </section>
+  );
+}
+
+function ControlResults({ checks }: { checks: CloseProofCase["checks"] }) {
+  if (!checks.length) return null;
+  return (
+    <div className="control-results" role="list" aria-label="Deterministic control results">
+      {checks.map((check) => {
+        const verified = check.status === "verified";
+        return (
+          <div className={verified ? "control-result verified" : "control-result review-required"} role="listitem" key={check.id}>
+            {verified
+              ? <CheckCircle2 className="control-result-icon" aria-hidden="true" />
+              : <AlertCircle className="control-result-icon" aria-hidden="true" />}
+            <span><strong>{check.label}</strong><small>{check.result}</small></span>
+            <em>{check.calculated_by}</em>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -857,7 +878,7 @@ function ErrorScreen({ message, onRetry }: { message: string; onRetry: () => voi
         <Brand />
         <p className="eyebrow">Reviewer unavailable</p>
         <h1 id="closeproof-error-title">The evidence case could not be loaded</h1>
-        <p role="alert">{message || "Start the loopback CloseProof server and try again."}</p>
+        <p role="alert">{message || "Start the loopback BalanceDocket server and try again."}</p>
         <button className="approve-button" type="button" onClick={onRetry}>Retry case load</button>
         <code>python3 -m accounting_agent.cli closeproof-serve</code>
       </main>

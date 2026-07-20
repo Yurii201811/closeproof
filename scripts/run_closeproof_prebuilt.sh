@@ -13,7 +13,7 @@ if [[ ! "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
 fi
 
 if [[ ! -f "$web_root/index.html" ]]; then
-  echo "The checked-in CloseProof web bundle is missing" >&2
+  echo "The checked-in BalanceDocket web bundle is missing" >&2
   exit 1
 fi
 

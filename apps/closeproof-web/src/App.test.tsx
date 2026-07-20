@@ -50,7 +50,11 @@ const caseData: CloseProofCase = {
     next_action: status === "waiting" ? "Await completion of Adjustments" : "No action",
     depends_on: [],
   })),
-  checks: [],
+  checks: [
+    { id: "duplicate_invoice_identity", label: "Duplicate identity", status: "verified", result: "1 expense-side GL match for INV-4821", calculated_by: "controls" },
+    { id: "posting_cutoff", label: "Posting cutoff", status: "verified", result: "Posting date is inside June 2026", calculated_by: "controls" },
+    { id: "prepaid_service_period", label: "Prepaid service period", status: "review_required", result: "365 service days; 16 in the current period", calculated_by: "controls" },
+  ],
   finding: {
     title: "Prepaid service period",
     amount_ore: 12000000,
@@ -118,7 +122,7 @@ function withAdvisory(advisory: Advisory): CloseProofCase {
   return { ...caseData, advisory };
 }
 
-describe("CloseProof reviewer", () => {
+describe("BalanceDocket reviewer", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", apiMock(caseData));
   });
@@ -132,6 +136,8 @@ describe("CloseProof reviewer", () => {
     const rows = within(list).getAllByRole("listitem");
     const buttons = within(list).getAllByRole("button");
 
+    expect(screen.getAllByText("BalanceDocket").length).toBeGreaterThan(0);
+    expect(screen.getByRole("complementary", { name: "BalanceDocket navigation" })).toBeInTheDocument();
     expect(rows).toHaveLength(9);
     expect(within(rows[0]).getByText("Evidence completeness")).toBeInTheDocument();
     expect(within(rows[8]).getByText("Lock readiness")).toBeInTheDocument();
@@ -214,6 +220,11 @@ describe("CloseProof reviewer", () => {
     expect(await screen.findByRole("heading", { name: /Prepaid service period/ })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Source evidence/ })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Deterministic allocation/ })).toBeInTheDocument();
+    expect(screen.getByRole("list", { name: "Deterministic control results" })).toBeInTheDocument();
+    expect(screen.getByText("Duplicate identity")).toBeInTheDocument();
+    expect(screen.getByText("1 expense-side GL match for INV-4821")).toBeInTheDocument();
+    expect(screen.getByText("Posting cutoff")).toBeInTheDocument();
+    expect(screen.getByText("Posting date is inside June 2026")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Model advisory/ })).toBeInTheDocument();
     expect(screen.getByText("Advisory — cannot approve")).toBeInTheDocument();
     expect(screen.getByText("Not requested")).toBeInTheDocument();
@@ -684,7 +695,7 @@ describe("CloseProof reviewer", () => {
     render(<App />);
     await user.click(await screen.findByRole("button", { name: "Download validated workpaper" }));
 
-    expect(await screen.findByText("The downloaded workpaper failed CloseProof integrity checks")).toBeInTheDocument();
+    expect(await screen.findByText("The downloaded workpaper failed BalanceDocket integrity checks")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Download validated workpaper" })).toBeInTheDocument();
   });
 

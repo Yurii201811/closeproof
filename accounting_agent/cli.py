@@ -223,7 +223,7 @@ def main(argv: list[str] | None = None) -> int:
 
     closeproof_demo = subparsers.add_parser(
         "closeproof-demo",
-        help="Build the deterministic synthetic CloseProof golden case.",
+        help="Build the deterministic synthetic BalanceDocket golden case.",
     )
     closeproof_demo.add_argument("--fixture", type=Path, default=DEFAULT_CLOSEPROOF_FIXTURE)
     closeproof_demo.add_argument("--output", type=Path, default=DEFAULT_CLOSEPROOF_OUTPUT)
@@ -276,7 +276,7 @@ def main(argv: list[str] | None = None) -> int:
 
     closeproof_serve = subparsers.add_parser(
         "closeproof-serve",
-        help="Serve the built CloseProof reviewer on loopback only.",
+        help="Serve the built BalanceDocket reviewer on loopback only.",
     )
     closeproof_serve.add_argument("--case", type=Path, default=DEFAULT_CLOSEPROOF_CASE)
     closeproof_serve.add_argument("--events", type=Path, default=DEFAULT_CLOSEPROOF_EVENTS)
@@ -483,10 +483,10 @@ def main(argv: list[str] | None = None) -> int:
         try:
             case = build_closeproof_demo(fixture_dir=args.fixture, output_dir=args.output)
         except (OSError, ValueError) as exc:
-            print(f"CloseProof demo failed: {exc}", file=sys.stderr)
+            print(f"BalanceDocket demo failed: {exc}", file=sys.stderr)
             return 1
         calculation = case["finding"]["calculation"]
-        print("CloseProof synthetic golden case built")
+        print("BalanceDocket synthetic golden case built")
         print(f"Output: {args.output}")
         print(f"Outcome: {case['outcome']}")
         print(f"Snapshot SHA-256: {case['snapshot_sha256']}")
@@ -499,7 +499,7 @@ def main(argv: list[str] | None = None) -> int:
         advisory_command = args.advisory_command
         if advisory_command is None:
             print(
-                "CloseProof advisory requires a command: status, prepare, import, codex, or api",
+                "BalanceDocket advisory requires a command: status, prepare, import, codex, or api",
                 file=sys.stderr,
             )
             return 2
@@ -521,7 +521,7 @@ def main(argv: list[str] | None = None) -> int:
                 _atomic_write_private_json(args.output, request)
                 advisory = prepared_advisory_envelope(case)
                 write_live_advisory(args.case, advisory)
-                print("CloseProof provider-neutral advisory request prepared")
+                print("BalanceDocket provider-neutral advisory request prepared")
                 print(f"Output: {args.output}")
                 print(f"Evidence snapshot SHA-256: {case['snapshot_sha256']}")
                 return 0
@@ -543,7 +543,7 @@ def main(argv: list[str] | None = None) -> int:
             elif advisory_command == "api":
                 if not args.enable_network_advisory:
                     print(
-                        "CloseProof advisory blocked: pass --enable-network-advisory for the bundled synthetic case",
+                        "BalanceDocket advisory blocked: pass --enable-network-advisory for the bundled synthetic case",
                         file=sys.stderr,
                     )
                     return 2
@@ -580,12 +580,12 @@ def main(argv: list[str] | None = None) -> int:
                     )
                 except (OSError, AdvisoryError):
                     pass
-            print(f"CloseProof advisory failed: {exc.code}", file=sys.stderr)
+            print(f"BalanceDocket advisory failed: {exc.code}", file=sys.stderr)
             return 1
         except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError):
-            print("CloseProof advisory failed: invalid_or_unreadable_file", file=sys.stderr)
+            print("BalanceDocket advisory failed: invalid_or_unreadable_file", file=sys.stderr)
             return 1
-        print("CloseProof GPT-5.6 advisory validated")
+        print("BalanceDocket GPT-5.6 advisory validated")
         print(f"Provider: {advisory['provider']}")
         print(f"Provider payload SHA-256: {advisory['provenance']['payload_sha256']}")
         print(
@@ -606,7 +606,7 @@ def main(argv: list[str] | None = None) -> int:
                 socket_fd=args.socket_fd,
             )
         except (OSError, ValueError, CloseProofServerError) as exc:
-            print(f"CloseProof server failed: {exc}", file=sys.stderr)
+            print(f"BalanceDocket server failed: {exc}", file=sys.stderr)
             return 1
         return 0
 

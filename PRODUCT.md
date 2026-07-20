@@ -1,6 +1,6 @@
-# CloseProof
+# BalanceDocket
 
-CloseProof is a source-linked month-end close reviewer for controllers and senior
+BalanceDocket is a source-linked month-end close reviewer for controllers and senior
 accountants. It turns a synthetic general ledger and text-based invoice PDFs into
 deterministic control results, an optional bounded GPT-5.6 advisory, an explicit
 human decision, and a validated workpaper. The complete local review path works
@@ -27,9 +27,9 @@ GPT-5.6, select one track, include a public repository and reproducible README,
 provide an audio demo under three minutes, explain Codex acceleration and key
 decisions, and include the primary Codex `/feedback` session ID. The competition
 recording must show a real Codex run requesting `gpt-5.6-sol` whose structured
-output passes CloseProof validation; the deterministic preview is not evidence
+output passes BalanceDocket validation; the deterministic preview is not evidence
 of a model call. Codex CLI `0.144.0` did not report the returned model identity
-in the retained run, and CloseProof does not claim otherwise.
+in the retained run, and BalanceDocket does not claim otherwise.
 
 ## Job to be done
 
@@ -89,7 +89,7 @@ human review, event-chain verification, and export do not depend on it.
 | Manual ChatGPT import | Copy the prepared prompt into ChatGPT and import the structured JSON | Interactive ChatGPT subscription; it is not an API credential | Fallback, not a substitute for validated Codex competition proof |
 | Responses API | Programmatic advisory call | Explicit opt-in plus `OPENAI_API_KEY`; API billing and limits are separate from ChatGPT subscriptions | Optional integration |
 
-Plan eligibility, access, and rate limits can vary. CloseProof must not describe
+Plan eligibility, access, and rate limits can vary. BalanceDocket must not describe
 subscription-backed use as universally free. A direct ChatGPT subscription does
 not authenticate the Responses API and must never be treated as an API key.
 Provider identifiers remain explicit: Codex requests `gpt-5.6-sol`; the optional
@@ -148,7 +148,7 @@ overrides generated UI text.
 
 ## Competition fit
 
-| Criterion | CloseProof evidence |
+| Criterion | BalanceDocket evidence |
 |---|---|
 | Technological implementation | Deterministic controls, subscription-first Codex GPT-5.6 workflow, optional Responses API integration, evidence hashes, dependency evaluation, event-chain verification, responsive app |
 | Design | Accepted desktop and mobile evidence-ledger direction with proof layers and accessible human actions |

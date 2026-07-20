@@ -550,7 +550,7 @@ def write_live_advisory(case_path: str | Path, advisory: dict[str, Any]) -> dict
             raise OSError("case size is invalid")
         case = json.loads(content.decode("utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise AdvisoryError("CloseProof case file is invalid", code="invalid_case_file") from exc
+        raise AdvisoryError("BalanceDocket case file is invalid", code="invalid_case_file") from exc
     validate_advisory_envelope(case, advisory)
     case["advisory"] = advisory
     # Imported lazily to keep the advisory contract usable during case creation.
@@ -1017,7 +1017,7 @@ def _atomic_write_text(path: Path, content: str) -> None:
 
 def _validate_case_boundary(case: dict[str, Any]) -> None:
     if not isinstance(case, dict) or case.get("schema_version") != "closeproof-case-v1":
-        raise AdvisoryError("expected a CloseProof v1 case", code="invalid_case")
+        raise AdvisoryError("expected a BalanceDocket v1 case", code="invalid_case")
     safety = case.get("safety")
     if not isinstance(safety, dict) or safety.get("synthetic_only") is not True:
         raise AdvisoryError(

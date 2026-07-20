@@ -141,7 +141,7 @@ except LaunchError:
             for name in names:
                 (output_path / name).write_text(f"sentinel:{name}", encoding="utf-8")
 
-            with self.assertRaisesRegex(LaunchError, "owned CloseProof"):
+            with self.assertRaisesRegex(LaunchError, "owned BalanceDocket"):
                 _canonical_output_path(str(output_path))
 
             for name in names:
@@ -189,7 +189,7 @@ except LaunchError:
             case_path = output_path / "case.json"
             case_path.write_text('{"sentinel":"do not overwrite"}\n', encoding="utf-8")
 
-            with self.assertRaisesRegex(LaunchError, "owned CloseProof"):
+            with self.assertRaisesRegex(LaunchError, "owned BalanceDocket"):
                 _canonical_output_path(str(output_path))
 
             self.assertEqual(
@@ -231,15 +231,15 @@ except LaunchError:
             _print_launch_summary(output=output, port=4187, build_source=False)
 
         print_mock.assert_any_call(
-            "CloseProof is starting at http://127.0.0.1:4187",
+            "BalanceDocket is starting at http://127.0.0.1:4187",
             flush=True,
         )
         print_mock.assert_any_call(
-            "CloseProof state directory: /tmp/closeproof-demo-4187",
+            "BalanceDocket state directory: /tmp/closeproof-demo-4187",
             flush=True,
         )
         print_mock.assert_any_call(
-            "CloseProof advisory case: /tmp/closeproof-demo-4187/case.json",
+            "BalanceDocket advisory case: /tmp/closeproof-demo-4187/case.json",
             flush=True,
         )
 

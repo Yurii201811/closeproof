@@ -14,9 +14,9 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "CloseProof",
+    "displayName": "BalanceDocket",
     "shortDescription": "Source-linked month-end close review.",
-    "longDescription": "CloseProof guides controllers through a bundled synthetic close pack, deterministic controls, optional citation-bound GPT-5.6 advice, and an evidence-bound human decision. It writes only ignored local demo artifacts and never writes to an ERP.",
+    "longDescription": "BalanceDocket guides controllers through a bundled synthetic close pack, deterministic controls, optional citation-bound GPT-5.6 advice, and an evidence-bound human decision. It writes only ignored local demo artifacts and never writes to an ERP.",
     "developerName": "Yurii201811",
     "category": "Productivity",
     "capabilities": [
@@ -24,7 +24,7 @@
       "Local-only artifacts"
     ],
     "defaultPrompt": [
-      "Review the bundled June close with CloseProof",
+      "Review the bundled June close with BalanceDocket",
       "Explain the prepaid service-period exception with sources",
       "Prepare a source-linked close workpaper"
     ],

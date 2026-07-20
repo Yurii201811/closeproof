@@ -298,7 +298,7 @@ def build_closeproof_demo(
         output.chmod(0o700)
     except OSError as exc:
         raise CloseProofCaseError(
-            "CloseProof output directory permissions could not be secured"
+            "BalanceDocket output directory permissions could not be secured"
         ) from exc
     # `closeproof-demo` is an explicit fresh-demo command. A prior human
     # decision must never leak into the next golden run.
@@ -323,15 +323,15 @@ def validate_closeproof_output_directory(output_dir: str | Path) -> Path:
 
     output = Path(output_dir)
     if output.is_symlink():
-        raise CloseProofCaseError("CloseProof output directory must not be a symlink")
+        raise CloseProofCaseError("BalanceDocket output directory must not be a symlink")
     if not output.exists():
         return output
     if not output.is_dir():
-        raise CloseProofCaseError("CloseProof output must name a directory")
+        raise CloseProofCaseError("BalanceDocket output must name a directory")
     try:
         entries = tuple(output.iterdir())
     except OSError as exc:
-        raise CloseProofCaseError("CloseProof output directory could not be inspected") from exc
+        raise CloseProofCaseError("BalanceDocket output directory could not be inspected") from exc
     if not entries:
         return output
     for name in _MANAGED_OUTPUT_FILENAMES:
@@ -341,13 +341,13 @@ def validate_closeproof_output_directory(output_dir: str | Path) -> Path:
         try:
             metadata = path.lstat()
         except OSError as exc:
-            raise CloseProofCaseError("CloseProof managed output could not be inspected") from exc
+            raise CloseProofCaseError("BalanceDocket managed output could not be inspected") from exc
         if (
             path.is_symlink()
             or not stat.S_ISREG(metadata.st_mode)
             or metadata.st_nlink != 1
         ):
-            raise CloseProofCaseError("CloseProof managed output must be a regular file")
+            raise CloseProofCaseError("BalanceDocket managed output must be a regular file")
 
     marker_path = output / OUTPUT_OWNER_FILENAME
     if marker_path.is_file():
@@ -357,16 +357,16 @@ def validate_closeproof_output_directory(output_dir: str | Path) -> Path:
             "application": "closeproof",
             "case_id": _GOLDEN_CASE_ID,
         }:
-            raise CloseProofCaseError("existing output is not an owned CloseProof demo")
+            raise CloseProofCaseError("existing output is not an owned BalanceDocket demo")
         if _has_valid_owned_case_and_manifest(output):
             return output
-        raise CloseProofCaseError("existing output is not an owned CloseProof demo")
+        raise CloseProofCaseError("existing output is not an owned BalanceDocket demo")
 
     # Adopt exact legacy CloseProof outputs created before the ownership marker
     # existed, while rejecting arbitrary nonempty directories.
     if _has_valid_owned_case_and_manifest(output):
         return output
-    raise CloseProofCaseError("existing output is not an owned CloseProof demo")
+    raise CloseProofCaseError("existing output is not an owned BalanceDocket demo")
 
 
 def _has_valid_owned_case_and_manifest(output: Path) -> bool:
@@ -553,7 +553,7 @@ def _read_owned_json(path: Path) -> dict[str, Any]:
             raise ValueError("owned output must be an object")
         return value
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
-        raise CloseProofCaseError("existing output is not an owned CloseProof demo") from exc
+        raise CloseProofCaseError("existing output is not an owned BalanceDocket demo") from exc
 
 
 def _atomic_write_private(path: Path, payload: bytes) -> None:

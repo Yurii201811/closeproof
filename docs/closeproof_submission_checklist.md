@@ -1,10 +1,10 @@
-# CloseProof submission checklist
+# BalanceDocket submission checklist
 
 ## Product and eligibility
 
 - [x] One track selected: Work & Productivity.
 - [x] Built in an isolated worktree from base `aed4507d0c59eeda1ec9ccfbdeffd8fb8c550522`.
-- [x] Pre-existing Accounting Agent primitives separated from new CloseProof work.
+- [x] Pre-existing Accounting Agent primitives separated from new BalanceDocket work.
 - [x] Codex plugin/skill is part of the product, not only the build process.
 - [x] GPT-5.6 has one material, structured, citation-bound interpretive role.
 - [x] Deterministic controls own arithmetic, dates, hashes, and dependencies.
@@ -32,7 +32,7 @@
   workspace names, and authenticated task/provider identifiers.
 - [x] Verify a functional git archive and a no-local branch clone with fresh
   `npm ci` installs and the full verifier (2026-07-14).
-- [x] Scan the final sanitized export and public history for secrets, private
+- [x] Scan the pre-rebrand sanitized export and public history for secrets, private
   paths, private workspace names, authenticated identifiers, and tracked
   symlinks; inspect the public repository, raw README/LICENSE, credential-free
   clone, and no-rebuild judge path without GitHub authentication (2026-07-14).
@@ -76,9 +76,13 @@
   `73e139d091f9007556d72543a3cb0f526484953e6745d24d27a3bc0921db259e`.
 - Evidence snapshot SHA-256:
   `fda76d0752396535f0e5eb2f7f7b8a3e374db2ea44ee5431ba7ea4a18e10243b`.
-- Human decision event 1 verified against review context
-  `3262062bd831f15828a7371c300143dcd1ad6b7ba561aac43c40de6c9f76042a`;
-  export reported zero accounting actions and zero ERP writes.
+- Current retained Codex proof uses review context
+  `ecafb2cd52a3bb3443f1e805caaada5bd86cfbcf39f75597562d266ac23aeef8`.
+  Its QA decision event 3 verified the corresponding export with zero accounting
+  actions and zero ERP writes. For recording, copy only the retained
+  `case.json`, invoice, and manifest into an isolated directory and start a new
+  decision log; the filmed Request evidence action must become event 1 in that
+  disposable log. Do not copy the three-event QA log into the recording state.
 
 ## Quality gates
 
@@ -116,18 +120,125 @@
 
 ## Competition submission
 
-- [ ] Request/confirm Build Week credits before the announced cutoff.
+- [x] Register as an individual entrant for OpenAI Build Week (2026-07-14).
+- [x] Prepare `BalanceDocket` as the proposed public display brand after a
+  preliminary PRV and general web/GitHub/npm/PyPI exact-name screen; retain
+  `closeproof` as the stable technical namespace and public repository URL.
+- [x] Run an independent exact mark-field search in WIPO Madrid Monitor. On
+  2026-07-14, `MARK:"BalanceDocket"` returned no documents and 0 active,
+  pending, or inactive Madrid System registrations. This does not cover every
+  national or regional register and is not legal clearance.
+- [x] Run independent exact-name searches in EUIPO eSearch and TMview. On
+  2026-07-14, EUIPO's exact verbal-element condition returned 0 results and
+  TMview's exact `Is` condition returned 0 results; nonzero `Apple` control
+  searches confirmed both official search flows were returning records.
+- [x] Record a preliminary WIPO Nice shortlist: Classes 9 and 42 are the
+  primary candidates for downloadable software and SaaS; Class 35 is
+  conditional on providing accounting services rather than software alone.
+  Exact goods-and-services wording remains subject to a professional review.
+- [ ] Before any trademark filing or higher-stakes commercial launch, review
+  confusingly similar marks, company names, and overlapping goods/services in
+  the intended territories. The current exact-name screens are preliminary,
+  not legal advice or legal clearance.
+- [x] Confirm BalanceDocket as the public display name. Yurii instructed Codex
+  on 2026-07-20 to finish and submit the existing BalanceDocket entry.
+- [x] Close the optional-credit gate without submission. The July 17 request
+  deadline passed and the official event update says the available credits were
+  distributed; credits are not required for eligibility.
+- [ ] Publish the already-committed third-party notices and final branding/docs
+  through a sanitized tip-only update, then repeat the credential-free public-
+  clone and no-rebuild verification.
 - [ ] Run `/feedback` in the primary Codex task and preserve the exact session ID.
 - [ ] Show the real Codex run requesting `gpt-5.6-sol` and the validated
   structured output in the recorded demo; disclose that returned model identity
   was not reported, and never use a fixture, unverified paste, or API-shaped
   mock as competition proof.
-- [ ] Record 165–175 second real-product demo with audio and captions.
-- [ ] Upload public YouTube video and verify playback while signed out.
+- [x] Prepare the 172-second shot plan, 332-word eight-take teleprompter script,
+  recording guide, word-for-word captions, 1280×720 thumbnail, caption-safe
+  1920×1080 end card, and Final Cut timeline. A regression test enforces 2:52
+  caption duration, continuity, verbatim copy, two-line cues, a 42-character
+  line limit, and at most 17 caption characters per second.
+- [x] Complete the 23.98p Final Cut V2 picture lock with one ProRes master,
+  six section markers, the enlarged-URL end card, and all 41 captions
+  (2026-07-14). The delivery project is
+  `BalanceDocket — OpenAI Build Week 2026 V2 Picture Lock` in the
+  `BalanceDocket V2 Delivery` event. Its duration is exactly `02:51:20`.
+  The 1920×1080 H.264 review export has 4,124 frames and runs 172.005 seconds
+  with burned-in English captions; a full strict decode and a nine-keyframe
+  visual review passed. It is deliberately named
+  `BalanceDocket_picture_lock_v2_captioned_NO_AUDIO.mov` because it has no
+  audio stream and is not submission-ready. The V2 ProRes master SHA-256 is
+  `921cbfb2d4bebebbe7ed1e9102f37b0dbb97eb1a69566cf4996899830e764bbe`;
+  the captioned review SHA-256 is
+  `3296cfeb4fee9b454355f6a03bbee914cbe41b22870195e0519c6640e02ed6fc`.
+- [x] Complete the silent V3 picture lock with the deterministic four-second
+  competition/product opener and cleaned Codex command and provenance crops
+  (2026-07-14). The ProRes and H.264 masters are both 1920×1080 Rec. 709,
+  24000/1001 fps, exactly 4,124 frames, and 172.005167 seconds. Both strict
+  full decodes passed with no stderr output; black-frame detection returned no
+  intervals; a 19-frame and major-cut visual inspection passed. The ProRes
+  SHA-256 is
+  `8adb8d682b370feb19d8b7148824c8a1e5ccab55099a33442636fa57b7ae77a9`;
+  the silent H.264 review SHA-256 is
+  `f330b251f6678aaff96c4d009b4bb0830a94591b1bb34e697720b824ae1194cc`.
+- [x] Import the final 41-cue SRT into the preserved
+  `BalanceDocket — OpenAI Build Week 2026 V3.1 Narration Ready` Final Cut
+  project, verify all eight narration markers and `02:51:20` duration, and
+  export the captioned silent QA master for full visual review (2026-07-15).
+  The 1920×1080 Rec. 709 H.264 export has 4,124 frames, runs 172.005167
+  seconds, contains no audio stream, and burns in all 41 final English SRT
+  cues. A strict full decode, black-frame scan, and nine-frame visual review
+  passed. SHA-256:
+  `215206a4c7911877ab9b89c44f6610000a33454adc1bbc4c4611eb848efe47fe`.
+- [x] Preserve and process Yurii's eight narration takes, correct the spoken
+  allocation from 335 to 365 days using Yurii's own recorded `sixty`, align the
+  41 exact-text cues to the measured takes, and export
+  `BalanceDocket_OpenAI_Build_Week_2026_172s.mp4`. The strict verifier passed:
+  172.005167 seconds, 4,124 frames, 1920×1080 H.264 at 24000/1001 fps, Rec.709,
+  48 kHz mono AAC, -16.4 LUFS, -1.3 dBTP, and complete decode. Final SHA-256:
+  `9726acc1af18278a8c63a8e0ac6f7b0dde9f8c69ef8b84c58030f25a29ba97f3`.
+- [ ] Perform one uninterrupted human headphone playback of the final master,
+  checking spoken amounts, edit joins, and caption boundaries.
+- [x] Add and live-test the non-destructive eight-take narration builder
+  (2026-07-15). It accepts standard and extensible 16/24-bit PCM WAV, rejects
+  slot overruns, aligns the eight files to the locked markers, performs
+  two-pass normalization, and writes one 172.005167-second 48 kHz mono 24-bit
+  Final Cut track. A real FFmpeg run using eight synthetic extensible 24-bit
+  takes produced exactly 172.005167 seconds at -16.0 LUFS with -7.3 dBFS true
+  peak; the original takes were not modified.
+- [ ] Upload the public YouTube video and separate English SRT, then verify
+  audible playback and selectable captions while signed out on desktop and
+  mobile. Do not enable both burned and selectable captions during the same
+  review pass, because that produces duplicate text.
+- [x] Prepare the exact YouTube title, truthful description, eight chapters,
+  tags, thumbnail/caption paths, pre-upload verifier gate, and signed-out
+  desktop/mobile playback checklist in
+  `docs/balancedocket_youtube_package.md` (2026-07-15).
 - [ ] Explain Codex acceleration and key technical/product decisions.
-- [ ] Add repository and product URLs to Devpost.
-- [x] Verify the public repository, raw README/LICENSE, credential-free clone,
-  and no-rebuild judge path without GitHub authentication (2026-07-14).
+- [x] Add repository and product URLs to the Devpost draft and verify them after
+  reload (2026-07-15). Final signed-out verification still follows publication.
+- [x] Complete Devpost's user-only image CAPTCHA (2026-07-15). The checkbox is
+  verified, and the private `BalanceDocket` project draft is created and saved
+  with the final tagline, eight technology tags, saved project story,
+  pre-existing-work disclosure, and judge-access repository link. The project
+  is also attached to OpenAI Build Week as draft submission
+  `1085175-balancedocket` (`2/5` steps complete). An authenticated
+  save-and-reload check on 2026-07-15 confirmed `Individual`, `Sweden`,
+  `Work & Productivity`, the repository URL, no-rebuild judge instructions,
+  and plugin testing instructions. `/feedback`, the image gallery, and the
+  final public YouTube URL remain empty and pending.
+- [x] Verify the pre-rebrand public repository, raw README/LICENSE,
+  credential-free clone, and no-rebuild judge path without GitHub
+  authentication (2026-07-14).
+- [ ] After publication, repeat those checks against the exact final
+  BalanceDocket public commit and disclosure package.
+- [ ] Confirm personal eligibility in the authenticated Devpost entry: age of
+  majority, eligible residence, no excluded employment or conflict,
+  ownership/authorization, and accurate team composition.
 - [ ] Verify every link in a logged-out context.
-- [ ] Submit by July 21 at 18:00 Europe/Stockholm target time.
-- [ ] Re-open the submitted entry and capture confirmation.
+- [ ] Submit by the internal safety target of July 21 at 18:00
+  Europe/Stockholm—eight hours before the official July 22 at 02:00 deadline.
+- [ ] Re-open the submitted entry, confirm `Submitted`, and capture confirmation.
+- [ ] Keep the repository, public video, and judge path free, public, and
+  unrestricted through at least August 7, 2026 to cover both published judging
+  windows.

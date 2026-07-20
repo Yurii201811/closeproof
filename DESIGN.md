@@ -1,4 +1,4 @@
-# CloseProof design contract
+# BalanceDocket design contract
 
 Status: accepted for implementation on July 13, 2026 after two ChatGPT image
 iterations: one desktop refinement and one responsive companion.

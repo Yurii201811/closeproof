@@ -1,4 +1,4 @@
-# CloseProof Build Week execution plan
+# BalanceDocket Build Week execution plan
 
 ## Critical path
 

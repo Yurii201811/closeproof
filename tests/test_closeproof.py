@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import subprocess
 import tempfile
 import unittest
@@ -59,6 +60,8 @@ class CloseProofTests(unittest.TestCase):
         self.assertTrue(content.startswith(b"%PDF-1.4"))
         self.assertTrue(content.rstrip().endswith(b"%%EOF"))
         self.assertEqual(lines, extract_fixture_pdf_lines(content))
+        with self.assertRaisesRegex(SyntheticPdfError, "BalanceDocket PDF 1.4"):
+            extract_fixture_pdf_lines(b"not-a-pdf")
         with self.assertRaises(SyntheticPdfError):
             extract_fixture_pdf_lines(build_text_pdf(("Invoice number: real",)))
 
@@ -197,13 +200,17 @@ class CloseProofTests(unittest.TestCase):
             "The treatment has my sign-off.",
             "I gave the treatment the green light.",
             "I emailed Finance the proposed journal entry outside CloseProof.",
+            "I emailed Finance the proposed journal entry outside BalanceDocket.",
             "I notified Finance of the proposed journal entry outside CloseProof.",
+            "I notified Finance of the proposed journal entry outside BalanceDocket.",
             "I transmitted the proposed journal entry outside CloseProof.",
+            "I transmitted the proposed journal entry outside BalanceDocket.",
             "I certify this treatment.",
             "I consent to the proposed treatment.",
             "The treatment has my signoff.",
             "I gave the treatment the go-ahead.",
             "I shared a message with Finance outside CloseProof.",
+            "I shared a message with Finance outside BalanceDocket.",
             "I uploaded the journal entry in the ERP.",
             "I wrote the journal entry in the ERP.",
             "I saved the journal entry in the ERP.",
@@ -249,6 +256,7 @@ class CloseProofTests(unittest.TestCase):
             "This advisory is not authorized to approve this treatment.",
             "Please don't post or approve this treatment.",
             "Communication has not occurred outside CloseProof.",
+            "Communication has not occurred outside BalanceDocket.",
             "The model cannot email or notify anyone.",
             "The advisory neither emailed nor notified Finance.",
             "The general ledger contains one expense-side match and requires human review.",
@@ -914,6 +922,129 @@ class CloseProofTests(unittest.TestCase):
                 }
             ],
         }
+
+
+class CloseProofMediaAssetTests(unittest.TestCase):
+    def test_demo_raster_assets_are_real_png_files_at_expected_sizes(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        expected_sizes = {
+            "balancedocket-build-week-thumbnail.png": (1280, 720),
+            "balancedocket-devpost-thumbnail.png": (1200, 800),
+            "balancedocket-build-week-end-card.png": (1920, 1080),
+            "balancedocket-build-week-intro-card.png": (1920, 1080),
+            "balancedocket-project-icon.png": (1024, 1024),
+        }
+
+        for filename, expected_size in expected_sizes.items():
+            with self.subTest(filename=filename):
+                data = (repo_root / "docs/media" / filename).read_bytes()
+                self.assertEqual(b"\x89PNG\r\n\x1a\n", data[:8])
+                self.assertEqual(b"IHDR", data[12:16])
+                self.assertEqual(
+                    expected_size,
+                    (
+                        int.from_bytes(data[16:20], "big"),
+                        int.from_bytes(data[20:24], "big"),
+                    ),
+                )
+
+    def test_demo_voiceover_and_captions_are_exactly_synchronized(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        script = (repo_root / "docs/closeproof_demo_script.md").read_text()
+        teleprompter = (repo_root / "docs/balancedocket_voiceover.txt").read_text()
+        captions = (repo_root / "docs/balancedocket_demo_captions.srt").read_text()
+
+        script_blocks: list[str] = []
+        for section in script.split("**Voice-over:**")[1:]:
+            quoted_lines: list[str] = []
+            for line in section.splitlines()[1:]:
+                if line.startswith("## "):
+                    break
+                if line.startswith(">"):
+                    quoted_lines.append(line[1:].strip())
+            script_blocks.append(" ".join(quoted_lines))
+
+        teleprompter_blocks: list[str] = []
+        for section in re.split(r"(?m)^\d{2} · ", teleprompter)[1:]:
+            lines = section.splitlines()
+            teleprompter_blocks.append(
+                " ".join(line.strip() for line in lines[2:] if line.strip())
+            )
+
+        self.assertEqual(8, len(script_blocks))
+        self.assertEqual(script_blocks, teleprompter_blocks)
+
+        slot_seconds = (15.0, 19.0, 28.0, 34.0, 24.0, 25.0, 17.0, 10.0)
+        pronunciation_expansions = {
+            "GPT-5.6": 5,
+            "ChatGPT": 3,
+            "API": 2,
+            "CLI": 2,
+            "ERP": 2,
+        }
+        written_word_counts: list[int] = []
+        expanded_words_per_minute: list[float] = []
+        for block, seconds in zip(teleprompter_blocks, slot_seconds):
+            written_words = len(re.findall(r"\b[\w.-]+\b", block))
+            spoken_units = written_words + sum(
+                block.count(token) * extra_units
+                for token, extra_units in pronunciation_expansions.items()
+            )
+            written_word_counts.append(written_words)
+            expanded_words_per_minute.append(
+                spoken_units / (seconds - 0.5) * 60
+            )
+
+        self.assertLessEqual(sum(written_word_counts), 335)
+        self.assertLessEqual(max(expanded_words_per_minute), 132)
+
+        cues: list[tuple[int, int, int, list[str]]] = []
+        for raw_cue in re.split(r"\n\s*\n", captions.strip()):
+            lines = raw_cue.splitlines()
+            start, end = lines[1].split(" --> ")
+            cues.append(
+                (
+                    int(lines[0]),
+                    self._timestamp_ms(start),
+                    self._timestamp_ms(end),
+                    lines[2:],
+                )
+            )
+
+        self.assertEqual(list(range(1, len(cues) + 1)), [cue[0] for cue in cues])
+        self.assertEqual(0, cues[0][1])
+        self.assertEqual(172_000, cues[-1][2])
+        self.assertTrue(
+            all(
+                end == next_start
+                for (_, _, end, _), (_, next_start, _, _) in zip(cues, cues[1:])
+            )
+        )
+        self.assertTrue(all(1 <= len(lines) <= 2 for _, _, _, lines in cues))
+        self.assertLessEqual(
+            max(len(line) for _, _, _, lines in cues for line in lines),
+            42,
+        )
+        self.assertLessEqual(
+            max(
+                len(" ".join(lines)) / ((end - start) / 1000)
+                for _, start, end, lines in cues
+            ),
+            17,
+        )
+
+        caption_text = " ".join(
+            line for _, _, _, lines in cues for line in lines
+        )
+        self.assertEqual(" ".join(teleprompter_blocks), caption_text)
+
+    @staticmethod
+    def _timestamp_ms(value: str) -> int:
+        match = re.fullmatch(r"(\d{2}):(\d{2}):(\d{2}),(\d{3})", value)
+        if match is None:
+            raise AssertionError(f"Invalid SRT timestamp: {value}")
+        hours, minutes, seconds, milliseconds = map(int, match.groups())
+        return (((hours * 60) + minutes) * 60 + seconds) * 1000 + milliseconds
 
 
 if __name__ == "__main__":

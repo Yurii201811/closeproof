@@ -1,0 +1,196 @@
+1
+00:00:00,000 --> 00:00:04,200
+Month-end review often splits one decision
+across a ledger, invoice,
+
+2
+00:00:04,200 --> 00:00:06,300
+policy, spreadsheet, and sign-off.
+
+3
+00:00:06,300 --> 00:00:11,100
+BalanceDocket gives controllers one
+evidence-bound path through the exception,
+
+4
+00:00:11,100 --> 00:00:15,000
+keeping calculation, model advice,
+and human authority separate.
+
+5
+00:00:15,000 --> 00:00:20,000
+This is a bundled synthetic June close.
+Through the BalanceDocket skill,
+
+6
+00:00:20,000 --> 00:00:25,300
+Codex generates the fixture, runs the
+local case, checks status, and prepares
+
+7
+00:00:25,300 --> 00:00:30,700
+the bounded advisory. The baseline needs
+no model, network,
+
+8
+00:00:30,700 --> 00:00:34,000
+OpenAI account, or API key.
+
+9
+00:00:34,000 --> 00:00:38,400
+Inside Adjustments, the invoice period
+runs from June fifteenth,
+
+10
+00:00:38,400 --> 00:00:42,500
+twenty twenty-six, through June
+fourteenth, twenty twenty-seven.
+
+11
+00:00:42,500 --> 00:00:47,100
+Controls—not the model—verify its
+identity and cutoff, then allocate
+
+12
+00:00:47,100 --> 00:00:51,600
+sixteen of three hundred sixty-five
+days to June:
+
+13
+00:00:51,600 --> 00:00:55,900
+five thousand two hundred sixty kronor
+and twenty-seven öre expense;
+
+14
+00:00:55,900 --> 00:01:00,100
+one hundred fourteen thousand seven
+hundred thirty-nine kronor
+
+15
+00:01:00,100 --> 00:01:02,000
+and seventy-three öre prepaid.
+
+16
+00:01:02,000 --> 00:01:07,300
+This retained Codex run requested
+GPT-5.6 Sol
+
+17
+00:01:07,300 --> 00:01:12,100
+through my eligible ChatGPT plan,
+without an API key.
+
+18
+00:01:12,100 --> 00:01:16,700
+BalanceDocket sent bounded synthetic
+excerpts, exact amounts,
+
+19
+00:01:16,700 --> 00:01:21,300
+and a strict schema. The result passed
+schema, citation, amount,
+
+20
+00:01:21,300 --> 00:01:26,400
+no-authority, and snapshot checks.
+
+21
+00:01:26,400 --> 00:01:31,000
+Codex CLI did not report the returned
+model, so I disclose the request
+
+22
+00:01:31,000 --> 00:01:36,000
+without claiming independent confirmation.
+
+23
+00:01:36,000 --> 00:01:39,600
+The result is labeled
+“Codex requested, validated output.”
+
+24
+00:01:39,600 --> 00:01:43,900
+It selected three source-linked citations,
+reported medium uncertainty,
+
+25
+00:01:43,900 --> 00:01:47,500
+and flagged missing evidence.
+Provider prose was discarded.
+
+26
+00:01:47,500 --> 00:01:51,900
+BalanceDocket builds the conclusion
+locally from validated selections
+
+27
+00:01:51,900 --> 00:01:56,300
+and fixed amounts. The advisory cannot
+change calculations, approve, post,
+
+28
+00:01:56,300 --> 00:02:00,000
+lock, pay, file, send, or alter
+source data.
+
+29
+00:02:00,000 --> 00:02:03,100
+Authority stays with the reviewer.
+
+30
+00:02:03,100 --> 00:02:08,500
+I record that the cited service period and
+exact integer-öre allocation support
+
+31
+00:02:08,500 --> 00:02:13,600
+prepaid treatment, while missing
+evidence needs follow-up.
+
+32
+00:02:13,600 --> 00:02:17,900
+I choose Request evidence—the safe,
+repeatable disposition.
+
+33
+00:02:17,900 --> 00:02:23,500
+The decision stays bound to this snapshot
+in an append-only local hash chain;
+
+34
+00:02:23,500 --> 00:02:25,000
+no ERP write occurs.
+
+35
+00:02:25,000 --> 00:02:29,000
+The workpaper binds source hashes,
+deterministic calculation,
+
+36
+00:02:29,000 --> 00:02:34,100
+advisory hash, human rationale, action,
+snapshot, chain head,
+
+37
+00:02:34,100 --> 00:02:38,000
+and validation scope. It reports
+zero accounting actions
+
+38
+00:02:38,000 --> 00:02:42,000
+and zero ERP writes, so another reviewer
+can audit the decision.
+
+39
+00:02:42,000 --> 00:02:45,900
+Codex accelerated the Python and React
+build, tests,
+
+40
+00:02:45,900 --> 00:02:48,400
+accessibility, and release checks.
+
+41
+00:02:48,400 --> 00:02:52,000
+I made every product decision
+and final judgment.

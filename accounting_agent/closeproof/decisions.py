@@ -27,7 +27,7 @@ class DecisionError(ValueError):
 class CloseProofDecisionStore:
     def __init__(self, case: dict[str, Any], events_path: str | Path) -> None:
         if case.get("schema_version") != "closeproof-case-v1":
-            raise DecisionError("expected a CloseProof v1 case")
+            raise DecisionError("expected a BalanceDocket v1 case")
         self.case = case
         self.log = HashChainedEventLog(events_path)
         self._assert_case_integrity()

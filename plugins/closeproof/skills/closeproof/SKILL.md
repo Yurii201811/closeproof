@@ -3,7 +3,7 @@ name: closeproof
 description: "Use for the bundled synthetic month-end close review: generate evidence, run deterministic controls locally, optionally obtain bounded GPT-5.6 advice through Codex, manual ChatGPT import, or the Responses API, open the reviewer workbench, and export a human-reviewed workpaper."
 ---
 
-# CloseProof
+# BalanceDocket
 
 Guide a controller through a source-linked close exception while preserving the
 boundary between evidence, deterministic controls, model advice, and human
@@ -11,7 +11,7 @@ authority.
 
 ## Safety gate
 
-- Use only the bundled synthetic CloseProof fixture.
+- Use only the bundled synthetic BalanceDocket fixture.
 - Do not ingest real client documents or identifiers.
 - Do not call ERP, bank, email, tax, payment, or filing systems.
 - Never claim to approve, post, lock, file, pay, or communicate.

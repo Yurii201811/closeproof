@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BalanceDocket Devpost gallery thumbnail</title>
+    <style>
+      :root {
+        --ink: #201b17;
+        --paper: #fffdf8;
+        --app-paper: #f7f2e8;
+        --line: #d8cfc0;
+        --exception: #a94034;
+        --verified: #2f6848;
+        --muted: #71665d;
+        --font-interface: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+        --font-display: "New York", Georgia, serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1200px; height: 800px; overflow: hidden; }
+      body { background: var(--ink); color: var(--paper); font-family: var(--font-interface); }
+      main { display: grid; grid-template-columns: 420px 780px; width: 100%; height: 100%; }
+      .title-panel {
+        display: flex;
+        flex-direction: column;
+        padding: 58px 46px 50px;
+        border-right: 10px solid var(--exception);
+      }
+      .event, .track {
+        margin: 0;
+        color: #faece8;
+        font-size: 17px;
+        font-weight: 780;
+        letter-spacing: 0.12em;
+      }
+      h1 {
+        margin: 58px 0 0;
+        font-family: var(--font-display);
+        font-size: 51px;
+        font-weight: 720;
+        letter-spacing: -0.035em;
+        line-height: 1;
+      }
+      .descriptor {
+        margin: 44px 0 0;
+        font-size: 33px;
+        font-weight: 690;
+        line-height: 1.24;
+      }
+      .promise {
+        margin: auto 0 46px;
+        padding: 0;
+        list-style: none;
+        color: #e8f0ea;
+        font-size: 24px;
+        font-weight: 650;
+        line-height: 1.72;
+      }
+      .product-panel { background: var(--app-paper); color: var(--ink); }
+      .product-frame {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+        background: var(--app-paper);
+      }
+      .product-frame img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: 58% center;
+      }
+      .badge {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        padding: 10px 13px;
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        font-size: 13px;
+        font-weight: 820;
+        letter-spacing: 0.09em;
+      }
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: 300px;
+        padding: 30px 28px;
+        gap: 18px;
+      }
+      .proof {
+        padding: 22px 20px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .proof-kicker {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 820;
+        letter-spacing: 0.1em;
+      }
+      .proof strong {
+        display: block;
+        margin-top: 22px;
+        font-family: var(--font-display);
+        font-size: 25px;
+        line-height: 1.08;
+      }
+      .proof p:last-child {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 620;
+        line-height: 1.35;
+      }
+      .proof:first-child { border-top: 5px solid var(--verified); }
+      .proof:nth-child(2) { border-top: 5px solid #5f547c; }
+      .proof:last-child { border-top: 5px solid var(--exception); }
+      @media (width: 1280px) and (height: 720px) {
+        html, body { width: 1280px; height: 720px; }
+        main { transform: scale(0.9); transform-origin: top left; }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="BalanceDocket Devpost project thumbnail">
+      <section class="title-panel">
+        <p class="event">OPENAI BUILD WEEK 2026</p>
+        <h1>BalanceDocket</h1>
+        <p class="descriptor">Evidence-bound<br />month-end review</p>
+        <ul class="promise" aria-label="Product promise">
+          <li>Rules calculate</li>
+          <li>GPT-5.6 interprets</li>
+          <li>Humans decide</li>
+        </ul>
+        <p class="track">WORK &amp; PRODUCTIVITY</p>
+      </section>
+      <section class="product-panel" aria-label="Real product and proof summary">
+        <div class="product-frame">
+          <img
+            src="../../plugins/closeproof/assets/closeproof-desktop.png"
+            alt="The BalanceDocket evidence ledger and proof drawer"
+          />
+          <span class="badge">REAL PRODUCT · SYNTHETIC DATA</span>
+        </div>
+        <div class="proof-strip">
+          <article class="proof">
+            <p class="proof-kicker">DETERMINISTIC</p>
+            <strong>16 / 365</strong>
+            <p>Exact integer-öre allocation</p>
+          </article>
+          <article class="proof">
+            <p class="proof-kicker">BOUNDED GPT-5.6</p>
+            <strong>Cited advice</strong>
+            <p>Validated · cannot approve</p>
+          </article>
+          <article class="proof">
+            <p class="proof-kicker">HUMAN AUTHORITY</p>
+            <strong>Request evidence</strong>
+            <p>Hash-chained · no ERP write</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

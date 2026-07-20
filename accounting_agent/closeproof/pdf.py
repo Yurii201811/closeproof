@@ -64,7 +64,7 @@ def build_text_pdf(lines: Iterable[str]) -> bytes:
 
 def extract_fixture_pdf_lines(content: bytes) -> tuple[str, ...]:
     if not isinstance(content, bytes) or not content.startswith(b"%PDF-1.4"):
-        raise SyntheticPdfError("expected a CloseProof PDF 1.4 fixture")
+        raise SyntheticPdfError("expected a BalanceDocket PDF 1.4 fixture")
     if b"/FlateDecode" in content or b"/Filter" in content:
         raise SyntheticPdfError("compressed or filtered PDFs are unsupported")
     matches = re.findall(rb"\(((?:\\.|[^\\)])*)\)\s+Tj", content)

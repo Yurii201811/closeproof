@@ -1,4 +1,4 @@
-# CloseProof problem validation
+# BalanceDocket problem validation
 
 Status: qualitative validation on July 14, 2026. These signals support the
 problem pattern and product boundary; they do **not** establish market size,
@@ -6,7 +6,7 @@ willingness to pay, or measured time savings.
 
 ## Practitioner signals
 
-| Source | Public signal | CloseProof implication | Caveat |
+| Source | Public signal | BalanceDocket implication | Caveat |
 |---|---|---|---|
 | [Reddit: Need Month End Close Software Tool](https://www.reddit.com/r/Accounting/comments/1jqcym6/need_month_end_close_software_tool/) (April 3, 2025) | A finance team at a 400-person company attributed a 17-day close to manual spreadsheet work and transaction reconciliation. | Close latency and reconciliation toil remain concrete problems even with a substantial finance team. | Anonymous single-company account; some replies are vendor-promotional. |
 | [Reddit: How do you stay organized during month-end close?](https://www.reddit.com/r/Accounting/comments/1ov4v7p/how_do_you_stay_organized_and_efficient_during/) (November 12, 2025) | A practitioner described Excel status tracking plus manual Teams follow-up for review readiness and delays. | Evidence, review handoff, and human accountability should live in one exception path. | One unverified practitioner comment. |
@@ -38,5 +38,5 @@ close-management replacement and not an autonomous accountant:
 5. export a hash-consistent, no-write local review record.
 
 The next external validation step is five controller or accounting-manager
-walkthroughs measuring time-to-evidence, time-to-decision, and whether CloseProof
+walkthroughs measuring time-to-evidence, time-to-decision, and whether BalanceDocket
 surfaces missing support earlier than the participant's current workflow.

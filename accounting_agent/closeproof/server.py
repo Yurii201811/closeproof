@@ -1,4 +1,4 @@
-"""Loopback-only CloseProof reviewer API and static app server."""
+"""Loopback-only BalanceDocket reviewer API and static app server."""
 
 from __future__ import annotations
 
@@ -79,11 +79,11 @@ class CloseProofService:
             if not isinstance(case, dict):
                 raise OSError("case document must be an object")
         except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-            raise CloseProofServerError("CloseProof case could not be loaded") from exc
+            raise CloseProofServerError("BalanceDocket case could not be loaded") from exc
         try:
             validate_advisory_envelope(case, case.get("advisory"))
         except AdvisoryError as exc:
-            raise CloseProofServerError("CloseProof advisory failed integrity validation") from exc
+            raise CloseProofServerError("BalanceDocket advisory failed integrity validation") from exc
         return case
 
     def _reload_case_from_disk_unlocked(self) -> None:
@@ -106,7 +106,7 @@ class CloseProofService:
             decision = self.decisions.latest()
         except DecisionError as exc:
             raise CloseProofServerError(
-                "CloseProof decision state failed integrity validation"
+                "BalanceDocket decision state failed integrity validation"
             ) from exc
         return {**self.case, "decision": decision}
 
@@ -151,7 +151,7 @@ class CloseProofService:
             self._reload_case_from_disk_unlocked()
             request = prepare_advisory(self.case)
             return (
-                "Review this synthetic CloseProof evidence as an advisory only. "
+                "Review this synthetic BalanceDocket evidence as an advisory only. "
                 "Return exactly one JSON object matching output_schema, without "
                 "Markdown fences or extra text. You cannot approve, post, or write "
                 "to an ERP.\n\n"
@@ -202,12 +202,12 @@ def serve_closeproof(
     socket_fd: int | None = None,
 ) -> None:
     if host not in {"127.0.0.1", "localhost"}:
-        raise CloseProofServerError("CloseProof may bind only to a loopback host")
+        raise CloseProofServerError("BalanceDocket may bind only to a loopback host")
     if not 1 <= port <= 65535:
         raise CloseProofServerError("port must be between 1 and 65535")
     root = Path(web_root).resolve()
     if not (root / "index.html").is_file():
-        raise CloseProofServerError("built CloseProof web assets are missing")
+        raise CloseProofServerError("built BalanceDocket web assets are missing")
     service = CloseProofService(case_path=case_path, events_path=events_path)
     csrf_token = secrets.token_urlsafe(32)
     allowed_host = f"{host}:{port}"
@@ -261,7 +261,7 @@ def serve_closeproof(
                         status=HTTPStatus.CONFLICT,
                     )
                     return
-                self._json(workpaper, attachment="closeproof-workpaper.json")
+                self._json(workpaper, attachment="balancedocket-workpaper.json")
                 return
             requested = (root / path.lstrip("/")).resolve()
             if path != "/" and (root not in requested.parents or not requested.is_file()):
@@ -367,7 +367,7 @@ def serve_closeproof(
         except Exception:
             inherited_socket.close()
             raise
-    print(f"CloseProof reviewer: http://{host}:{port}")
+    print(f"BalanceDocket reviewer: http://{host}:{port}")
     print("Synthetic demo only; network advisory and ERP writes are disabled in the server")
     try:
         server.serve_forever()

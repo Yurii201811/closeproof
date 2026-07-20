@@ -1,17 +1,18 @@
-# CloseProof Build Week provenance
+# BalanceDocket Build Week provenance
 
 This document separates the Accounting Agent foundation that existed before
-OpenAI Build Week from the CloseProof work added during the competition. It is
-intended to accompany the private source history, not replace it. The public
-CloseProof repository deliberately begins with a sanitized new root commit, so
-the private provenance hashes and diff command below are evidence references
-rather than commits expected to resolve in the public repository.
+OpenAI Build Week from the BalanceDocket work added during the competition. It is
+intended to accompany the private source history, not replace it. The existing
+sanitized public repository begins with a new root commit, so the private
+provenance hashes and diff command below are evidence references rather than
+commits expected to resolve there. BalanceDocket is still a local release
+candidate and its proposed display-name migration has not yet been published.
 
 ## Competition window and source of truth
 
 - Official submission period: July 13, 2026 at 09:00 PT through July 21, 2026
   at 17:00 PT.
-- CloseProof work period: July 13-21, 2026.
+- BalanceDocket work period: July 13-21, 2026.
 - Track: **Work & Productivity**.
 - Official requirements: [Build Week overview](https://openai.devpost.com/) and
   [Official Rules](https://openai.devpost.com/rules).
@@ -19,10 +20,14 @@ rather than commits expected to resolve in the public repository.
   `aed4507d0c59eeda1ec9ccfbdeffd8fb8c550522`, committed July 11, 2026 at
   01:18:43 Europe/Stockholm with subject
   `release: ship Accounting Agent v1 foundation`.
-- First CloseProof feature checkpoint:
+- First feature checkpoint, then using the CloseProof working name:
   `58e2f28681c07a120abe8b1c60d22db923aa7315`, committed July 14, 2026 at
   10:18:53 Europe/Stockholm with subject
   `feat: add CloseProof evidence-led close review`.
+
+Development began under the CloseProof working name. BalanceDocket is the later
+proposed display-only name; the historical commit subject remains unchanged as
+an exact provenance record.
 
 The rules state that a pre-existing project is judged only on meaningful work
 added after the submission period began. In the retained private source
@@ -53,25 +58,25 @@ presented as new Build Week work.
 
 ## What was added during Build Week
 
-CloseProof is the new, focused controller workflow built on top of that
+BalanceDocket is the new, focused controller workflow built on top of that
 foundation:
 
 | New work | Repository evidence |
 |---|---|
 | A dedicated Nordix Services AB June 2026 golden case using only synthetic GL, invoice, and policy inputs | `fixtures/closeproof/` |
 | Deterministic invoice generation/parsing and exact duplicate, cutoff, and prepaid calculations | `accounting_agent/closeproof/pdf.py`, `accounting_agent/closeproof/case.py` |
-| A CloseProof evidence snapshot that binds source hashes, citations, exact integer-ore amounts, and review context | `accounting_agent/closeproof/case.py`, `accounting_agent/closeproof/integrity.py` |
+| A BalanceDocket evidence snapshot that binds source hashes, citations, exact integer-ore amounts, and review context | `accounting_agent/closeproof/case.py`, `accounting_agent/closeproof/integrity.py` |
 | The inherited nine-stage dependency model bound into one concrete close-review case and exposed through a loopback service | `accounting_agent/closeproof/server.py` |
 | An optional, bounded GPT-5.6 advisory path through Codex, manual ChatGPT import, or an explicitly opted-in Responses API route | `accounting_agent/closeproof/advisory.py`, `accounting_agent/cli.py` |
 | Fail-closed checks for schema, citations, amounts, snapshot, provider provenance, and the no-authority invariant; provider prose is discarded and replaced by locally generated controlled display language | `accounting_agent/closeproof/advisory.py` |
-| Human approve/request-evidence/reject actions with required rationale and a CloseProof-specific append-only hash chain | `accounting_agent/closeproof/decisions.py` |
+| Human approve/request-evidence/reject actions with required rationale and a BalanceDocket-specific append-only hash chain | `accounting_agent/closeproof/decisions.py` |
 | Evidence-bound JSON workpaper export that reports zero accounting actions and zero ERP writes | `accounting_agent/closeproof/server.py` |
 | A responsive React evidence-ledger workbench with keyboard-accessible review states | `apps/closeproof-web/` |
 | A Codex plugin skill that guides the same bounded workflow | `plugins/closeproof/` |
 | Dedicated Python, integrity, frontend, accessibility, build, and regression checks | `tests/test_closeproof.py`, `tests/test_closeproof_integrity.py`, `apps/closeproof-web/src/App.test.tsx`, `scripts/verify_closeproof.sh` |
 | Product, design, demo, safety, and submission documentation | `PRODUCT.md`, `DESIGN.md`, `docs/closeproof_*` |
 
-CloseProof does not claim the inherited Accounting Agent platform was created
+BalanceDocket does not claim the inherited Accounting Agent platform was created
 during Build Week. The competition contribution is the new end-to-end,
 evidence-bound month-end exception workflow and its dedicated product surface,
 model boundary, decision record, export, plugin, and verification suite.
@@ -152,26 +157,40 @@ workspace metadata. Removing that material from the current tree does not
 remove it from Git history. Therefore the existing history must not be pushed
 to a public remote.
 
-After explicit human approval, the public repository was created from a
-sanitized tip-only archive, initialized with a new root commit, and checked for
-secrets and private metadata. The complete verifier passed in the exact export
-and in a clean clone after the lockfile install. An unauthenticated API request,
-raw README/LICENSE requests, a credential-disabled clone, and the no-rebuild
-judge path then passed after the visibility change. Commit hashes elsewhere in
-this document describe the private build provenance; they are not expected to
-exist in the sanitized public history.
+After explicit human approval, the original CloseProof public baseline was
+created from a sanitized tip-only archive, initialized with a new root commit,
+and checked for secrets and private metadata. The complete verifier passed in
+that exact export and in a clean clone after the lockfile install. An
+unauthenticated API request, raw README/LICENSE requests, a credential-disabled
+clone, and the no-rebuild judge path then passed after the visibility change.
+Commit hashes elsewhere in this document describe the private build provenance;
+they are not expected to exist in the sanitized public history.
+
+The proposed BalanceDocket display-name candidate is newer than that public
+baseline. It must be approved by Yurii, exported with the new hashed frontend
+bundle and disclosure files, published atomically, and then subjected to the
+same secret, clean-clone, no-rebuild, and signed-out checks. The private source
+history itself must never be pushed to the public remote.
 
 ## Submission evidence status
 
 - `/feedback` session ID from the primary Codex task: **[PENDING]**
 - Sanitized tip-only public repository and license:
-  <https://github.com/Yurii201811/closeproof> · MIT.
+  <https://github.com/Yurii201811/closeproof> · MIT. As verified on 2026-07-14,
+  public HEAD `916ab51f1bbf86fda7e1a84c93a4576627ab8da1` is the pre-rebrand
+  CloseProof baseline.
 - Public YouTube demo URL under three minutes with audio: **[PENDING]**
 - Free no-rebuild judge path: `./scripts/run_closeproof_prebuilt.sh` using the
-  checked-in `plugins/closeproof/assets/web/` bundle.
-- Public repository and judge-path verification without GitHub authentication:
-  **PASSED 2026-07-14**.
+  checked-in `plugins/closeproof/assets/web/` bundle. The local BalanceDocket
+  candidate passes this path; final public-candidate verification is pending.
+- Pre-rebrand public repository and judge-path verification without GitHub
+  authentication: **PASSED 2026-07-14**.
+- Final BalanceDocket public commit, disclosure package, clean-clone, and
+  signed-out verification: **[PENDING NAME APPROVAL AND PUBLICATION]**
 - Public video playback and final submitted-link verification: **[PENDING]**
+- Post-submission availability: keep the repository, video, and judge path
+  public, free, and unrestricted through August 6, 2026 at 02:00
+  Europe/Stockholm.
 
-This document leaves only the account-bound external artifacts open until they
-exist and have been verified.
+Local candidate publication/reverification and the account-bound external
+artifacts remain open until they exist and have been verified.
