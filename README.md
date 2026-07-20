@@ -11,12 +11,11 @@ This is the repository's **OpenAI Build Week 2026 · Work & Productivity**
 project. It is built on selected pre-existing Accounting Agent primitives; the
 [Build Week provenance](docs/build_week_provenance.md) records that boundary.
 
-> **Compatibility note:** BalanceDocket is the proposed public display name in
-> this release candidate; publication awaits Yurii's approval. The candidate
-> deliberately retains the stable `closeproof` technical namespace for CLI
-> commands, environment variables, schemas, plugin IDs, source paths, and the
-> public repository URL. Those identifiers remain unchanged so the tested judge
-> path and evidence hashes do not break.
+> **Compatibility note:** BalanceDocket is the approved public display name.
+> The released product deliberately retains the stable `closeproof` technical
+> namespace for CLI commands, environment variables, schemas, plugin IDs,
+> source paths, and the public repository URL. Those identifiers remain
+> unchanged so the tested judge path and evidence hashes do not break.
 
 ## Judge quick start
 
