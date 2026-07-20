@@ -1,9 +1,9 @@
-# BalanceDocket Devpost submission draft
+# BalanceDocket Devpost submission record
 
-Copy from this file only after replacing every **[PENDING]** value and
-rechecking the [Build Week page](https://openai.devpost.com/) and
-[Official Rules](https://openai.devpost.com/rules). The official deadline is
-July 21, 2026 at 17:00 PT.
+This file reflects the authenticated Devpost draft and public media state
+verified on July 20, 2026. Final submission remains gated on Yurii's personal
+confirmation of the Official Rules and Devpost Terms of Service. The official
+deadline is July 21, 2026 at 17:00 PT.
 
 ## Submission fields
 
@@ -11,24 +11,25 @@ July 21, 2026 at 17:00 PT.
 - **Category:** Work & Productivity
 - **Tagline:** Evidence-bound month-end review: rules calculate, GPT-5.6
   interprets, humans decide.
-- **Repository:** <https://github.com/Yurii201811/closeproof> **[current public
-  remote is the older verified baseline; publish and verify the approved
-  sanitized candidate before final submission]**
+- **Repository:** <https://github.com/Yurii201811/closeproof>. The sanitized
+  public code release is commit
+  [`c2778b9ffb294fae0383e41a04ae06114244e458`](https://github.com/Yurii201811/closeproof/commit/c2778b9ffb294fae0383e41a04ae06114244e458).
 - **License:** MIT
 - **Built with:** Codex, GPT-5.6 Sol, Python, TypeScript, React, Vite, Vitest,
   Playwright
-- **Public YouTube demo:** [PENDING — under three minutes, publicly visible,
-  with audio covering Codex and GPT-5.6]
+- **Public YouTube demo:** <https://youtu.be/lCoD5W-rCQs> — Public, 172 seconds,
+  1080p, with English selectable captions and eight rendered chapters.
 - **Product or judge-access URL:**
   <https://github.com/Yurii201811/closeproof#judge-quick-start>. The local
   loopback reviewer launches from the public repository; no hosted account is
-  required for the judge path. Re-run this path against the exact final public
-  commit before submission.
+  required for the judge path. The clean public-clone path was re-run against
+  `c2778b9ffb294fae0383e41a04ae06114244e458` on July 20, 2026.
 - **Prebuilt test bundle or sandbox:** `./scripts/run_closeproof_prebuilt.sh`
   serves the checked-in bundle with Python 3.11+; no Node.js, account, model,
   network connection, or rebuild is required.
-- **Primary Codex `/feedback` session ID:** [PENDING — do not use the advisory
-  run ID]
+- **Primary Codex `/feedback` session ID:** Provided privately in the required
+  Devpost field and deliberately excluded from public documentation. It is not
+  the advisory run ID.
 - **Entrant/team:** Yurii Bakurov
 
 ## Devpost media package
@@ -337,9 +338,8 @@ to prevent source/package drift.
   deadline has passed, the official update says the available credits were
   distributed, and credits are not an eligibility requirement.
 - [x] Add the MIT repository license.
-- [ ] Publish the already-committed root third-party notices and pre-existing/
-  open-source disclosure through a sanitized tip-only update, then re-verify
-  the final public commit.
+- [x] Publish the root third-party notices and pre-existing/open-source
+  disclosure in the sanitized public release.
 - [x] Publish the sanitized repository at
   <https://github.com/Yurii201811/closeproof> from a new root commit.
 - [x] Provide a free no-rebuild judge path in the repository.
@@ -347,30 +347,40 @@ to prevent source/package drift.
   archive (2026-07-14).
 - [x] Run the complete verifier and Browser flow against the local
   BalanceDocket candidate (2026-07-14).
-- [ ] After name approval and publication, repeat secret scanning, clean-clone,
-  no-rebuild, signed-out, and public-link verification against the exact final
-  public commit.
-- [ ] Run `/feedback` in the primary Codex task and paste that session ID into
-  the Devpost field.
+- [x] Repeat the clean public-clone and no-rebuild verification against public
+  code release `c2778b9ffb294fae0383e41a04ae06114244e458` on July 20, 2026.
+  `npm ci` installed 215 packages with 0 vulnerabilities; 17 focused tests,
+  32 frontend tests, the production build and bundle-parity check, and 344 full
+  repository tests passed. The Python-only judge server returned HTTP 200 and
+  completed a synthetic Request evidence decision with a valid one-event hash
+  chain and zero external actions.
+- [x] Retrieve the primary Codex task identifier and save it in the private
+  Devpost `/feedback` field. Never commit, quote, or screenshot the identifier
+  in public material.
 - [x] Produce and strictly verify the narrated public-demo master locally. The
   172.005167-second H.264/AAC export has 4,124 frames, measures -16.4 LUFS with
   a -1.3 dBTP true peak, and has SHA-256
   `9726acc1af18278a8c63a8e0ac6f7b0dde9f8c69ef8b84c58030f25a29ba97f3`.
-- [ ] Publish that master on YouTube as **Public** and upload the duration-aligned
-  41-cue English SRT from the final media delivery package.
+- [x] Publish that master on YouTube as **Public** and upload the
+  duration-aligned 41-cue English SRT from the final media delivery package.
 - [x] Verify the repository and no-rebuild judge-access path without GitHub
   authentication (2026-07-14).
-- [ ] Verify public YouTube playback while signed out.
+- [x] Verify unauthenticated YouTube metadata: Public, 172 seconds, 1920×1080,
+  one English subtitle track, and eight chapters. The public watch page rendered
+  the exact first cue from the uploaded SRT, and Studio reports the English
+  track as Published.
+- [ ] Perform one uninterrupted human headphone playback of the public video
+  and check every edit join and caption boundary.
 - [x] Create and populate the authenticated Devpost project draft (2026-07-15)
   with the final tagline, eight technology tags, saved project story,
   pre-existing-work disclosure, and judge-access repository link. The draft is
-  attached to OpenAI Build Week as submission `1085175-balancedocket` (`2/5`
-  steps complete). An authenticated save-and-reload check confirmed
+  attached to OpenAI Build Week as submission `1085175-balancedocket` (`4/5`
+  steps complete). Authenticated save-and-reload checks confirmed
   `Individual`, `Sweden`, `Work & Productivity`, the repository URL, the
-  no-rebuild judge instructions, and plugin testing instructions. The required
-  primary-thread `/feedback` field remains intentionally blank. Project images
-  require separate upload confirmation; the final public YouTube URL and
-  signed-out URL checks also remain pending.
+  no-rebuild judge instructions, plugin testing instructions, the private
+  primary-task `/feedback` field, the public YouTube URL, the project thumbnail,
+  and all four captioned gallery images. The public preview embeds the video and
+  renders the complete story, technology tags, repository link, and gallery.
 - [ ] In the authenticated entry, confirm the entrant is of the age of majority,
   resides in an eligible location, has no excluded employment or conflict,
   owns or is authorized to submit the work, and has accurately listed the team.

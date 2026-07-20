@@ -145,11 +145,14 @@
 - [x] Close the optional-credit gate without submission. The July 17 request
   deadline passed and the official event update says the available credits were
   distributed; credits are not required for eligibility.
-- [ ] Publish the already-committed third-party notices and final branding/docs
-  through a sanitized tip-only update, then repeat the credential-free public-
-  clone and no-rebuild verification.
-- [ ] Run `/feedback` in the primary Codex task and preserve the exact session ID.
-- [ ] Show the real Codex run requesting `gpt-5.6-sol` and the validated
+- [x] Publish the third-party notices and final branding/docs in the sanitized
+  public code release, then repeat the credential-free public-clone and
+  no-rebuild verification against
+  `c2778b9ffb294fae0383e41a04ae06114244e458` on July 20, 2026.
+- [x] Retrieve the primary Codex task identifier and preserve it only in the
+  private Devpost `/feedback` field. Never place it in the repository,
+  screenshots, demo, issue, commit message, or public submission copy.
+- [x] Show the real Codex run requesting `gpt-5.6-sol` and the validated
   structured output in the recorded demo; disclose that returned model identity
   was not reported, and never use a fixture, unverified paste, or API-shaped
   mock as competition proof.
@@ -206,15 +209,19 @@
   Final Cut track. A real FFmpeg run using eight synthetic extensible 24-bit
   takes produced exactly 172.005167 seconds at -16.0 LUFS with -7.3 dBFS true
   peak; the original takes were not modified.
-- [ ] Upload the public YouTube video and separate English SRT, then verify
-  audible playback and selectable captions while signed out on desktop and
-  mobile. Do not enable both burned and selectable captions during the same
-  review pass, because that produces duplicate text.
+- [x] Upload the public YouTube video and separate English SRT. Unauthenticated
+  metadata verifies Public availability, 172 seconds, 1920×1080, one English
+  subtitle track, and eight chapters; the public watch page renders the exact
+  first uploaded cue and Studio reports the English track as Published.
+- [ ] Perform uninterrupted human headphone playback on desktop and mobile and
+  check narration, edit joins, selectable-caption synchronization, and thumbnail
+  crop. Do not enable duplicate burned and selectable captions during review.
 - [x] Prepare the exact YouTube title, truthful description, eight chapters,
   tags, thumbnail/caption paths, pre-upload verifier gate, and signed-out
   desktop/mobile playback checklist in
   `docs/balancedocket_youtube_package.md` (2026-07-15).
-- [ ] Explain Codex acceleration and key technical/product decisions.
+- [x] Explain Codex acceleration and key technical/product decisions in the
+  video, YouTube description, README, and Devpost story.
 - [x] Add repository and product URLs to the Devpost draft and verify them after
   reload (2026-07-15). Final signed-out verification still follows publication.
 - [x] Complete Devpost's user-only image CAPTCHA (2026-07-15). The checkbox is
@@ -222,16 +229,22 @@
   with the final tagline, eight technology tags, saved project story,
   pre-existing-work disclosure, and judge-access repository link. The project
   is also attached to OpenAI Build Week as draft submission
-  `1085175-balancedocket` (`2/5` steps complete). An authenticated
-  save-and-reload check on 2026-07-15 confirmed `Individual`, `Sweden`,
+  `1085175-balancedocket` (`4/5` steps complete). Authenticated save-and-reload
+  checks through 2026-07-20 confirmed `Individual`, `Sweden`,
   `Work & Productivity`, the repository URL, no-rebuild judge instructions,
-  and plugin testing instructions. `/feedback`, the image gallery, and the
-  final public YouTube URL remain empty and pending.
+  plugin testing instructions, the private primary-task `/feedback` field, the
+  public YouTube URL, the project thumbnail, and all four captioned gallery
+  images. The public preview embeds the video and renders the saved story,
+  technology tags, repository link, and gallery.
 - [x] Verify the pre-rebrand public repository, raw README/LICENSE,
   credential-free clone, and no-rebuild judge path without GitHub
   authentication (2026-07-14).
-- [ ] After publication, repeat those checks against the exact final
-  BalanceDocket public commit and disclosure package.
+- [x] Repeat the public-clone checks against code release
+  `c2778b9ffb294fae0383e41a04ae06114244e458`: 215 npm packages with 0
+  vulnerabilities, 17 focused tests, 32 frontend tests, production build and
+  bundle parity, 344 full repository tests, HTTP 200 from the Python-only judge
+  path, and a complete synthetic Request evidence flow with a valid one-event
+  hash chain and zero external actions.
 - [ ] Confirm personal eligibility in the authenticated Devpost entry: age of
   majority, eligible residence, no excluded employment or conflict,
   ownership/authorization, and accurate team composition.

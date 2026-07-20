@@ -1,8 +1,7 @@
-# BalanceDocket YouTube delivery package
+# BalanceDocket YouTube delivery record
 
-Use this package only after the narrated export passes
-`scripts/verify_balancedocket_video.py`. Uploading or publishing the video is an
-external action and remains owner-approval gated.
+The narrated export passed `scripts/verify_balancedocket_video.py` and was
+published with Yurii's approval on July 20, 2026.
 
 ## Studio fields
 
@@ -14,6 +13,9 @@ external action and remains owner-approval gated.
 - **Thumbnail:** `docs/media/balancedocket-build-week-thumbnail.png`
 - **Selectable captions:** `BalanceDocket_captions_FINAL_ALIGNED.srt` from the
   final media delivery package
+- **Public URL:** <https://youtu.be/lCoD5W-rCQs>
+- **Public metadata:** Public, 172 seconds, 1920×1080, English subtitle track,
+  eight chapters
 - **Code:** <https://github.com/Yurii201811/closeproof>
 - **License note:** The repository is MIT-licensed. Do not imply that the
   YouTube platform license changes the repository license.
@@ -70,7 +72,7 @@ Chapters
 BalanceDocket, OpenAI Build Week, Codex, GPT-5.6, month-end close, accounting automation, controller workflow, audit trail, React, Python, human in the loop, evidence-bound AI
 ```
 
-## Pre-upload gate
+## Pre-upload record
 
 1. Export `BalanceDocket_OpenAI_Build_Week_2026_172s.mp4` from the locked Final
    Cut timeline after importing Yurii's verified narration track at
@@ -81,24 +83,26 @@ BalanceDocket, OpenAI Build Week, Codex, GPT-5.6, month-end close, accounting au
    frames, an audible 48 kHz AAC stream, integrated loudness from -18 to -14
    LUFS, true peak no higher than -1 dBTP, duration below 180 seconds, and a
    strict full decode.
-4. Watch the complete export at normal speed with headphones. Check every cut,
+4. **Human check still required:** watch the complete export at normal speed
+   with headphones. Check every cut,
    spoken amount, product label, caption boundary, and the Codex/GPT-5.6
    disclosure. Do not use the silent captioned QA master as the upload file.
 
-## Post-upload gate
+## Post-upload verification
 
-After processing finishes, verify while signed out on both desktop and mobile:
+Verified on July 20, 2026:
 
-- Visibility is **Public** and playback works without an account.
-- Duration is below three minutes and 1080p is available.
-- Narration is clearly audible from start to finish.
-- English selectable captions are available and synchronized. Disable the
-  selectable track when checking a burned-caption QA copy to avoid duplicate
-  text; the clean public master should use selectable captions.
-- The description renders the eight chapter links and both repository links.
-- The custom thumbnail is visible and not cropped incorrectly.
-- The repository and judge quick-start links open without authentication.
+- [x] Unauthenticated metadata reports **Public**, 172 seconds, and 1920×1080.
+- [x] Studio reports the uploaded English track as Published; unauthenticated
+  metadata exposes an English subtitle track, and the public player rendered
+  the exact first cue from the aligned SRT.
+- [x] The description renders all eight chapter links and both repository links.
+- [x] The repository clones without authentication, and the clean Python-only
+  judge path returns HTTP 200 and completes the synthetic review workflow.
+- [ ] Perform one uninterrupted human headphone playback and verify narration,
+  every edit join, and full caption synchronization on desktop and mobile.
+- [ ] Visually confirm the public custom-thumbnail crop on desktop and mobile.
 
-Only after those checks should the public YouTube URL replace the `[PENDING]`
-value in `docs/devpost_submission.md` and be saved in Devpost Project details.
-Final Devpost submission still requires Yurii's explicit approval.
+The public URL was saved in Devpost Project details and confirmed after reload.
+Final Devpost submission still requires Yurii's explicit confirmation that he
+has read and agrees to the Official Rules and Devpost Terms of Service.

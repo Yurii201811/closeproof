@@ -166,31 +166,42 @@ clone, and the no-rebuild judge path then passed after the visibility change.
 Commit hashes elsewhere in this document describe the private build provenance;
 they are not expected to exist in the sanitized public history.
 
-The proposed BalanceDocket display-name candidate is newer than that public
-baseline. It must be approved by Yurii, exported with the new hashed frontend
-bundle and disclosure files, published atomically, and then subjected to the
-same secret, clean-clone, no-rebuild, and signed-out checks. The private source
-history itself must never be pushed to the public remote.
+Yurii approved the BalanceDocket display name and MIT publication. The
+sanitized code release was published as
+`c2778b9ffb294fae0383e41a04ae06114244e458`, including the hashed frontend
+bundle, third-party notices, and disclosure files. A fresh unauthenticated clone
+then passed the full verifier and Python-only no-rebuild judge flow. The private
+source history itself was not pushed to the public remote.
 
 ## Submission evidence status
 
-- `/feedback` session ID from the primary Codex task: **[PENDING]**
+- `/feedback` session ID from the primary Codex task: **PROVIDED PRIVATELY IN
+  DEVPOST**. The value is deliberately excluded from public documentation.
 - Sanitized tip-only public repository and license:
-  <https://github.com/Yurii201811/closeproof> · MIT. As verified on 2026-07-14,
-  public HEAD `916ab51f1bbf86fda7e1a84c93a4576627ab8da1` is the pre-rebrand
-  CloseProof baseline.
-- Public YouTube demo URL under three minutes with audio: **[PENDING]**
+  <https://github.com/Yurii201811/closeproof> · MIT. BalanceDocket code release
+  `c2778b9ffb294fae0383e41a04ae06114244e458` was verified on 2026-07-20.
+- Public YouTube demo URL under three minutes with audio:
+  <https://youtu.be/lCoD5W-rCQs> · Public · 172 seconds · 1920×1080 · English
+  subtitle track · eight chapters.
 - Free no-rebuild judge path: `./scripts/run_closeproof_prebuilt.sh` using the
-  checked-in `plugins/closeproof/assets/web/` bundle. The local BalanceDocket
-  candidate passes this path; final public-candidate verification is pending.
+  checked-in `plugins/closeproof/assets/web/` bundle. A fresh public clone
+  returned HTTP 200 and completed a synthetic Request evidence workflow with a
+  valid one-event hash chain and zero external actions on 2026-07-20.
 - Pre-rebrand public repository and judge-path verification without GitHub
   authentication: **PASSED 2026-07-14**.
-- Final BalanceDocket public commit, disclosure package, clean-clone, and
-  signed-out verification: **[PENDING NAME APPROVAL AND PUBLICATION]**
-- Public video playback and final submitted-link verification: **[PENDING]**
+- BalanceDocket code release, disclosure package, clean-clone, and no-rebuild
+  verification: **PASSED 2026-07-20**. The fresh clone passed 17
+  focused tests, 32 frontend tests, the production build and bundle-parity
+  check, and 344 full repository tests after `npm ci` installed 215 packages
+  with 0 vulnerabilities.
+- Public video metadata, English subtitle publication, description chapters,
+  and authenticated Devpost saved-link/preview verification: **PASSED
+  2026-07-20**. Uninterrupted human headphone playback remains open.
+- Final Devpost `Submitted` status: **PENDING PERSONAL RULES/TERMS
+  CONFIRMATION**.
 - Post-submission availability: keep the repository, video, and judge path
-  public, free, and unrestricted through August 6, 2026 at 02:00
-  Europe/Stockholm.
+  public, free, and unrestricted through at least August 7, 2026.
 
-Local candidate publication/reverification and the account-bound external
-artifacts remain open until they exist and have been verified.
+The remaining account-bound gates are Yurii's personal eligibility and
+Rules/Terms confirmation, final submission, and confirmation that Devpost shows
+the project as `Submitted`.
