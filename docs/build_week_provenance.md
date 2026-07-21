@@ -5,8 +5,8 @@ OpenAI Build Week from the BalanceDocket work added during the competition. It i
 intended to accompany the private source history, not replace it. The existing
 sanitized public repository begins with a new root commit, so the private
 provenance hashes and diff command below are evidence references rather than
-commits expected to resolve there. BalanceDocket is still a local release
-candidate and its proposed display-name migration has not yet been published.
+commits expected to resolve there. The approved BalanceDocket display name,
+sanitized code release, and Devpost submission are now public.
 
 ## Competition window and source of truth
 
@@ -197,11 +197,14 @@ source history itself was not pushed to the public remote.
 - Public video metadata, English subtitle publication, description chapters,
   and authenticated Devpost saved-link/preview verification: **PASSED
   2026-07-20**. Uninterrupted human headphone playback remains open.
-- Final Devpost `Submitted` status: **PENDING PERSONAL RULES/TERMS
-  CONFIRMATION**.
+- Final Devpost `Submitted` status: **PASSED 2026-07-21**. The authenticated
+  management record says `Submitted`, and the public entry confirms that
+  BalanceDocket is submitted to OpenAI Build Week.
 - Post-submission availability: keep the repository, video, and judge path
-  public, free, and unrestricted through at least August 7, 2026.
+  public, free, and unrestricted through August 10, 2026 at 02:00
+  Europe/Stockholm, covering the later judging end shown on Devpost's published
+  schedule (August 9 at 17:00 PDT).
 
-The remaining account-bound gates are Yurii's personal eligibility and
-Rules/Terms confirmation, final submission, and confirmation that Devpost shows
-the project as `Submitted`.
+No account-bound submission gates remain. The organizer-controlled project
+gallery is not yet published; the authenticated management record and public
+project page are the current submission sources of truth.

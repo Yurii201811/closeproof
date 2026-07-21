@@ -1,9 +1,9 @@
 # BalanceDocket Devpost submission record
 
-This file reflects the authenticated Devpost draft and public media state
-verified on July 20, 2026. Final submission remains gated on Yurii's personal
-confirmation of the Official Rules and Devpost Terms of Service. The official
-deadline is July 21, 2026 at 17:00 PT.
+This file reflects the authenticated Devpost submission and public media state
+verified on July 21, 2026. Yurii completed the personal Rules, Terms,
+eligibility, ownership, and team attestations, and Devpost records the entry as
+`Submitted`. The official deadline is July 21, 2026 at 17:00 PT.
 
 ## Submission fields
 
@@ -373,20 +373,20 @@ to prevent source/package drift.
   and check every edit join and caption boundary.
 - [x] Create and populate the authenticated Devpost project draft (2026-07-15)
   with the final tagline, eight technology tags, saved project story,
-  pre-existing-work disclosure, and judge-access repository link. The draft is
-  attached to OpenAI Build Week as submission `1085175-balancedocket` (`4/5`
-  steps complete). Authenticated save-and-reload checks confirmed
+  pre-existing-work disclosure, and judge-access repository link. The entry is
+  attached to OpenAI Build Week as submission `1085175-balancedocket` and now
+  records `Submitted`. Authenticated save-and-reload checks confirmed
   `Individual`, `Sweden`, `Work & Productivity`, the repository URL, the
   no-rebuild judge instructions, plugin testing instructions, the private
   primary-task `/feedback` field, the public YouTube URL, the project thumbnail,
   and all four captioned gallery images. The public preview embeds the video and
   renders the complete story, technology tags, repository link, and gallery.
-- [ ] In the authenticated entry, confirm the entrant is of the age of majority,
-  resides in an eligible location, has no excluded employment or conflict,
-  owns or is authorized to submit the work, and has accurately listed the team.
-- [ ] Obtain Yurii's explicit final approval and submit before July 21, 2026 at
-  17:00 PT (July 22 at 02:00 in Stockholm).
-- [ ] Re-open the submitted entry, confirm its status is `Submitted`, and keep
+- [x] In the authenticated entry, Yurii confirmed the required age, residence,
+  conflict, ownership/authorization, and team attestations (2026-07-21).
+- [x] Obtain Yurii's explicit final approval and submit before July 21, 2026 at
+  17:00 PT (July 22 at 02:00 in Stockholm). Submitted on 2026-07-21.
+- [x] Re-open the submitted entry and confirm its status is `Submitted`
+  (2026-07-21). Keep
   the repository, video, and judge path public, free, and unrestricted through
-  at least August 7, 2026 to cover both official-rule and event-page judging
-  windows.
+  August 10, 2026 at 02:00 Europe/Stockholm to cover the later event-page
+  judging window.

@@ -223,14 +223,15 @@
 - [x] Explain Codex acceleration and key technical/product decisions in the
   video, YouTube description, README, and Devpost story.
 - [x] Add repository and product URLs to the Devpost draft and verify them after
-  reload (2026-07-15). Final signed-out verification still follows publication.
+  reload (2026-07-15), then repeat public unauthenticated link checks after
+  publication and submission (2026-07-21).
 - [x] Complete Devpost's user-only image CAPTCHA (2026-07-15). The checkbox is
-  verified, and the private `BalanceDocket` project draft is created and saved
+  verified, and the private `BalanceDocket` project entry is created and saved
   with the final tagline, eight technology tags, saved project story,
   pre-existing-work disclosure, and judge-access repository link. The project
-  is also attached to OpenAI Build Week as draft submission
-  `1085175-balancedocket` (`4/5` steps complete). Authenticated save-and-reload
-  checks through 2026-07-20 confirmed `Individual`, `Sweden`,
+  is attached to OpenAI Build Week as submission `1085175-balancedocket` and
+  records `Submitted`. Authenticated save-and-reload checks through 2026-07-21
+  confirmed `Individual`, `Sweden`,
   `Work & Productivity`, the repository URL, no-rebuild judge instructions,
   plugin testing instructions, the private primary-task `/feedback` field, the
   public YouTube URL, the project thumbnail, and all four captioned gallery
@@ -245,13 +246,14 @@
   bundle parity, 344 full repository tests, HTTP 200 from the Python-only judge
   path, and a complete synthetic Request evidence flow with a valid one-event
   hash chain and zero external actions.
-- [ ] Confirm personal eligibility in the authenticated Devpost entry: age of
-  majority, eligible residence, no excluded employment or conflict,
-  ownership/authorization, and accurate team composition.
-- [ ] Verify every link in a logged-out context.
-- [ ] Submit by the internal safety target of July 21 at 18:00
-  Europe/Stockholm—eight hours before the official July 22 at 02:00 deadline.
-- [ ] Re-open the submitted entry, confirm `Submitted`, and capture confirmation.
+- [x] Yurii completed the authenticated Devpost age, residence, conflict,
+  ownership/authorization, and team attestations (2026-07-21).
+- [x] Verify the public Devpost entry, GitHub repository and raw README, YouTube
+  video and English subtitles, and all four gallery images without relying on
+  authenticated access (2026-07-21).
+- [x] Submit before the official July 22 at 02:00 Europe/Stockholm deadline
+  (submitted 2026-07-21).
+- [x] Re-open the submitted entry and confirm `Submitted` (2026-07-21).
 - [ ] Keep the repository, public video, and judge path free, public, and
-  unrestricted through at least August 7, 2026 to cover both published judging
-  windows.
+  unrestricted through August 10, 2026 at 02:00 Europe/Stockholm to cover the
+  later published Devpost judging window.
