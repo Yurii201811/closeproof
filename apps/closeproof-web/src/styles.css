@@ -63,14 +63,14 @@ button:disabled { cursor: not-allowed; opacity: .48; }
 .header-status strong { font: 700 22px/1 Georgia, serif; }
 .header-status span { font-size: 10px; line-height: 1.2; text-transform: uppercase; letter-spacing: .04em; }
 .ledger { position: relative; }
-.ledger-columns { display: grid; grid-template-columns: minmax(220px, 2fr) 52px 48px minmax(68px,.8fr) minmax(72px,.9fr); gap: 8px; margin-left: 28px; padding: 13px 30px 9px 14px; color: var(--ink-muted); font: 700 10px/1.2 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .06em; }
+.ledger-columns { display: grid; grid-template-columns: minmax(220px, 2fr) 52px 58px minmax(68px,.8fr) minmax(72px,.9fr); gap: 8px; margin-left: 28px; padding: 13px 30px 9px 14px; color: var(--ink-muted); font: 700 10px/1.2 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .06em; }
 .stage-list { position: relative; margin: 0; padding: 0 0 0 28px; list-style: none; }
 .stage-list::before { content: ""; position: absolute; top: 28px; bottom: 29px; left: 11px; width: 1px; background: var(--rule-strong); }
 .stage-node { position: relative; }
 .spine-point { position: absolute; z-index: 2; left: -21px; top: 28px; width: 9px; height: 9px; border: 1.5px solid var(--waiting); border-radius: 50%; background: var(--paper); }
 .stage-node.complete .spine-point { border-color: var(--verified); background: var(--verified); box-shadow: inset 0 0 0 2px var(--paper); }
 .stage-node.review_required .spine-point { border-color: var(--exception); background: var(--exception-soft); }
-.stage-row { position: relative; width: 100%; min-height: 67px; display: grid; grid-template-columns: minmax(220px, 2fr) 52px 48px minmax(68px,.8fr) minmax(72px,.9fr); align-items: center; gap: 8px; border: 0; border-top: 1px solid var(--rule); background: transparent; padding: 9px 30px 9px 14px; text-align: left; cursor: pointer; }
+.stage-row { position: relative; width: 100%; min-height: 67px; display: grid; grid-template-columns: minmax(220px, 2fr) 52px 58px minmax(68px,.8fr) minmax(72px,.9fr); align-items: center; gap: 8px; border: 0; border-top: 1px solid var(--rule); background: transparent; padding: 9px 30px 9px 14px; text-align: left; cursor: pointer; }
 .stage-node:last-child .stage-row { border-bottom: 1px solid var(--rule); }
 .stage-row:hover { background: rgba(255,253,248,.72); }
 .stage-row.readonly { cursor: default; }

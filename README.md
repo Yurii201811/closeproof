@@ -11,6 +11,9 @@ This is the repository's **OpenAI Build Week 2026 · Work & Productivity**
 project. It is built on selected pre-existing Accounting Agent primitives; the
 [Build Week provenance](docs/build_week_provenance.md) records that boundary.
 
+**Public entry:** [Watch the 172-second demo](https://youtu.be/lCoD5W-rCQs) ·
+[View the Devpost submission](https://devpost.com/software/balancedocket)
+
 > **Compatibility note:** BalanceDocket is the approved public display name.
 > The released product deliberately retains the stable `closeproof` technical
 > namespace for CLI commands, environment variables, schemas, plugin IDs,
@@ -40,6 +43,13 @@ Open <http://127.0.0.1:4173>. Set `CLOSEPROOF_PORT=4187` if the default port is
 occupied. The script never contacts an accounting, bank, email, tax, payment,
 or filing system. Alternate ports use a port-scoped ignored output directory by
 default, so starting a second demo cannot reset the first demo's decisions:
+
+Once open, verify the judge path in four steps:
+
+1. Select **Adjustments** in the close ledger.
+2. Inspect the source evidence, exact allocation, and optional GPT-5.6 advisory.
+3. Enter a human rationale and choose a decision.
+4. Download the validated, hash-bound workpaper.
 
 ```bash
 CLOSEPROOF_PORT=4187 ./scripts/run_closeproof_prebuilt.sh
@@ -218,8 +228,8 @@ See [PRODUCT.md](PRODUCT.md), [DESIGN.md](DESIGN.md), the
 [problem validation](docs/problem_validation.md), the
 [provenance record](docs/build_week_provenance.md), the
 [demo script](docs/closeproof_demo_script.md), and the
-[submission checklist](docs/closeproof_submission_checklist.md). Draft Devpost
-copy and remaining placeholders live in
+[submission checklist](docs/closeproof_submission_checklist.md). The submitted
+Devpost record lives in
 [docs/devpost_submission.md](docs/devpost_submission.md).
 
 ## How Codex and GPT-5.6 contributed
